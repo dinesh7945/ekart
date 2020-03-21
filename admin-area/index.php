@@ -18,7 +18,7 @@
     <script src="js/jquery-ui/jquery.effects.core.min.js" type="text/javascript"></script>
     <script src="js/jquery-ui/jquery.effects.slide.min.js" type="text/javascript"></script>
     <link rel="stylesheet" type="text/css" href="css/jquery.jqplot.min.css" />
-
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <script language="javascript" type="text/javascript" src="js/jqPlot/jquery.jqplot.min.js"></script>
     <script language="javascript" type="text/javascript" src="js/jqPlot/plugins/jqplot.barRenderer.min.js"></script>
     <script language="javascript" type="text/javascript" src="js/jqPlot/plugins/jqplot.pieRenderer.min.js"></script>
@@ -27,14 +27,30 @@
     <script language="javascript" type="text/javascript" src="js/jqPlot/plugins/jqplot.pointLabels.min.js"></script>
     <!-- END: load jqplot -->
     <script src="js/setup.js" type="text/javascript"></script>
-    <script type="text/javascript">
+    <script>
         $(document).ready(function() {
-            setupDashboardChart('chart1');
-            setupLeftMenu();
-            setSidebarHeight();
-
-
+            $('#show-error').hide();
         });
+
+        function validform() {
+            var name = document.forms["form"]["pname"].value;
+            var desc = document.forms["form"]["pdesc"].value;
+            var price = document.forms["form"]["pprice"].value;
+            var qty = document.forms["form"]["pqty"].value;
+            var img = document.forms["form"]["pimg"].value;
+            var img2 = document.forms["form"]["pimg2"].value;
+            var img3 = document.forms["form"]["pimg3"].value;
+            var brand = document.forms["form"]["pbrand"].value;
+            var category = document.forms["form"]["pcategory"].value;
+
+
+            if (name == '' || desc == '' || price == '' || qty == '' || img == '' || img2 == '' || img3 == '' || brand == '' || category == '') {
+                // alert('error');
+                $("#show-error").show();
+                return false;
+            }
+        }
+    </script>
     </script>
     <style>
         table {
@@ -144,14 +160,18 @@
                 <div class="box round first">
                     <h2> Add Product</h2>
                     <div class="block">
+                        <div class="alert alert-danger" role="alert" id="show-error">
+                            please fill all the fields
+                        </div>
+                        
 
-                        <form name="form" action="index.php" method="post" enctype="multipart/form-data">
+                        <form name="form" action="index.php" method="post" onsubmit="return validform()" enctype="multipart/form-data">
                             <table>
                                 <tr>
                                     <td>Product Name</td>
                                     <td><input type="text" name="pname"></td>
                                 </tr>
-                                
+
                                 <tr>
                                     <td>Product Desc</td>
                                     <td><textarea name="pdesc" cols="20" rows="3"></textarea> </td>
@@ -247,7 +267,7 @@ if (isset($_POST['submit'])) {
 
 
     $product_title = $_POST['pname'];
-    $product_desc = $_POST['pdesc'];
+    $prd_desc = $_POST['pdesc'];
     $product_price = $_POST['pprice'];
     $product_qty = $_POST['pqty'];
     $product_img = $_FILES['pimg']['name'];
@@ -260,41 +280,46 @@ if (isset($_POST['submit'])) {
     $temp_name1 = $_FILES['pimg3']['tmp_name'];
     $temp_name2 = $_FILES['pimg3']['tmp_name'];
     $temp_name3 = $_FILES['pimg3']['tmp_name'];
+}
 
 
-
-
-    if ($product_title == '' or  $product_catgory == '' or $product_brand == '' or $product_price == '' or $product_desc == '' or $product_img == '' or $product_img2 == '' or $product_img3 == '') {
-
-        echo "<script>
-        alert('please fill all the fields');
-        </script>";
-
-        exit();
-    }
+if ($product_title == '' or  $product_catgory == '' or $product_brand == '' or $product_price == '' or $prd_desc == '' or $product_img == '' or $product_img2 == '' or $product_img3 == '') {
+    echo "$('#show-error').show();";
+    return false;
+    exit();
 } else {
 
+
+    move_uploaded_file($temp_name1, 'product-images/$product_img1');
+    move_uploaded_file($temp_name2, 'product-images/$product_img2');
+    move_uploaded_file($temp_name3, 'product-images/$product_img3');
+
+    $insert_product = "INSERT INTO products (cat_id,brand_id,date,product_title,product_img1,product_img2,product_img3,product_price,product_desc,product_qty) VALUES ('$cat_id','$get_brand_id',Now(),'$product_title','$product_img','$product_img2','$product_img3','$product_price','$prd_desc','$product_qty')";
+
+
+
+    echo "$insert_product";
+
+    $run_prod = mysqli_query($con, $insert_product);
+
+    echo "$run_prod";
+}
+
+if ($run_prod) {
     
-    move_uploaded_file($temp_name1, './product-images/$product_img1');
-    move_uploaded_file($temp_name2, './product-images/$product_img2');
-    move_uploaded_file($temp_name3, './product-images/$product_img3');
+    echo "<script type='text/javascript'>
+    alert('product added Sucessfully');
+    </script>
+    ";
 
-
-    $insert_product = "insert into products (cat_id,brand_id,date,product_title,product_img1,product_img2,product_img3,product_price,product_desc,product_qty) values ($cat_id','$get_brand_id',Now(),'$product_title','$product_img','$product_img2','$product_img3','$product_price','$product_desc','$product_qty')";
-
-
-    $run = mysqli_query($con, $insert_product);
-
-
-    if ($run) {
-        echo "<script>
-            alert('product inserted sucessfully');
-            </script>";
-        exit();
-    };
-};
-
-
-
-
+    return false;
+    exit();
+} else {
+    echo "failed";
+}
+// if (false === $run_prod) {
+//     printf("error: %s\n", mysqli_error($con));
+// } else {
+//     echo 'done.';
+// }
 ?>
