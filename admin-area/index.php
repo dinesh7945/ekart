@@ -28,10 +28,12 @@
     <!-- END: load jqplot -->
     <script src="js/setup.js" type="text/javascript"></script>
     <script>
+        // HIDE error message
         $(document).ready(function() {
             $('#show-error').hide();
         });
 
+        // Validation form js
         function validform() {
             var name = document.forms["form"]["pname"].value;
             var desc = document.forms["form"]["pdesc"].value;
@@ -165,7 +167,9 @@
                         </div>
 
 
+                        <!-- Form starts -->
                         <form name="form" action="index.php" method="post" onsubmit="return validform()" enctype="multipart/form-data">
+
                             <table>
                                 <tr>
                                     <td>Product Name</td>
@@ -265,48 +269,56 @@
 
 if (isset($_POST['submit'])) {
 
-
+    // form data--->add to db
     $product_title = $_POST['pname'];
     $prd_desc = $_POST['pdesc'];
     $product_price = $_POST['pprice'];
     $product_qty = $_POST['pqty'];
+    // img name
     $product_img = $_FILES['pimg']['name'];
     $product_img2 = $_FILES['pimg2']['name'];
     $product_img3 = $_FILES['pimg3']['name'];
+    // ends here
     $product_brand = $_POST['pbrand'];
     $product_catgory = $_POST['pcategory'];
     $status = "on";
-
+    // Image temp-name
     $temp_name1 = $_FILES['pimg']['tmp_name'];
     $temp_name2 = $_FILES['pimg2']['tmp_name'];
     $temp_name3 = $_FILES['pimg3']['tmp_name'];
-}
 
+    // new code for img
 
-if ($product_title == '' or  $product_catgory == '' or $product_brand == '' or $product_price == '' or $prd_desc == '' or $product_img == '' or $product_img2 == '' or $product_img3 == '') {
-    echo "$('#show-error').show();";
-    return false;
-    exit();
-} else {
+    // declare
+    $name1 = $_FILES['pimg']['name'];
+    $name2 = $_FILES['pimg2']['name'];
+    $name3 = $_FILES['pimg3']['name'];
 
+    // target-directory fetch img
+    $target_dir = "product-images/";
+    $target_file = $target_dir . basename($_FILES["pimg"]["name"]);
+    $target_file = $target_dir . basename($_FILES["pimg2"]["name"]);
+    $target_file = $target_dir . basename($_FILES["pimg3"]["name"]);
 
-    move_uploaded_file($temp_name1, 'product-images/$product_img');
-    move_uploaded_file($temp_name2, 'product-images/$product_img2');
-    move_uploaded_file($temp_name3, 'product-images/$product_img3');
+    // Select file type
+    $imageFileType = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
 
-    // $insert_product = "INSERT INTO products 
-    // (cat_id,brand_id,
-    // date,product_title,
-    // product_img1,product_img2,
-    // product_img3,product_price,
-    // product_desc,product_qty) 
-    // VALUES 
-    // ('$cat_id','$get_brand_id',
-    // Now(),'$product_title',
-    // '$product_img','$product_img2',
-    // '$product_img3','$product_price',
-    // '$prd_desc',
-    // '$product_qty');";
+    // Valid file extensions
+    $extensions_arr = array("jpg", "jpeg", "png", "gif");
+
+    // Check extension
+    if (in_array($imageFileType, $extensions_arr)) {
+        // Upload file
+        move_uploaded_file($_FILES['pimg']['tmp_name'], $target_dir . $name1);
+        move_uploaded_file($_FILES['pimg2']['tmp_name'], $target_dir . $name2);
+        move_uploaded_file($_FILES['pimg3']['tmp_name'], $target_dir . $name3);
+    }
+    // ends here
+    // // upload img to folders
+    // move_uploaded_file($temp_name1, 'product-images/$product_img');
+    // move_uploaded_file($temp_name2, 'product-images/$product_img2');
+    // move_uploaded_file($temp_name3, 'product-images/$product_img3');
+
     $insert_product = "INSERT INTO
     products (
       cat_id,
@@ -334,34 +346,30 @@ if ($product_title == '' or  $product_catgory == '' or $product_brand == '' or $
       '$product_qty'
     );";
 
-
-
     // echo "$insert_product";
 
     $run_prod = mysqli_query($con, $insert_product);
-
     // echo "$run_prod";
     // $check = mysqli_num_rows($run_prod);
+    // if ($check == 1) {
+    //     echo "duplicate";
+    // }
+    if ($run_prod) {
 
-}
-// if ($check == 1) {
-//     echo "duplicate";
-// }
-if ($run_prod) {
-
-    echo "<script type='text/javascript'>
+        echo "<script type='text/javascript'>
     alert('product added Sucessfully');
     </script>
     ";
 
-    // return false;
-    exit();
-} else {
-    echo "failed";
+        // return false;
+        exit();
+    } else {
+        echo "failed";
+    }
+    // if (false === $run_prod) {
+    //     printf("error: %s\n", mysqli_error($con));
+    // } else {
+    //     echo 'done.';
+    // }
 }
-// if (false === $run_prod) {
-//     printf("error: %s\n", mysqli_error($con));
-// } else {
-//     echo 'done.';
-// }
 ?>

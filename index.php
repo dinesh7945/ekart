@@ -123,7 +123,7 @@
                     <div class="row">
                         <!-- Sidebar ================================================== -->
                         <?php include "sidebar.php"; ?>
-                        
+
                         <div class="span9">
                             <div class="well well-small">
                                 <h4>Featured Products <small class="pull-right">200+ featured products</small></h4>
@@ -137,7 +137,7 @@
                                                             <i class="tag"></i>
                                                             <a href="product_details.html"><img src="themes/images/products/b1.jpg" alt=""></a>
                                                             <div class="caption">
-                                                                <h5>Product name</h5>
+                                                                <h5>Product1 name</h5>
                                                                 <h4><a class="btn" href="product_details.html">VIEW</a> <span class="pull-right">$222.00</span></h4>
                                                             </div>
                                                         </div>
@@ -302,9 +302,39 @@
                                     </div>
                                 </div>
                             </div>
+                            <!-- latest-product -->
                             <h4>Latest Products </h4>
                             <ul class="thumbnails">
                                 <li class="span3">
+                                <img src='admin-area/product-images/'>
+                                    <?php
+
+                                    $get_products = "select * from products order by rand() Limit 0,3";
+
+                                    $run_products = mysqli_query($con, $get_products);
+
+                                    while ($row_products = mysqli_fetch_array($run_products)) {
+
+                                        $prod_id = $row_products['product_id'];
+                                        $prod_title = $row_products['product_title'];
+                                        $prod_cat = $row_products['cat_id'];
+                                        $prod_brand = $row_products['brand_id'];
+                                        $prod_desc = $row_products['product_desc'];
+                                        $prod_price = $row_products['product_price'];
+                                        $prod_img = $row_products['product_img1'];
+                                        $prod_img2 = $row_products['product_img2'];
+                                        $prod_img3= $row_products['product_img3'];
+                                        echo "; 
+                                        <h3>
+                                        $prod_title
+                                        </h3>
+                                        <img src='admin-area/product-images/$prod_img'>
+                                        ";
+
+                                    }
+
+
+                                    ?>
                                     <div class="thumbnail">
                                         <a href="product_details.html"><img src="themes/images/products/6.jpg" alt="" /></a>
                                         <div class="caption">
@@ -386,7 +416,7 @@
 
 
         </div>
-        <?php include "footer.php" ?> 
+        <?php include "footer.php" ?>
         <!-- Placed at the end of the document so the pages load faster ============================================= -->
         <script src="themes/js/jquery.js" type="text/javascript"></script>
         <script src="themes/js/bootstrap.min.js" type="text/javascript"></script>
