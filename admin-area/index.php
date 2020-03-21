@@ -163,7 +163,7 @@
                         <div class="alert alert-danger" role="alert" id="show-error">
                             please fill all the fields
                         </div>
-                        
+
 
                         <form name="form" action="index.php" method="post" onsubmit="return validform()" enctype="multipart/form-data">
                             <table>
@@ -277,8 +277,8 @@ if (isset($_POST['submit'])) {
     $product_catgory = $_POST['pcategory'];
     $status = "on";
 
-    $temp_name1 = $_FILES['pimg3']['tmp_name'];
-    $temp_name2 = $_FILES['pimg3']['tmp_name'];
+    $temp_name1 = $_FILES['pimg']['tmp_name'];
+    $temp_name2 = $_FILES['pimg2']['tmp_name'];
     $temp_name3 = $_FILES['pimg3']['tmp_name'];
 }
 
@@ -290,29 +290,71 @@ if ($product_title == '' or  $product_catgory == '' or $product_brand == '' or $
 } else {
 
 
-    move_uploaded_file($temp_name1, 'product-images/$product_img1');
+    move_uploaded_file($temp_name1, 'product-images/$product_img');
     move_uploaded_file($temp_name2, 'product-images/$product_img2');
     move_uploaded_file($temp_name3, 'product-images/$product_img3');
 
-    $insert_product = "INSERT INTO products (cat_id,brand_id,date,product_title,product_img1,product_img2,product_img3,product_price,product_desc,product_qty) VALUES ('$cat_id','$get_brand_id',Now(),'$product_title','$product_img','$product_img2','$product_img3','$product_price','$prd_desc','$product_qty')";
+    // $insert_product = "INSERT INTO products 
+    // (cat_id,brand_id,
+    // date,product_title,
+    // product_img1,product_img2,
+    // product_img3,product_price,
+    // product_desc,product_qty) 
+    // VALUES 
+    // ('$cat_id','$get_brand_id',
+    // Now(),'$product_title',
+    // '$product_img','$product_img2',
+    // '$product_img3','$product_price',
+    // '$prd_desc',
+    // '$product_qty');";
+    $insert_product = "INSERT INTO
+    products (
+      cat_id,
+      brand_id,
+      date,
+      product_title,
+      product_img1,
+      product_img2,
+      product_img3,
+      product_price,
+      product_desc,
+      product_qty
+    )
+  VALUES
+    (
+      '$cat_id',
+      '$get_brand_id',
+      Now(),
+      '$product_title',
+      '$product_img',
+      '$product_img2',
+      '$product_img3',
+      '$product_price',
+      '$prd_desc',
+      '$product_qty'
+    );";
 
 
 
-    echo "$insert_product";
+    // echo "$insert_product";
 
     $run_prod = mysqli_query($con, $insert_product);
 
-    echo "$run_prod";
-}
+    // echo "$run_prod";
+    // $check = mysqli_num_rows($run_prod);
 
+}
+// if ($check == 1) {
+//     echo "duplicate";
+// }
 if ($run_prod) {
-    
+
     echo "<script type='text/javascript'>
     alert('product added Sucessfully');
     </script>
     ";
 
-    return false;
+    // return false;
     exit();
 } else {
     echo "failed";
