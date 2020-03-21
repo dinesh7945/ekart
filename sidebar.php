@@ -13,21 +13,7 @@
 
 
                   <!-- sql-query -->
-                  <?php $get_cat = "select * from categories";
-                    $run = mysqli_query($con, $get_cat);
-                    // perform query and connected db 
-                    while ($row_cat = mysqli_fetch_array($run)) {
-                        // Fetch array in associative array in looop
-
-                        $cat_id = $row_cat['cat_id'];
-                        //declare  new var and feteching column data--->row_cat and row Id particluar
-                        $cat_title = $row_cat['cat_title'];
-
-                        echo "<li><a class='active' href='products.html'><i class='icon-chevron-right'></i>$cat_title </a></li>";
-                        // declare variables $cat_title
-                    };
-
-                    ?>
+                  <?php get_cat() ?>
                   <!-- <li><a href="products.html"><i class="icon-chevron-right"></i>Computers, Tablets & laptop (30)</a></li> -->
 
               </ul>
@@ -37,24 +23,14 @@
 
 
 
-                  <?php $get_brand = "select * from brands";
+                  <?php
 
-                    $run_brand = mysqli_query($con, $get_brand);
-
-                    while ($row_brand = mysqli_fetch_array($run_brand)) {
-
-                        $get_brand_id = $row_brand['brand_id'];
-                        $get_brand_title = $row_brand['brand_title'];
-
-                        echo "<li><a href='products.html'><i class='icon-chevron-right'></i>$get_brand_title </a></li>";
-                    }
-
-
+                    getbrand();
 
 
                     ?>
                   <!-- <li><a href="products.html"><i class="icon-chevron-right"></i>Women's Clothing (45)</a></li> -->
-                  
+
               </ul>
           </li>
           <!-- <li class="subMenu"><a>FOOD AND BEVERAGES [1000]</a>
@@ -73,26 +49,26 @@
           <li><a href="products.html">SPORTS & LEISURE [58]</a></li>
           <li><a href="products.html">BOOKS & ENTERTAINMENTS [14]</a></li>
       </ul> -->
-      <br />
-      <div class="thumbnail">
-          <img src="themes/images/products/panasonic.jpg" alt="Bootshop panasonoc New camera" />
-          <div class="caption">
-              <h5>Panasonic</h5>
-              <h4 style="text-align:center"><a class="btn" href="product_details.html"> <i class="icon-zoom-in"></i></a> <a class="btn" href="#">Add to <i class="icon-shopping-cart"></i></a> <a class="btn btn-primary" href="#">$222.00</a></h4>
+          <br />
+          <div class="thumbnail">
+              <img src="themes/images/products/panasonic.jpg" alt="Bootshop panasonoc New camera" />
+              <div class="caption">
+                  <h5>Panasonic</h5>
+                  <h4 style="text-align:center"><a class="btn" href="product_details.html"> <i class="icon-zoom-in"></i></a> <a class="btn" href="#">Add to <i class="icon-shopping-cart"></i></a> <a class="btn btn-primary" href="#">$222.00</a></h4>
+              </div>
+          </div><br />
+          <div class="thumbnail">
+              <img src="themes/images/products/kindle.png" title="Bootshop New Kindel" alt="Bootshop Kindel">
+              <div class="caption">
+                  <h5>Kindle</h5>
+                  <h4 style="text-align:center"><a class="btn" href="product_details.html"> <i class="icon-zoom-in"></i></a> <a class="btn" href="#">Add to <i class="icon-shopping-cart"></i></a> <a class="btn btn-primary" href="#">$222.00</a></h4>
+              </div>
+          </div><br />
+          <div class="thumbnail">
+              <img src="themes/images/payment_methods.png" title="Bootshop Payment Methods" alt="Payments Methods">
+              <div class="caption">
+                  <h5>Payment Methods</h5>
+              </div>
           </div>
-      </div><br />
-      <div class="thumbnail">
-          <img src="themes/images/products/kindle.png" title="Bootshop New Kindel" alt="Bootshop Kindel">
-          <div class="caption">
-              <h5>Kindle</h5>
-              <h4 style="text-align:center"><a class="btn" href="product_details.html"> <i class="icon-zoom-in"></i></a> <a class="btn" href="#">Add to <i class="icon-shopping-cart"></i></a> <a class="btn btn-primary" href="#">$222.00</a></h4>
-          </div>
-      </div><br />
-      <div class="thumbnail">
-          <img src="themes/images/payment_methods.png" title="Bootshop Payment Methods" alt="Payments Methods">
-          <div class="caption">
-              <h5>Payment Methods</h5>
-          </div>
-      </div>
   </div>
   <!-- Sidebar end=============================================== -->
