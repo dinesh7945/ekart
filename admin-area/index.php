@@ -36,7 +36,7 @@
         // Validation form js
         function validform() {
             var name = document.forms["form"]["pname"].value;
-            var desc = document.forms["form"]["pdesc"].value;
+            var desc = document.forms["form"]["productdis"].value;
             var price = document.forms["form"]["pprice"].value;
             var qty = document.forms["form"]["pqty"].value;
             var img = document.forms["form"]["pimg"].value;
@@ -178,7 +178,7 @@
 
                                 <tr>
                                     <td>Product Desc</td>
-                                    <td><textarea name="pdesc" cols="20" rows="3"></textarea> </td>
+                                    <td><textarea name="productdis" cols="20" rows="3"></textarea> </td>
                                 </tr>
 
                                 <tr>
@@ -267,11 +267,12 @@
 </html>
 <?php
 
-if (isset($_POST['submit'])) {
+if (isset($_POST['submit']) && isset($_POST['productdis'])) {
 
     // form data--->add to db
     $product_title = $_POST['pname'];
-    $prd_desc = $_POST['pdesc'];
+    $product_d = $_POST['productdis'];
+    // $product_dec = $_POST['pc'];
     $product_price = $_POST['pprice'];
     $product_qty = $_POST['pqty'];
     // img name
@@ -329,7 +330,7 @@ if (isset($_POST['submit'])) {
       product_img2,
       product_img3,
       product_price,
-      product_desc,
+      product_descthem,
       product_qty
     )
   VALUES
@@ -342,25 +343,21 @@ if (isset($_POST['submit'])) {
       '$product_img2',
       '$product_img3',
       '$product_price',
-      '$prd_desc',
+      '$product_d',
       '$product_qty'
     );";
 
     // echo "$insert_product";
-
     $run_prod = mysqli_query($con, $insert_product);
     // echo "$run_prod";
-    // $check = mysqli_num_rows($run_prod);
-    // if ($check == 1) {
-    //     echo "duplicate";
-    // }
+
     if ($run_prod) {
 
         echo "<script type='text/javascript'>
     alert('product added Sucessfully');
     </script>
     ";
-
+    
         // return false;
         exit();
     } else {
