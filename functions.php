@@ -3,7 +3,7 @@
 $db = mysqli_connect("localhost", "root", "", "ekart");
 
 
-
+// carpro function--->carousel products
 function carPro()
 
 {
@@ -34,7 +34,7 @@ function carPro()
 }
 
 
-
+// getpro()----->fetching products randomly
 function getPro()
 
 {
@@ -63,7 +63,7 @@ function getPro()
                                         ";
     }
 }
-
+// function getbrand()----->getting brand in side bar
 function getbrand()
 
 {
@@ -75,11 +75,12 @@ function getbrand()
         $brand_id = $row_brands['brand_id'];
         $brand_title = $row_brands['brand_title'];
         // $prod_img = $row_brands['product_img1'];
-        echo "<li><a href='products.html?brand=$brand_id'><i class='icon-chevron-right'></i>$brand_title </a></li>";
+        echo "<li><a href='products.php?brand=$brand_id'><i class='icon-chevron-right'></i>$brand_title </a></li>";
     }
 }
 
 
+// function getcategory()----->getting category in side bar
 
 function get_cat()
 {
@@ -94,8 +95,44 @@ function get_cat()
         //declare  new var and feteching column data--->row_cat and row Id particluar
         $cat_title = $row_cat['cat_title'];
 
-        echo "<li><a class='active' href='products.html?cat=$cat_id'><i class='icon-chevron-right'></i>$cat_title </a></li>";
+        echo "<li><a class='active' href='products.php?cat=$cat_id'><i class='icon-chevron-right'></i>$cat_title </a></li>";
         // declare variables $cat_title
     };
 }
+
+// product.php--->getting products by category id
+function get_prodlist()
+
+{
+    global $db;
+    // if (isset($_GET['cat'])) {
+
+        $category_id = $_GET['cat'];
+        $get_cat_product = "select * from products where cat_id = $category_id";
+
+        $run_cat_products = mysqli_query($db, $get_cat_product);
+        while ($row_cat_products = mysqli_fetch_array($run_cat_products)) {
+            $prod_id = $row_cat_products['product_id'];
+            $prod_title = $row_cat_products['product_title'];
+            $prod_cat = $row_cat_products['cat_id'];
+            $prod_brand = $row_cat_products['brand_id'];
+            $prod_desc = $row_cat_products['product_descthem'];
+            $prod_price = $row_cat_products['product_price'];
+            $prod_img = $row_cat_products['product_img1'];
+            $prod_img2 = $row_cat_products['product_img2'];
+            $prod_img3 = $row_cat_products['product_img3'];
+            echo "<li class='span3'><div class='thumbnail'>
+                                        <a href='product_details.html'><img style='height: 40%;object-fit: contain;' src='admin-area/product-images/$prod_img' alt='' /></a>
+                                        <div class='caption'>
+                                            <h5>$prod_title</h5>
+                                            
+
+                                            <h4 style='text-align:center'><a class='btn' href='product_details.html'> <i class='icon-zoom-in'></i></a> <a class='btn' href='#'>Add to <i class='icon-shopping-cart'></i></a> <a class='btn btn-primary' href='#'>$prod_price</a></h4>
+                                        </div>
+                                    </div>
+                                    </li>
+                                        ";
+        }
+    }
+// }
 ?>
