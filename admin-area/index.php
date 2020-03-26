@@ -369,23 +369,23 @@
         $run_prod = mysqli_query($con, $insert_product);
         echo "$prd_description";
 
-        if ($run_prod) {
+        // if ($run_prod) {
 
-            echo "<script type='text/javascript'>
-        alert('product added Sucessfully');
-        </script>
-        ";
+        //     echo "<script type='text/javascript'>
+        // alert('product added Sucessfully');
+        // </script>
+        // ";
 
-            // return false;
-            exit();
-        } else {
-            echo "failed";
-        }
-        // if (false === $run_prod) {
-        //     printf("error: %s\n", mysqli_error($con));
+        //     // return false;
+        //     exit();
         // } else {
-        //     echo 'done.';
-        //     echo "dis" . $bid;;
+        //     echo "failed";
         // }
+        if (false === $run_prod) {
+            printf("error: %s\n", mysqli_error($con));
+        } else {
+            echo 'done.';
+            echo "dis" . $bid;;
+        }
     }
     ?>
