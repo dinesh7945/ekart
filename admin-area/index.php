@@ -178,7 +178,7 @@
 
                                     <tr>
                                         <td>Product Desc</td>
-                                        <td><textarea name="productdis" cols="20" rows="3"></textarea> </td>
+                                        <td><textarea name="productdis" cols="20" rows="5"></textarea> </td>
                                     </tr>
 
                                     <tr>
@@ -285,11 +285,11 @@
     </html>
     <?php
 
-    if (isset($_POST['submit']) && isset($_POST['productdis'])) {
+    if (isset($_POST['submit'])) {
 
         // form data--->add to db
         $product_title = $_POST['pname'];
-        $product_d = $_POST['productdis'];
+        $prd_description = $_POST['productdis'];
         // $product_dec = $_POST['pc'];
         $product_price = $_POST['pprice'];
         $product_qty = $_POST['pqty'];
@@ -361,13 +361,13 @@
         '$product_img2',
         '$product_img3',
         '$product_price',
-        '$product_d',
+        '$prd_description',
         '$product_qty'
         );";
 
         // echo "$insert_product";
         $run_prod = mysqli_query($con, $insert_product);
-        // echo "$run_prod";
+        echo "$prd_description";
 
         if ($run_prod) {
 
@@ -381,11 +381,11 @@
         } else {
             echo "failed";
         }
-    //     if (false === $run_prod) {
-    //         printf("error: %s\n", mysqli_error($con));
-    //     } else {
-    //         echo 'done.';
-    //         echo "dis" . $bid;;
-    //     }
+        // if (false === $run_prod) {
+        //     printf("error: %s\n", mysqli_error($con));
+        // } else {
+        //     echo 'done.';
+        //     echo "dis" . $bid;;
+        // }
     }
     ?>
