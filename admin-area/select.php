@@ -29,29 +29,29 @@
     <script src="js/setup.js" type="text/javascript"></script>
     <script>
         // HIDE error message
-        $(document).ready(function() {
-            $('#show-error').hide();
-        });
+        // $(document).ready(function() {
+        //     $('#show-error').hide();
+        // });
 
         // Validation form js
-        function validform() {
-            var name = document.forms["form"]["pname"].value;
-            var desc = document.forms["form"]["productdis"].value;
-            var price = document.forms["form"]["pprice"].value;
-            var qty = document.forms["form"]["pqty"].value;
-            var img = document.forms["form"]["pimg"].value;
-            var img2 = document.forms["form"]["pimg2"].value;
-            var img3 = document.forms["form"]["pimg3"].value;
-            var brand = document.forms["form"]["pbrand"].value;
-            var category = document.forms["form"]["pcategory"].value;
+        // function validform() {
+        //     var name = document.forms["form"]["pname"].value;
+        //     var desc = document.forms["form"]["productdis"].value;
+        //     var price = document.forms["form"]["pprice"].value;
+        //     var qty = document.forms["form"]["pqty"].value;
+        //     var img = document.forms["form"]["pimg"].value;
+        //     var img2 = document.forms["form"]["pimg2"].value;
+        //     var img3 = document.forms["form"]["pimg3"].value;
+        //     var brand = document.forms["form"]["pbrand"].value;
+        //     var category = document.forms["form"]["pcategory"].value;
 
 
-            if (name == '' || desc == '' || price == '' || qty == '' || img == '' || img2 == '' || img3 == '' || brand == '' || category == '') {
-                // alert('error');
-                $("#show-error").show();
-                return false;
-            }
-        }
+        //     if (name == '' || desc == '' || price == '' || qty == '' || img == '' || img2 == '' || img3 == '' || brand == '' || category == '') {
+        //         // alert('error');
+        //         $("#show-error").show();
+        //         return false;
+        //     }
+        // }
     </script>
     </script>
     <style>
@@ -206,62 +206,61 @@
                                     <td>
                                         <select name="pbrand">
 
-                                            <option>----select----</option>
+                                            <option>-----select-----</option>
                                             <?php
-                                            $get_brand = "SELECT brand_id, brand_title FROM brands";
+                                            $get_brand = "SELECT brand_id,brand_title FROM brands";
 
                                             $run_brand = mysqli_query($con, $get_brand);
-                                            while ($row_brand = mysqli_fetch_array($run_brand)) {
+
+                                            while ($row_brand = mysqli_fetch_assoc($run_brand)) {
 
                                                 $bid = $row_brand['brand_id'];
                                                 $btitle = $row_brand['brand_title'];
 
                                                 $get_brand_id = $bid['pbrand'];
                                                 $get_brand_title = $btitle['pbrand'];
-
                                                 // $cat_title = $ca;
-
                                                 //echo "<option value='$cat_name'>{$row_cat['shop']}</option>";
 
-                                                echo "<option value='$get_brand_title'>$bid.$btitle</option>";
+                                                echo "<option value='$bid'>$btitle</option>";
                                             };
-
-
-
-
 
                                             ?>
 
                                         </select>
-                                        <?php echo "dis" . $get_brand_title; ?>
 
                                     </td>
                                 </tr>
-                                <!-- <tr>
+                                <tr>
                                     <td>Product Category</td>
                                     <td>
                                         <select name="pcategory">
 
-                                            <?php $get_cat = "select * from categories";
-
+                                            <option>-----select-----</option>
+                                            <?php $get_cat = "select cat_id,cat_title from categories";
 
                                             $run = mysqli_query($con, $get_cat);
 
-                                            while ($row_cat = mysqli_fetch_array($run)) {
+                                            while ($row_cat = mysqli_fetch_assoc($run)) {
 
-                                                $cat_id = $row_cat['cat_id'];
-                                                $cat_title = $row_cat['cat_title'];
+                                                $cid = $row_cat['cat_id'];
+                                                $ctitle = $row_cat['cat_title'];
 
-                                                echo "<option value='$cat_title'>$cat_title</option>";
+                                                $cat_id = $cid['pcategory'];
+                                                $cat_title = $row_cat['pcategory'];
+
+
+                                                echo "<option value='$cid'>$ctitle</option>";
                                             };
 
 
                                             ?>
 
                                         </select>
+
                                     </td>
 
-                                </tr> -->
+                                </tr>
                                 <tr>
                                     <td colspan='2' align="center">
                                         <input type="submit" name="submit" values="upload">
@@ -286,7 +285,7 @@
 </html>
 <?php
 
-if (isset($_POST['submit']) && isset($_POST['productdis']) && isset($_POST['pcategory'])) {
+if (isset($_POST['submit']) && isset($_POST['productdis'])) {
 
     // form data--->add to db
     $product_title = $_POST['pname'];
@@ -341,29 +340,29 @@ if (isset($_POST['submit']) && isset($_POST['productdis']) && isset($_POST['pcat
 
     $insert_product = "INSERT INTO
     products (
-      cat_id,
-      brand_id,
-      date,
-      product_title,
-      product_img1,
-      product_img2,
-      product_img3,
-      product_price,
-      product_descthem,
-      product_qty
+    cat_id,
+    brand_id,
+    date,
+    product_title,
+    product_img1,
+    product_img2,
+    product_img3,
+    product_price,
+    product_descthem,
+    product_qty
     )
-  VALUES
+VALUES
     (
-      '$cat_id',
-      '$product_brand',
-      Now(),
-      '$product_title',
-      '$product_img',
-      '$product_img2',
-      '$product_img3',
-      '$product_price',
-      '$product_d',
-      '$product_qty'
+    '$product_catgory',
+    '$product_brand',
+    Now(),
+    '$product_title',
+    '$product_img',
+    '$product_img2',
+    '$product_img3',
+    '$product_price',
+    '$product_d',
+    '$product_qty'
     );";
 
     // echo "$insert_product";
@@ -386,6 +385,7 @@ if (isset($_POST['submit']) && isset($_POST['productdis']) && isset($_POST['pcat
         printf("error: %s\n", mysqli_error($con));
     } else {
         echo 'done.';
+        echo "dis" . $bid;;
     }
 }
 ?>

@@ -29,29 +29,29 @@
         <script src="js/setup.js" type="text/javascript"></script>
         <script>
             // HIDE error message
-            // $(document).ready(function() {
-            //     $('#show-error').hide();
-            // });
+            $(document).ready(function() {
+                $('#show-error').hide();
+            });
 
             // Validation form js
-            // function validform() {
-            //     var name = document.forms["form"]["pname"].value;
-            //     var desc = document.forms["form"]["productdis"].value;
-            //     var price = document.forms["form"]["pprice"].value;
-            //     var qty = document.forms["form"]["pqty"].value;
-            //     var img = document.forms["form"]["pimg"].value;
-            //     var img2 = document.forms["form"]["pimg2"].value;
-            //     var img3 = document.forms["form"]["pimg3"].value;
-            //     var brand = document.forms["form"]["pbrand"].value;
-            //     var category = document.forms["form"]["pcategory"].value;
+            function validform() {
+                var name = document.forms["form"]["pname"].value;
+                var desc = document.forms["form"]["productdis"].value;
+                var price = document.forms["form"]["pprice"].value;
+                var qty = document.forms["form"]["pqty"].value;
+                var img = document.forms["form"]["pimg"].value;
+                var img2 = document.forms["form"]["pimg2"].value;
+                var img3 = document.forms["form"]["pimg3"].value;
+                var brand = document.forms["form"]["pbrand"].value;
+                var category = document.forms["form"]["pcategory"].value;
 
 
-            //     if (name == '' || desc == '' || price == '' || qty == '' || img == '' || img2 == '' || img3 == '' || brand == '' || category == '') {
-            //         // alert('error');
-            //         $("#show-error").show();
-            //         return false;
-            //     }
-            // }
+                if (name == '' || desc == '' || price == '' || qty == '' || img == '' || img2 == '' || img3 == '' || brand == '' || category == '') {
+                    // alert('error');
+                    $("#show-error").show();
+                    return false;
+                }
+            }
         </script>
         </script>
         <style>
@@ -369,23 +369,23 @@
         $run_prod = mysqli_query($con, $insert_product);
         // echo "$run_prod";
 
-        // if ($run_prod) {
+        if ($run_prod) {
 
-        //     echo "<script type='text/javascript'>
-        // alert('product added Sucessfully');
-        // </script>
-        // ";
+            echo "<script type='text/javascript'>
+        alert('product added Sucessfully');
+        </script>
+        ";
 
-        //     // return false;
-        //     exit();
-        // } else {
-        //     echo "failed";
-        // }
-        if (false === $run_prod) {
-            printf("error: %s\n", mysqli_error($con));
+            // return false;
+            exit();
         } else {
-            echo 'done.';
-            echo "dis" . $bid;;
+            echo "failed";
         }
+    //     if (false === $run_prod) {
+    //         printf("error: %s\n", mysqli_error($con));
+    //     } else {
+    //         echo 'done.';
+    //         echo "dis" . $bid;;
+    //     }
     }
     ?>
