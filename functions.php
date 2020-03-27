@@ -56,8 +56,7 @@ function getPro()
                                         <div class='caption'>
                                             <h5>$prod_title</h5>
                                             
-
-                                            <h4 style='text-align:center'><a class='btn' href='product_details.html'> <i class='icon-zoom-in'></i></a> <a class='btn' href='#'>Add to <i class='icon-shopping-cart'></i></a> <a class='btn btn-primary' href='#'>$prod_price</a></h4>
+                                            <h4 style='text-align:center'><a class='btn' href='product_details.html'> <i class='icon-zoom-in'></i></a> <a class='btn' href='index.php?add_cart=$prod_id'>Add to Cart</i></a> <a class='btn btn-primary' href='#'>Rs.$prod_price</a></h4>
                                         </div>
                                     </div>
                                         ";
@@ -100,6 +99,7 @@ function get_cat()
     };
 }
 
+
 // product.php--->getting products by category id
 function get_prodlist()
 
@@ -135,7 +135,9 @@ function get_prodlist()
                                         ";
     }
 }
-// }
+
+
+// product_details fetch
 
 function pro_detail()
 {
@@ -161,7 +163,7 @@ function pro_detail()
         $prod_qty = $row_products['product_qty'];
     }
 
-    
+
     echo "<div class='row'>
                         <div id='gallery' class='span3'>
                             <a href='admin-area/product-images/$prod_img' title=''>
@@ -239,3 +241,77 @@ function pro_detail()
 
                     </div>";
 }
+
+
+// related products fetch
+function rel_getPro()
+
+{
+    global $db;
+    $get_products = "select * from products order by rand() LIMIT 0,3";
+    $run_products = mysqli_query($db, $get_products);
+    while ($row_products = mysqli_fetch_array($run_products)) {
+        $prod_id = $row_products['product_id'];
+        $prod_title = $row_products['product_title'];
+        $prod_cat = $row_products['cat_id'];
+        $prod_brand = $row_products['brand_id'];
+        $prod_desc = $row_products['product_descthem'];
+        $prod_price = $row_products['product_price'];
+        $prod_img = $row_products['product_img1'];
+        $prod_img2 = $row_products['product_img2'];
+        $prod_img3 = $row_products['product_img3'];
+        echo "<div class='row'>	  
+                        <div class='span2'>
+                            <img src='admin-area/product-images/$prod_img' alt=''>
+                        </div>
+                    <div class='span4'>
+                        <h3>New | Available</h3>				
+                        <hr class='soft'>
+                        <h5>$prod_title </h5>
+                        <p>
+                        $prod_desc
+                        </p>
+                        <a class='btn btn-small pull-right' href='product_details.php?pro_id=$prod_id'>View Details</a>
+                        <br class='clr'>
+                    </div>
+        <div class='span3 alignR'>
+            <form class='form-horizontal qtyFrm'>
+            <h3> Rs.$prod_price</h3>
+            <br>
+            <div class='btn-group'>
+            <a href='product_details.html' class='btn btn-large btn-primary'> Add to <i class=' icon-shopping-cart'></i></a>
+            </div>
+                </form>
+        </div>
+</div>
+<hr class='soft'/>";
+    }
+}
+
+// get ip address
+function getrealipaddres()
+{
+
+    //whether ip is from share internet
+    if (!empty($_SERVER['HTTP_CLIENT_IP'])) {
+        $ip_address = $_SERVER['HTTP_CLIENT_IP'];
+    }
+    //whether ip is from proxy
+    elseif (!empty($_SERVER['HTTP_X_FORWARDED_FOR'])) {
+        $ip_address = $_SERVER['HTTP_X_FORWARDED_FOR'];
+    }
+    //whether ip is from remote address
+    else {
+        $ip_address = $_SERVER['REMOTE_ADDR'];
+    }
+    echo $ip_address;
+}
+
+
+
+// Creating cart
+
+// function cart()
+// {
+//     if(isset($)))
+// }
