@@ -9,10 +9,10 @@
         <span class="icon-bar"></span>
     </a>
     <div class="navbar-inner">
-        <a class="brand" href="index.html"><img src="themes/images/logo.png" alt="Bootsshop" /></a>
+        <a class="brand" href="index.php"><img src="themes/images/logo.png" alt="Bootsshop" /></a>
         <!-- <form class="form-inline navbar-search" method="post" action="products.html" > -->
         <form class="form-inline navbar-search" method="Get" action="result.php" enctype="multipart/form-data">
-            <input id="srchFld" name="user_query" class="srchTxt" type="text" />
+            <input id="srchFld" name="user_query" class="srchTxt" type="text"  style="    padding: 15px 0;"/>
             <!-- <input id="srchFld" class="srchTxt" type="text" /> -->
 
 

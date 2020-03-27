@@ -269,6 +269,7 @@
 
                                 <div class="tab-pane  active" id="blockView">
                                     <ul class="thumbnails">
+                                    
                                         <?php get_prodlist() ?>
                                         <!-- <li class="span3">
                                             <div class="thumbnail">
