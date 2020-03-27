@@ -304,14 +304,103 @@ function getrealipaddres()
     else {
         $ip_address = $_SERVER['REMOTE_ADDR'];
     }
-    echo $ip_address;
 }
 
 
 
-// Creating cart
+// Creating add to cart
 
-// function cart()
-// {
-//     if(isset($)))
-// }
+function cart()
+{
+
+    if (isset($_GET['add_cart'])) {
+
+        global $db;
+
+        $p_id = $_GET['add_cart'];
+
+        $ip_add = getrealipaddres();
+
+        $check_pro = "SELECT * FROM cart WHERE p_id = '$p_id' AND ip_add = '$ip_add'";
+
+        $run_check = mysqli_query($db, $check_pro);
+
+        if (mysqli_num_rows($run_check) > 0) {
+
+            echo "";
+        } else {
+            // $q = "INSERT INTO cart(p_id,ip_add) values ('$p_id','$ip_add')";
+            $q = "INSERT INTO cart(p_id,ip_add) values ('$p_id','$ip_add')";
+            $run_q = mysqli_query($db, $q);
+
+            echo "<script>window.open('index.php','_self')</script>";
+        }
+    }
+}
+
+
+
+// Getting Numbers of items in cart
+function items()
+{
+    if (isset($_GET['add_cart'])) {
+
+        global $db;
+
+        $ip_add = getrealipaddres();
+
+        $get_items = "SELECT * FROM cart WHERE ip_add ='$ip_add'";
+
+        $run_items = mysqli_query($db, $get_items);
+
+        $count_items = mysqli_num_rows($run_items);
+    } else {
+        global $db;
+
+        $ip_add = getrealipaddres();
+
+        $get_items = "SELECT * FROM cart WHERE ip_add ='$ip_add'";
+
+        $run_items = mysqli_query($db, $get_items);
+
+        $count_items = mysqli_num_rows($run_items);
+    }
+    echo $count_items;
+}
+
+
+// getting total price
+
+function total_price()
+{
+    $ip_add = getrealipaddres();
+
+
+    global $db;
+
+    $total = 0;
+
+    $sel_price = "SELECT * FROM cart WHERE ip_add ='$ip_add'";
+
+    $run_price = mysqli_query($db, $sel_price);
+
+    while($record = mysqli_fetch_assoc($run_price)){
+
+        $pro_id = $record['p_id'];
+
+        $pro_price = "SELECT * FROM products where product_id = $pro_id";
+
+        $run_pro_price = mysqli_query($db,$pro_price);
+
+        while($p_price = mysqli_fetch_array($run_pro_price)){
+
+            $product_price = array($p_price['product_price']);
+
+            $values = array_sum($product_price);
+
+            $total += $values;
+        }
+
+    }
+    echo $total;
+}
