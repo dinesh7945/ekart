@@ -2,10 +2,8 @@
 
 $db = mysqli_connect("localhost", "root", "", "ekart");
 
-
-// carpro function--->carousel products
+// caroselpro function--->carousel products
 function carPro()
-
 {
     global $db;
     $get_products = "select * from products order by rand() LIMIT 0,3";
@@ -24,15 +22,12 @@ function carPro()
 <a href='product_details.html'><img style='height: 40%;object-fit: contain;' src='admin-area/product-images/$prod_img' alt='' /></a>
 <div class='caption'>
 <h5>$prod_title</h5>
-
-
 <h4 style='text-align:center'><a class='btn' href='product_details.html'> <i class='icon-zoom-in'></i></a> <a class='btn' href='#'>Add to <i class='icon-shopping-cart'></i></a> <a class='btn btn-primary' href='#'>$prod_price</a></h4>
 </div>
 </div>
 ";
     }
 }
-
 
 // getpro()----->fetching products randomly
 function getPro()
@@ -51,12 +46,20 @@ function getPro()
         $prod_img = $row_products['product_img1'];
         $prod_img2 = $row_products['product_img2'];
         $prod_img3 = $row_products['product_img3'];
+        // a tag-->link to product.php?pro_id = $prod_id
+        // so while hover or click that product id wil fetch on that page
+
+        //same with add to cart wen click add to cart then product id fetch.
+
+        // add_cart 
         echo "<li class='span3'><div class='thumbnail'>
                                         <a href='product_details.php?pro_id=$prod_id'><img style='height: 40%;object-fit: contain;' src='admin-area/product-images/$prod_img' alt='' /></a>
                                         <div class='caption'>
                                             <h5>$prod_title</h5>
                                             
-                                            <h4 style='text-align:center'><a class='btn' href='product_details.html'> <i class='icon-zoom-in'></i></a> <a class='btn' href='index.php?add_cart=$prod_id'>Add to Cart</i></a> <a class='btn btn-primary' href='#'>Rs.$prod_price</a></h4>
+                                            <h4 style='text-align:center'><a class='btn' href='product_details.html'> <i class='icon-zoom-in'></i></a> 
+
+                                            <a class='btn' href='index.php?add_cart=$prod_id'>Add to Cart</i></a> <a class='btn btn-primary' href='#'>Rs.$prod_price</a></h4>
                                         </div>
                                     </div>
                                         ";
@@ -64,13 +67,11 @@ function getPro()
 }
 // function getbrand()----->getting brand in side bar
 function getbrand()
-
 {
     global $db;
     $get_brands = "select * from brands ";
     $run_brands = mysqli_query($db, $get_brands);
     while ($row_brands = mysqli_fetch_array($run_brands)) {
-
         $brand_id = $row_brands['brand_id'];
         $brand_title = $row_brands['brand_title'];
         // $prod_img = $row_brands['product_img1'];
@@ -80,7 +81,6 @@ function getbrand()
 
 
 // function getcategory()----->getting category in side bar
-
 function get_cat()
 {
     global $db;
@@ -89,27 +89,21 @@ function get_cat()
     // perform query and connected db 
     while ($row_cat = mysqli_fetch_array($run)) {
         // Fetch array in associative array in looop
-
         $cat_id = $row_cat['cat_id'];
         //declare  new var and feteching column data--->row_cat and row Id particluar
         $cat_title = $row_cat['cat_title'];
-
         echo "<li><a class='active' href='products.php?cat=$cat_id'><i class='icon-chevron-right'></i>$cat_title </a></li>";
         // declare variables $cat_title
     };
 }
 
-
 // product.php--->getting products by category id
 function get_prodlist()
-
 {
     global $db;
     // if (isset($_GET['cat'])) {
-
     $category_id = $_GET['cat'];
     $get_cat_product = "select * from products where cat_id = $category_id";
-
     $run_cat_products = mysqli_query($db, $get_cat_product);
     while ($row_cat_products = mysqli_fetch_array($run_cat_products)) {
         $prod_id = $row_cat_products['product_id'];
@@ -121,13 +115,10 @@ function get_prodlist()
         $prod_img = $row_cat_products['product_img1'];
         $prod_img2 = $row_cat_products['product_img2'];
         $prod_img3 = $row_cat_products['product_img3'];
-
         echo "<li class='span3'><div class='thumbnail'>
                                         <a href='product_details.php'><img style='height: 200px;object-fit: contain;' src='admin-area/product-images/$prod_img' alt='' /></a>
                                         <div class='caption'>
                                             <h5>$prod_title</h5>
-                                            
-
                                             <h4 style='text-align:center'><a class='btn' href='product_details.html'> <i class='icon-zoom-in'></i></a> <a class='btn' href='#'>Add to <i class='icon-shopping-cart'></i></a> <a class='btn btn-primary' href='#'>$prod_price</a></h4>
                                         </div>
                                     </div>
@@ -138,7 +129,6 @@ function get_prodlist()
 
 
 // product_details fetch
-
 function pro_detail()
 {
     if (isset($_GET['pro_id']));
@@ -288,7 +278,7 @@ function rel_getPro()
     }
 }
 
-// get ip address
+// getting ip address
 function getrealipaddres()
 {
 
@@ -308,32 +298,40 @@ function getrealipaddres()
 
 
 
-// Creating add to cart
-
+// adding  to cart
 function cart()
 {
-
     if (isset($_GET['add_cart'])) {
-
+        // add_cart --->add to cart index.php when someone click add to cart--->$_COOKIE
+        //href='index.php?add_cart=$prod_id'
+        // with product id 
         global $db;
 
         $p_id = $_GET['add_cart'];
 
         $ip_add = getrealipaddres();
+        // ip address function declare with variables
 
         $check_pro = "SELECT * FROM cart WHERE p_id = '$p_id' AND ip_add = '$ip_add'";
+
 
         $run_check = mysqli_query($db, $check_pro);
 
         if (mysqli_num_rows($run_check) > 0) {
-
+            // The mysqli_num_rows() function is an inbuilt function in PHP which is used to return the number of rows present in the result set. 
+            // It is generally used to check if data is present in the database or not.
+            //  To use this function, it is mandatory to first set up the connection with the MySQL database.
             echo "";
         } else {
             // $q = "INSERT INTO cart(p_id,ip_add) values ('$p_id','$ip_add')";
             $q = "INSERT INTO cart(p_id,ip_add) values ('$p_id','$ip_add')";
+            // inserting cart by query
             $run_q = mysqli_query($db, $q);
 
             echo "<script>window.open('index.php','_self')</script>";
+            // Replace the current window with a new window:
+            // The open() method opens a new browser window, or a new tab, depending on your browser settings and the parameter values.
+
         }
     }
 }
@@ -341,6 +339,7 @@ function cart()
 
 
 // Getting Numbers of items in cart
+
 function items()
 {
     if (isset($_GET['add_cart'])) {
@@ -348,12 +347,17 @@ function items()
         global $db;
 
         $ip_add = getrealipaddres();
+        // getting ip address
 
         $get_items = "SELECT * FROM cart WHERE ip_add ='$ip_add'";
-
+        // $get_items = "SELECT * FROM cart WHERE ip_add ='1'";
+        // check same ip address
         $run_items = mysqli_query($db, $get_items);
-
         $count_items = mysqli_num_rows($run_items);
+        // The mysqli_num_rows() function is an inbuilt function in PHP which is used to return the number of rows present in the result set. 
+        // It is generally used to check if data is present in the database or not.
+        //  To use this function, it is mandatory to first set up the connection with the MySQL database.
+
     } else {
         global $db;
 
@@ -364,43 +368,70 @@ function items()
         $run_items = mysqli_query($db, $get_items);
 
         $count_items = mysqli_num_rows($run_items);
+        // The mysqli_num_rows() function is an inbuilt function in PHP which is used to return the number of rows present in the result set. 
+        // It is generally used to check if data is present in the database or not.
+        //  To use this function, it is mandatory to first set up the connection with the MySQL database.
     }
     echo $count_items;
+    // now writing
+    //  <?php items(); 
+    //  Itemes in your cart
 }
 
 
 // getting total price
-
 function total_price()
 {
     $ip_add = getrealipaddres();
-
-
+    // get ip add function with local variable store ip addres
     global $db;
 
     $total = 0;
+    // initalization value starting total==0    
 
     $sel_price = "SELECT * FROM cart WHERE ip_add ='$ip_add'";
+    // cart tble--->ip address--->detect and 
 
     $run_price = mysqli_query($db, $sel_price);
 
-    while($record = mysqli_fetch_assoc($run_price)){
+    while ($record = mysqli_fetch_array($run_price)) {
+        // while ($record = mysqli_fetch_assoc($run_price)) {
+        // mysqli_result::fetch_assoc -- mysqli_fetch_assoc — 
+        // Fetch a result row as an associative array
 
         $pro_id = $record['p_id'];
+        // fetch product_id from table which user--->selected 
 
         $pro_price = "SELECT * FROM products where product_id = $pro_id";
+        // so now gng to product tbl-->where product_id--->$prod_id
+        // this is called relation between product id
+        $run_pro_price = mysqli_query($db, $pro_price);
 
-        $run_pro_price = mysqli_query($db,$pro_price);
+        while ($p_price = mysqli_fetch_array($run_pro_price)) {
 
-        while($p_price = mysqli_fetch_array($run_pro_price)){
-
+            // fetching array 
             $product_price = array($p_price['product_price']);
+            // multiple production--->thts y array.about
 
+            // inside array--->product_price-
             $values = array_sum($product_price);
-
+            // array_sum()functions. inbuild functions
+            // array--->sums *(product_price)
             $total += $values;
+            // total values-->0
         }
-
     }
     echo $total;
+    // .<?php total_price() 
+}
+
+
+
+
+
+
+// cart checkout price etc...
+
+function cartprice()
+{
 }
