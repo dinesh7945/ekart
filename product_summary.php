@@ -184,7 +184,8 @@
                         <li><a href="index.html">Home</a> <span class="divider">/</span></li>
                         <li class="active"> SHOPPING CART</li>
                     </ul>
-                    <h3> SHOPPING CART [ <small><?php items() ?> Items in cart </small>]<a href="products.html" class="btn btn-large pull-right"><i class="icon-arrow-left"></i> Continue Shopping </a></h3>
+                    <h3> SHOPPING CART [ <small><?php items() ?> Items in cart </small>]<a href="index.php" class="btn btn-large pull-right"><i class="icon-arrow-left"></i> <input type="submit" style="border:none;font-size: 16px;
+    font-weight: bold;" name="continue" value="Continue Shopping"> </a></h3>
                     <hr class="soft" />
                     <!-- <table class="table table-bordered">
                             <tr>
@@ -237,8 +238,7 @@
                                 <?php
                                 $ip_add = getrealipaddres();
 
-
-                                global $db;
+                                global $con;
 
                                 $total = 0;
 
@@ -262,39 +262,50 @@
 
                                         $values = array_sum($product_price);
 
-
-
                                         $total += $values;
-
-
                                         // echo "Rs" . $total;
-
-
 
                                 ?>
                                         <tr>
-
                                             <td> <img width="60" src='admin-area/product-images/<?php echo "$product_img"; ?> ' alt="" /></td>
                                             <td><?php echo $product_title; ?></td>
                                             <td style="text-align: center;">
-                                                <div class="input-append"><input class="span1" style="max-width:34px" value="1" id="appendedInputButtons" size="16" type="text" name="qty ">
+                                                <div class="input-append"><input name="qty" class="span1" style="max-width:34px" placeholder="1" value="" id="appendedInputButtons" size="16" type="text">
                                                     <!-- <button class="btn" type="button"><i class="icon-minus"></i></button>
                                                     <button class="btn" type="button"><i class="icon-plus"></i></button> -->
                                                     <!-- <button class="btn btn-danger" name="remove[]" value="" type="button"><i class="icon-remove icon-white"></i></button> -->
                                                 </div>
+                                                <?php
+
+                                                if (isset($_POST['update'])) {
+
+                                                    $qty = $_POST['qty'];
+
+                                                    $insert_qty = "UPDATE cart SET qty='$qty' where ip_add = '$ip_add' ";
+
+                                                    $run_query = mysqli_query($con, $insert_qty);
+
+                                                    // $total = $total * $qty;
+                                                    $total = ((int) $total * (int) $qty);
+                                                }
+
+                                                ?>
+
+
                                             </td>
                                             <td>Rs.<?php echo $values ?></td>
-                                            <td>00</td>
-                                            <td>
+                                            <td style="text-align: center;">00</td>
+                                            <td style="text-align: center;">
                                                 <input type="checkbox" name="removed[]" value="<?php echo $pro_id; ?>">
+                                                <!-- delete multiple thts y removed []  single den removed-->
                                             </td>
-                                            <td>Rs.<?php echo $values  ?></td>
+                                            <td>Rs.<?php echo $total  ?></td>
                                         </tr>
                                 <?php    }
                                 } ?>
 
                                 <tr>
-                                    <td colspan="6" style="text-align:right"><input type="submit" name="update" value="Update cart"> </td>
+                                    <td colspan="6" style="text-align:right;"><input style="background-color:green;font-family:cursive;color:whitesmoke;border:none;padding:4px;" type="submit" name="update" value="Update cart"> </td>
                                     <td></td>
                                 </tr>
                                 <tr>
@@ -318,22 +329,36 @@
 
                         </table>
                     </form>
-
+                    <!-- Function update cart()  removed button start here-->
                     <?php
-                    if (isset($_POST['update'])) {
+                    function updatecart()
+                    {
+                        global $con;
+                        if (isset($_POST['update'])) {
 
-                        foreach ($_POST['removed'] as $removeid) {
-                            $delete_products = "delete from cart where p_id = $removeid";
+                            foreach ($_POST['removed'] as $removeid) {
 
-                            $run_delete = mysqli_query($con, $delete_products);
+                                $delete_products = "delete from cart where p_id = $removeid";
 
-                            if ($run_delete) {
-                                echo "<script> window.open('product_summary.php','_self')</script>";
+                                $run_delete = mysqli_query($con, $delete_products);
+
+                                if ($run_delete) {
+                                    echo "<script> window.open('product_summary.php','_self')</script>";
+                                }
                             }
                         }
                     }
 
+
+                    echo @$up_cart = updatecart();
+                    // inactive functions save in varaibles
+
+
+                    if (isset($_POST['continue'])) {
+                        echo "<script>window.open('index.php','_self')</script>";
+                    }
                     ?>
+                    <!-- ends here update cart function  -->
                     <table class="table table-bordered">
                         <tbody>
                             <tr>
@@ -381,7 +406,8 @@
                             </td>
                         </tr>
                     </table>
-                    <a href="products.html" class="btn btn-large"><i class="icon-arrow-left"></i> Continue Shopping </a>
+                    <a href="index.php" class="btn btn-large"><i class="icon-arrow-left"></i><input type="submit" style="border:none;font-size: 16px;
+    font-weight: bold;" name="continue" value="Continue Shopping"> </a>
                     <a href="login.html" class="btn btn-large pull-right">Next <i class="icon-arrow-right"></i></a>
 
                 </div>

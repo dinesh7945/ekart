@@ -382,7 +382,7 @@ function items()
 // getting total price
 function total_price()
 {
-    $ip_add = getrealipaddres();
+     $ip_add = getrealipaddres();
     // get ip add function with local variable store ip addres
     global $db;
 
