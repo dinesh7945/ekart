@@ -1,5 +1,6 @@
 <?php
 
+// if session start 
 @session_start();
 include "header.php";
 include "includes/db.php";
@@ -172,6 +173,7 @@ include "includes/db.php";
 									<a href="register.php"><button type="submit" class="btn block">Create Your Account</button></a>
 								</div>
 
+								<!-- if c->login -->
 								<?php
 
 								if (isset($_POST['c_login'])) {
@@ -180,12 +182,14 @@ include "includes/db.php";
 									$customer_pass = $_POST['c_pass'];
 
 
+									// query tht match wiht inserted data in customer
 									$sel_customer = "SELECT * FROM customers where customer_email='$customer_email' AND customer_pass='$customer_pass'";
 
 
 									$run_customer = mysqli_query($con, $sel_customer);
 
 
+									// 
 									if (mysqli_num_rows($run_customer) > 0) {
 
 										$_SESSION['customer_email'] = $customer_email;

@@ -43,7 +43,7 @@ include "functions.php";
 
 <?php
 
-
+// if session is der there payment page
 if (!isset($_SESSION['customer_email'])) {
 	include("cust_login.php");
 } else {

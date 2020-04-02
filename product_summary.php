@@ -220,7 +220,7 @@
                                 </td>
                             </tr>
                         </table> -->
-
+                    <!-- Form  -->
                     <form action="product_summary.php" method="POST" enctype="multipart/form-data">
                         <table class="table table-bordered">
                             <thead>
@@ -236,12 +236,14 @@
                             </thead>
                             <tbody>
                                 <?php
+                                // ip address
                                 $ip_add = getrealipaddres();
 
                                 global $con;
 
                                 $total = 0;
 
+                                // fetching from cart where 
                                 $sel_price = "SELECT * FROM cart WHERE ip_add ='$ip_add'";
 
                                 $run_price = mysqli_query($con, $sel_price);
@@ -250,6 +252,7 @@
 
                                     $pro_id = $record['p_id'];
 
+                                    // product from prd =--> id
                                     $pro_price = "SELECT * FROM products where product_id = $pro_id";
 
                                     $run_pro_price = mysqli_query($con, $pro_price);
@@ -266,6 +269,7 @@
                                         // echo "Rs" . $total;
 
                                 ?>
+                                        <!-- product details  -->
                                         <tr>
                                             <td> <img width="60" src='admin-area/product-images/<?php echo "$product_img"; ?> ' alt="" /></td>
                                             <td><?php echo $product_title; ?></td>
@@ -275,6 +279,8 @@
                                                     <button class="btn" type="button"><i class="icon-plus"></i></button> -->
                                                     <!-- <button class="btn btn-danger" name="remove[]" value="" type="button"><i class="icon-remove icon-white"></i></button> -->
                                                 </div>
+
+                                                <!-- updating qty -->
                                                 <?php
 
                                                 if (isset($_POST['update'])) {
