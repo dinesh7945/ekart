@@ -408,7 +408,7 @@
                     </table>
                     <a href="index.php" class="btn btn-large"><i class="icon-arrow-left"></i><input type="submit" style="border:none;font-size: 16px;
     font-weight: bold;" name="continue" value="Continue Shopping"> </a>
-                    <a href="login.html" class="btn btn-large pull-right">Next <i class="icon-arrow-right"></i></a>
+                    <a href="checkout.php" class="btn btn-large pull-right">Next <i class="icon-arrow-right"></i></a>
 
                 </div>
             </div>
