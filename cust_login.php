@@ -148,6 +148,8 @@ include "includes/db.php";
 								@session_start();
 								include "includes/db.php";
 
+
+
 								?>
 								<form action="checkout.php" method="POST">
 									<div class="control-group">
@@ -189,12 +191,12 @@ include "includes/db.php";
 									$run_customer = mysqli_query($con, $sel_customer);
 
 
-									// 
+									// when email nd password match then it will redirect to payment page
 									if (mysqli_num_rows($run_customer) > 0) {
 
 										$_SESSION['customer_email'] = $customer_email;
 
-										echo "<script>window.open('index.php','_self')</script>";
+										echo "<script>window.open('payment_option.php','_self')</script>";
 									} else {
 
 										echo "<script>alert('email or password is wrong, try again!')</script>";
