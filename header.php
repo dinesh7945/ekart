@@ -1,6 +1,6 @@
 <?php include "includes/db.php"; ?>
 
-
+    
 <!-- Navbar ================================================== -->
 <div id="logoArea" class="navbar">
     <a id="smallScreen" data-target="#topMenu" data-toggle="collapse" class="btn btn-navbar">

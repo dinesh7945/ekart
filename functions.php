@@ -1,6 +1,6 @@
 <?php
 
-$db = mysqli_connect("localhost", "root", "", "ekart");
+$db = mysqli_connect("localhost", "root", "", "ekartt");
 
 // caroselpro function--->carousel products
 function carPro()
@@ -13,11 +13,11 @@ function carPro()
         $prod_title = $row_products['product_title'];
         $prod_cat = $row_products['cat_id'];
         $prod_brand = $row_products['brand_id'];
-        $prod_desc = $row_products['product_descthem'];
+        $prod_desc = $row_products['product_desc'];
         $prod_price = $row_products['product_price'];
-        $prod_img = $row_products['product_img1'];
-        $prod_img2 = $row_products['product_img2'];
-        $prod_img3 = $row_products['product_img3'];
+        $prod_img = $row_products['product_img'];
+        $prod_img2 = $row_products['product_img1'];
+        $prod_img3 = $row_products['product_img2'];
         echo "<li class='span3'><div class='thumbnail'>
 <a href='product_details.html'><img style='height: 40%;object-fit: contain;' src='admin-area/product-images/$prod_img' alt='' /></a>
 <div class='caption'>
@@ -41,11 +41,11 @@ function getPro()
         $prod_title = $row_products['product_title'];
         $prod_cat = $row_products['cat_id'];
         $prod_brand = $row_products['brand_id'];
-        $prod_desc = $row_products['product_descthem'];
+        $prod_desc = $row_products['product_desc'];
         $prod_price = $row_products['product_price'];
-        $prod_img = $row_products['product_img1'];
-        $prod_img2 = $row_products['product_img2'];
-        $prod_img3 = $row_products['product_img3'];
+        $prod_img = $row_products['product_img'];
+        $prod_img2 = $row_products['product_img1'];
+        $prod_img3 = $row_products['product_img2'];
         // a tag-->link to product.php?pro_id = $prod_id
         // so while hover or click that product id wil fetch on that page
 
@@ -110,11 +110,11 @@ function get_prodlist()
         $prod_title = $row_cat_products['product_title'];
         $prod_cat = $row_cat_products['cat_id'];
         $prod_brand = $row_cat_products['brand_id'];
-        $prod_desc = $row_cat_products['product_descthem'];
+        $prod_desc = $row_cat_products['product_desc'];
         $prod_price = $row_cat_products['product_price'];
-        $prod_img = $row_cat_products['product_img1'];
-        $prod_img2 = $row_cat_products['product_img2'];
-        $prod_img3 = $row_cat_products['product_img3'];
+        $prod_img = $row_cat_products['product_img'];
+        $prod_img2 = $row_cat_products['product_img1'];
+        $prod_img3 = $row_cat_products['product_img2'];
         echo "<li class='span3'><div class='thumbnail'>
                                         <a href='product_details.php'><img style='height: 200px;object-fit: contain;' src='admin-area/product-images/$prod_img' alt='' /></a>
                                         <div class='caption'>
@@ -145,11 +145,11 @@ function pro_detail()
         $prod_title = $row_products['product_title'];
         $prod_cat = $row_products['cat_id'];
         $prod_brand = $row_products['brand_id'];
-        $prod_desc = $row_products['product_descthem'];
+        $prod_desc = $row_products['product_desc'];
         $prod_price = $row_products['product_price'];
-        $prod_img = $row_products['product_img1'];
-        $prod_img2 = $row_products['product_img2'];
-        $prod_img3 = $row_products['product_img3'];
+        $prod_img = $row_products['product_img'];
+        $prod_img2 = $row_products['product_img1'];
+        $prod_img3 = $row_products['product_img2'];
         $prod_qty = $row_products['product_qty'];
     }
 
@@ -247,9 +247,9 @@ function rel_getPro()
         $prod_brand = $row_products['brand_id'];
         $prod_desc = $row_products['product_descthem'];
         $prod_price = $row_products['product_price'];
-        $prod_img = $row_products['product_img1'];
-        $prod_img2 = $row_products['product_img2'];
-        $prod_img3 = $row_products['product_img3'];
+        $prod_img = $row_products['product_img'];
+        $prod_img2 = $row_products['product_img1'];
+        $prod_img3 = $row_products['product_img2'];
         echo "<div class='row'>	  
                         <div class='span2'>
                             <img src='admin-area/product-images/$prod_img' alt=''>

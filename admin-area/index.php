@@ -344,11 +344,11 @@
         brand_id,
         date,
         product_title,
+        product_img,
         product_img1,
         product_img2,
-        product_img3,
         product_price,
-        product_descthem,
+        product_desc,
         product_qty
         )
     VALUES

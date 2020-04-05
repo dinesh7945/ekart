@@ -1,6 +1,6 @@
 <?php 
 
-$con = mysqli_connect("localhost","root","","ekart");
+$con = mysqli_connect("localhost","root","","ekartt");
 if($con){
     // echo "connected";
 }
