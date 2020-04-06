@@ -90,9 +90,9 @@
 								</div>
 								<div class="modal-body">
 									<form class="form-horizontal loginFrm">
-										<div class="control-group">
+										<!-- <div class="control-group">
 											<input type="text" id="inputEmail" placeholder="Email">
-										</div>
+										</div> -->
 										<div class="control-group">
 											<input type="password" id="inputPassword" placeholder="Password">
 										</div>
