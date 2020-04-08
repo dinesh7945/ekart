@@ -1,9 +1,13 @@
+<?php session_start();
+// include "function.php"
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
 	<meta charset="utf-8">
-	<title>Bootshop online Shopping cart</title>
+	<title>Ekart</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta name="description" content="">
 	<meta name="author" content="">
@@ -26,101 +30,22 @@
 	<link href="themes/js/google-code-prettify/prettify.css" rel="stylesheet" />
 	<!-- fav and touch icons -->
 	<link rel="shortcut icon" href="themes/images/ico/favicon.ico">
-	<link rel="apple-touch-icon-precomposed" sizes="144x144"
-		href="themes/images/ico/apple-touch-icon-144-precomposed.png">
-	<link rel="apple-touch-icon-precomposed" sizes="114x114"
-		href="themes/images/ico/apple-touch-icon-114-precomposed.png">
+	<link rel="apple-touch-icon-precomposed" sizes="144x144" href="themes/images/ico/apple-touch-icon-144-precomposed.png">
+	<link rel="apple-touch-icon-precomposed" sizes="114x114" href="themes/images/ico/apple-touch-icon-114-precomposed.png">
 	<link rel="apple-touch-icon-precomposed" sizes="72x72" href="themes/images/ico/apple-touch-icon-72-precomposed.png">
 	<link rel="apple-touch-icon-precomposed" href="themes/images/ico/apple-touch-icon-57-precomposed.png">
 	<style type="text/css" id="enject"></style>
 </head>
 
 <body>
-	<div id="header">
-		<div class="container">
-			<div id="welcomeLine" class="row">
-				<div class="span6">Welcome!<strong> User</strong></div>
-				<div class="span6">
-					<div class="pull-right">
-						<a href="product_summary.html"><span class="">Fr</span></a>
-						<a href="product_summary.html"><span class="">Es</span></a>
-						<span class="btn btn-mini">En</span>
-						<a href="product_summary.html"><span>&pound;</span></a>
-						<span class="btn btn-mini">$155.00</span>
-						<a href="product_summary.html"><span class="">$</span></a>
-						<a href="product_summary.html"><span class="btn btn-mini btn-primary"><i
-									class="icon-shopping-cart icon-white"></i> [ 3 ] Itemes in your cart </span> </a>
-					</div>
-				</div>
-			</div>
-			<!-- Navbar ================================================== -->
-			<div id="logoArea" class="navbar">
-				<a id="smallScreen" data-target="#topMenu" data-toggle="collapse" class="btn btn-navbar">
-					<span class="icon-bar"></span>
-					<span class="icon-bar"></span>
-					<span class="icon-bar"></span>
-				</a>
-				<div class="navbar-inner">
-					<a class="brand" href="index.html"><img src="themes/images/logo.png" alt="Bootsshop" /></a>
-					<form class="form-inline navbar-search" method="post" action="products.html">
-						<input id="srchFld" class="srchTxt" type="text" />
-						<select class="srchTxt">
-							<option>All</option>
-							<option>CLOTHES </option>
-							<option>FOOD AND BEVERAGES </option>
-							<option>HEALTH & BEAUTY </option>
-							<option>SPORTS & LEISURE </option>
-							<option>BOOKS & ENTERTAINMENTS </option>
-						</select>
-						<button type="submit" id="submitButton" class="btn btn-primary">Go</button>
-					</form>
-					<ul id="topMenu" class="nav pull-right">
-						<li class=""><a href="special_offer.html">Specials Offer</a></li>
-						<li class=""><a href="normal.html">Delivery</a></li>
-						<li class=""><a href="contact.html">Contact</a></li>
-						<li class="">
-							<a href="#login" role="button" data-toggle="modal" style="padding-right:0"><span
-									class="btn btn-large btn-success">Login</span></a>
-							<div id="login" class="modal hide fade in" tabindex="-1" role="dialog"
-								aria-labelledby="login" aria-hidden="false">
-								<div class="modal-header">
-									<button type="button" class="close" data-dismiss="modal"
-										aria-hidden="true">×</button>
-									<h3>Login Block</h3>
-								</div>
-								<div class="modal-body">
-									<form class="form-horizontal loginFrm">
-										<!-- <div class="control-group">
-											<input type="text" id="inputEmail" placeholder="Email">
-										</div> -->
-										<div class="control-group">
-											<input type="password" id="inputPassword" placeholder="Password">
-										</div>
-										<div class="control-group">
-											<label class="checkbox">
-												<input type="checkbox"> Remember me
-											</label>
-										</div>
-									</form>
-									<button type="submit" class="btn btn-success">Sign in</button>
-									<button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
-								</div>
-							</div>
-						</li>
-					</ul>
-				</div>
-			</div>
-		</div>
-	</div>
+	<?php include "header.php" ?>
 	<!-- Header End====================================================================== -->
 	<div id="mainBody">
 		<div class="container">
 			<div class="row">
 				<!-- Sidebar ================================================== -->
 				<div id="sidebar" class="span3">
-					<div class="well well-small"><a id="myCart" href="product_summary.html"><img
-								src="themes/images/ico-cart.png" alt="cart">3 Items in your cart <span
-								class="badge badge-warning pull-right">$155.00</span></a></div>
+					<div class="well well-small"><a id="myCart" href="product_summary.html"><img src="themes/images/ico-cart.png" alt="cart">3 Items in your cart <span class="badge badge-warning pull-right">$155.00</span></a></div>
 					<ul id="sideManu" class="nav nav-tabs nav-stacked">
 						<li class="subMenu open"><a> ELECTRONICS [230]</a>
 							<ul>
@@ -172,25 +97,18 @@
 						<img src="themes/images/products/panasonic.jpg" alt="Bootshop panasonoc New camera" />
 						<div class="caption">
 							<h5>Panasonic</h5>
-							<h4 style="text-align:center"><a class="btn" href="product_details.html"> <i
-										class="icon-zoom-in"></i></a> <a class="btn" href="#">Add to <i
-										class="icon-shopping-cart"></i></a> <a class="btn btn-primary"
-									href="#">$222.00</a></h4>
+							<h4 style="text-align:center"><a class="btn" href="product_details.html"> <i class="icon-zoom-in"></i></a> <a class="btn" href="#">Add to <i class="icon-shopping-cart"></i></a> <a class="btn btn-primary" href="#">$222.00</a></h4>
 						</div>
 					</div><br />
 					<div class="thumbnail">
 						<img src="themes/images/products/kindle.png" title="Bootshop New Kindel" alt="Bootshop Kindel">
 						<div class="caption">
 							<h5>Kindle</h5>
-							<h4 style="text-align:center"><a class="btn" href="product_details.html"> <i
-										class="icon-zoom-in"></i></a> <a class="btn" href="#">Add to <i
-										class="icon-shopping-cart"></i></a> <a class="btn btn-primary"
-									href="#">$222.00</a></h4>
+							<h4 style="text-align:center"><a class="btn" href="product_details.html"> <i class="icon-zoom-in"></i></a> <a class="btn" href="#">Add to <i class="icon-shopping-cart"></i></a> <a class="btn btn-primary" href="#">$222.00</a></h4>
 						</div>
 					</div><br />
 					<div class="thumbnail">
-						<img src="themes/images/payment_methods.png" title="Bootshop Payment Methods"
-							alt="Payments Methods">
+						<img src="themes/images/payment_methods.png" title="Bootshop Payment Methods" alt="Payments Methods">
 						<div class="caption">
 							<h5>Payment Methods</h5>
 						</div>
@@ -217,14 +135,15 @@
 		<button type="button" class="close" data-dismiss="alert">×</button>
 		<strong>Lorem Ipsum is simply</strong> dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s
 	 </div> -->
-						<div class="alert alert-block alert-error fade in">
+						<!-- <div class="alert alert-block alert-error fade in">
 							<button type="button" class="close" data-dismiss="alert">×</button>
 							<strong>Lorem Ipsum is simply</strong> dummy text of the printing and typesetting
 							industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s
-						</div>
-						<form class="form-horizontal">
-							<h4>Your personal information</h4>
-							<!-- <div class="control-group">
+						</div> -->
+
+
+						<h4>Your personal information</h4>
+						<!-- <div class="control-group">
 								<label class="control-label">Title <sup>*</sup></label>
 								<div class="controls">
 									<select class="span1" name="days">
@@ -235,93 +154,37 @@
 									</select>
 								</div>
 							</div> -->
+
+						<form action="register.php" method="POST" enctype="multipart/form-data" class="form-horizontal">
+
 							<div class="control-group">
-								<label class="control-label" for="inputFname1">First name <sup>*</sup></label>
+								<label class="control-label" for="inputFname1">full name <sup>*</sup></label>
 								<div class="controls">
-									<input type="text" id="inputFname1" placeholder="First Name">
+									<input type="text"  name="fname" placeholder="First Name" required>
 								</div>
 							</div>
-							<div class="control-group">
-								<label class="control-label" for="inputLnam">Last name <sup>*</sup></label>
-								<div class="controls">
-									<input type="text" id="inputLnam" placeholder="Last Name">
-								</div>
-							</div>
+
 							<div class="control-group">
 								<label class="control-label" for="input_email">Email <sup>*</sup></label>
 								<div class="controls">
-									<input type="text" id="input_email" placeholder="Email">
+									<input type="text" 	 name="cemail" placeholder="Email" required>
 								</div>
 							</div>
 							<div class="control-group">
 								<label class="control-label" for="inputPassword1">Password <sup>*</sup></label>
 								<div class="controls">
-									<input type="password" id="inputPassword1" placeholder="Password">
+									<input type="password"  name="c_pass" placeholder="Password" required>
 								</div>
 							</div>
-							<div class="control-group">
-								<label class="control-label">Date of Birth <sup>*</sup></label>
-								<div class="controls">
-									<select class="span1" name="days">
-										<option value="">-</option>
-										<option value="1">1&nbsp;&nbsp;</option>
-										<option value="2">2&nbsp;&nbsp;</option>
-										<option value="3">3&nbsp;&nbsp;</option>
-										<option value="4">4&nbsp;&nbsp;</option>
-										<option value="5">5&nbsp;&nbsp;</option>
-										<option value="6">6&nbsp;&nbsp;</option>
-										<option value="7">7&nbsp;&nbsp;</option>
-									</select>
-									<select class="span1" name="days">
-										<option value="">-</option>
-										<option value="1">1&nbsp;&nbsp;</option>
-										<option value="2">2&nbsp;&nbsp;</option>
-										<option value="3">3&nbsp;&nbsp;</option>
-										<option value="4">4&nbsp;&nbsp;</option>
-										<option value="5">5&nbsp;&nbsp;</option>
-										<option value="6">6&nbsp;&nbsp;</option>
-										<option value="7">7&nbsp;&nbsp;</option>
-									</select>
-									<select class="span1" name="days">
-										<option value="">-</option>
-										<option value="1">1&nbsp;&nbsp;</option>
-										<option value="2">2&nbsp;&nbsp;</option>
-										<option value="3">3&nbsp;&nbsp;</option>
-										<option value="4">4&nbsp;&nbsp;</option>
-										<option value="5">5&nbsp;&nbsp;</option>
-										<option value="6">6&nbsp;&nbsp;</option>
-										<option value="7">7&nbsp;&nbsp;</option>
-									</select>
-								</div>
-							</div>
-
 
 
 							<h4>Your address</h4>
-							<!-- <div class="control-group">
-								<label class="control-label" for="inputFname">First name <sup>*</sup></label>
-								<div class="controls">
-									<input type="text" id="inputFname" placeholder="First Name">
-								</div>
-							</div>
-							<div class="control-group">
-								<label class="control-label" for="inputLname">Last name <sup>*</sup></label>
-								<div class="controls">
-									<input type="text" id="inputLname" placeholder="Last Name" />
-								</div>
-							</div> -->
 
-							<!-- <div class="control-group">
-								<label class="control-label" for="company">Company</label>
-								<div class="controls">
-									<input type="text" id="company" placeholder="company" />
-								</div>
-							</div> -->
 
 							<div class="control-group">
 								<label class="control-label" for="address">Address<sup>*</sup></label>
 								<div class="controls">
-									<input type="text" id="address" placeholder="Adress" /> <span>Street address, P.O.
+									<input type="text"  name="c_address" placeholder="c_Adress" required /> <span>Street address, P.O.
 										box, company name, c/o</span>
 								</div>
 							</div>
@@ -329,122 +192,64 @@
 							<div class="control-group">
 								<label class="control-label" for="address2">Address (Line 2)<sup>*</sup></label>
 								<div class="controls">
-									<input type="text" id="address2" placeholder="Adress line 2" /> <span>Apartment,
+									<input type="text"  name="c_addre" placeholder="Adress line 2" required /> <span>Apartment,
 										suite, unit, building, floor, etc.</span>
 								</div>
 							</div>
 							<div class="control-group">
 								<label class="control-label" for="city">City<sup>*</sup></label>
 								<div class="controls">
-									<input type="text" id="city" placeholder="city" />
+									<input type="text"  name="c_city" placeholder="c_city" required />
 								</div>
 							</div>
 							<div class="control-group">
 								<label class="control-label" for="state">State<sup>*</sup></label>
 								<div class="controls">
-									<select id="state">
-										<option value="">-</option>
-										<option value="1">Alabama</option>
-										<option value="2">Alaska</option>
-										<option value="3">Arizona</option>
-										<option value="4">Arkansas</option>
-										<option value="5">California</option>
-										<option value="6">Colorado</option>
-										<option value="7">Connecticut</option>
-										<option value="8">Delaware</option>
-										<option value="53">District of Columbia</option>
-										<option value="9">Florida</option>
-										<option value="10">Georgia</option>
-										<option value="11">Hawaii</option>
-										<option value="12">Idaho</option>
-										<option value="13">Illinois</option>
-										<option value="14">Indiana</option>
-										<option value="15">Iowa</option>
-										<option value="16">Kansas</option>
-										<option value="17">Kentucky</option>
-										<option value="18">Louisiana</option>
-										<option value="19">Maine</option>
-										<option value="20">Maryland</option>
-										<option value="21">Massachusetts</option>
-										<option value="22">Michigan</option>
-										<option value="23">Minnesota</option>
-										<option value="24">Mississippi</option>
-										<option value="25">Missouri</option>
-										<option value="26">Montana</option>
-										<option value="27">Nebraska</option>
-										<option value="28">Nevada</option>
-										<option value="29">New Hampshire</option>
-										<option value="30">New Jersey</option>
-										<option value="31">New Mexico</option>
-										<option value="32">New York</option>
-										<option value="33">North Carolina</option>
-										<option value="34">North Dakota</option>
-										<option value="35">Ohio</option>
-										<option value="36">Oklahoma</option>
-										<option value="37">Oregon</option>
-										<option value="38">Pennsylvania</option>
-										<option value="51">Puerto Rico</option>
-										<option value="39">Rhode Island</option>
-										<option value="40">South Carolina</option>
-										<option value="41">South Dakota</option>
-										<option value="42">Tennessee</option>
-										<option value="43">Texas</option>
-										<option value="52">US Virgin Islands</option>
-										<option value="44">Utah</option>
-										<option value="45">Vermont</option>
-										<option value="46">Virginia</option>
-										<option value="47">Washington</option>
-										<option value="48">West Virginia</option>
-										<option value="49">Wisconsin</option>
-										<option value="50">Wyoming</option>
-									</select>
+									<input type="text"  name="c_state" placeholder="state" required />
 								</div>
 							</div>
 							<div class="control-group">
 								<label class="control-label" for="postcode">Zip / Postal Code<sup>*</sup></label>
 								<div class="controls">
-									<input type="text" id="postcode" placeholder="Zip / Postal Code" />
+									<input type="text" name="c_pincode"  placeholder="Zip / Postal Code" required />
 								</div>
 							</div>
 
 							<div class="control-group">
 								<label class="control-label" for="country">Country<sup>*</sup></label>
 								<div class="controls">
-									<select id="country">
-										<option value="">-</option>
-										<option value="1">Country</option>
-									</select>
+									<input type="text" name="c_country" placeholder="India">
 								</div>
+
 							</div>
 							<div class="control-group">
 								<label class="control-label" for="aditionalInfo">Additional information</label>
 								<div class="controls">
-									<textarea name="aditionalInfo" id="aditionalInfo" cols="26"
-										rows="3">Additional information</textarea>
+									<textarea name="c_info" cols="26" rows="3"></textarea>
 								</div>
 							</div>
-							<!-- <div class="control-group">
-								<label class="control-label" for="phone">Home phone <sup>*</sup></label>
-								<div class="controls">
-									<input type="text" name="phone" id="phone" placeholder="phone" /> <span>You must
-										register at least one phone number</span>
-								</div>
-							</div> -->
+
 
 							<div class="control-group">
 								<label class="control-label" for="mobile">Mobile Phone </label>
 								<div class="controls">
-									<input type="text" name="mobile" id="mobile" placeholder="Mobile Phone" />
+									<input type="text" name="c_phone"  placeholder="Mobile Phone" required />
 								</div>
 							</div>
 
+							<!-- <div class="control-group">
+								<label class="control-label" for="mobile">Customer Image </label>
+								<div class="controls">
+									<input type="file" name="c_img" id="mobile" placeholder="Upload file" required />
+								</div>
+							</div> -->
 							<!-- <p><sup>*</sup>Required field </p> -->
 
 							<div class="control-group">
 								<div class="controls">
-									<input type="hidden" name="email_create" value="1">
-									<input type="hidden" name="is_new_customer" value="1">
-									<input class="btn btn-large btn-success" type="submit" value="Register" />
+									<!-- <input type="hidden" name="email_create" value="1">
+									<input type="hidden" name="is_new_customer" value="1"> -->
+									<input class="btn btn-large btn-success" type="submit" name="register" value="Submit" />
 								</div>
 							</div>
 						</form>
@@ -456,46 +261,7 @@
 	</div>
 	<!-- MainBody End ============================= -->
 	<!-- Footer ================================================================== -->
-	<div id="footerSection">
-		<div class="container">
-			<div class="row">
-				<div class="span3">
-					<h5>ACCOUNT</h5>
-					<a href="login.html">YOUR ACCOUNT</a>
-					<a href="login.html">PERSONAL INFORMATION</a>
-					<a href="login.html">ADDRESSES</a>
-					<a href="login.html">DISCOUNT</a>
-					<a href="login.html">ORDER HISTORY</a>
-				</div>
-				<div class="span3">
-					<h5>INFORMATION</h5>
-					<a href="contact.html">CONTACT</a>
-					<a href="register.html">REGISTRATION</a>
-					<a href="legal_notice.html">LEGAL NOTICE</a>
-					<a href="tac.html">TERMS AND CONDITIONS</a>
-					<a href="faq.html">FAQ</a>
-				</div>
-				<div class="span3">
-					<h5>OUR OFFERS</h5>
-					<a href="#">NEW PRODUCTS</a>
-					<a href="#">TOP SELLERS</a>
-					<a href="special_offer.html">SPECIAL OFFERS</a>
-					<a href="#">MANUFACTURERS</a>
-					<a href="#">SUPPLIERS</a>
-				</div>
-				<div id="socialMedia" class="span3 pull-right">
-					<h5>SOCIAL MEDIA </h5>
-					<a href="#"><img width="60" height="60" src="themes/images/facebook.png" title="facebook"
-							alt="facebook" /></a>
-					<a href="#"><img width="60" height="60" src="themes/images/twitter.png" title="twitter"
-							alt="twitter" /></a>
-					<a href="#"><img width="60" height="60" src="themes/images/youtube.png" title="youtube"
-							alt="youtube" /></a>
-				</div>
-			</div>
-			<p class="pull-right">&copy; Bootshop</p>
-		</div><!-- Container End -->
-	</div>
+	<?php include "footer.php" ?>
 	<!-- Placed at the end of the document so the pages load faster ============================================= -->
 	<script src="themes/js/jquery.js" type="text/javascript"></script>
 	<script src="themes/js/bootstrap.min.js" type="text/javascript"></script>
@@ -512,82 +278,49 @@
 			<div id="hideme" class="themeTitle">Style Selector</div>
 			<div class="themeName">Oregional Skin</div>
 			<div class="images style">
-				<a href="themes/css/#" name="bootshop"><img src="themes/switch/images/clr/bootshop.png"
-						alt="bootstrap business templates" class="active"></a>
-				<a href="themes/css/#" name="businessltd"><img src="themes/switch/images/clr/businessltd.png"
-						alt="bootstrap business templates" class="active"></a>
+				<a href="themes/css/#" name="bootshop"><img src="themes/switch/images/clr/bootshop.png" alt="bootstrap business templates" class="active"></a>
+				<a href="themes/css/#" name="businessltd"><img src="themes/switch/images/clr/businessltd.png" alt="bootstrap business templates" class="active"></a>
 			</div>
 			<div class="themeName">Bootswatch Skins (11)</div>
 			<div class="images style">
-				<a href="themes/css/#" name="amelia" title="Amelia"><img src="themes/switch/images/clr/amelia.png"
-						alt="bootstrap business templates"></a>
-				<a href="themes/css/#" name="spruce" title="Spruce"><img src="themes/switch/images/clr/spruce.png"
-						alt="bootstrap business templates"></a>
-				<a href="themes/css/#" name="superhero" title="Superhero"><img
-						src="themes/switch/images/clr/superhero.png" alt="bootstrap business templates"></a>
-				<a href="themes/css/#" name="cyborg"><img src="themes/switch/images/clr/cyborg.png"
-						alt="bootstrap business templates"></a>
-				<a href="themes/css/#" name="cerulean"><img src="themes/switch/images/clr/cerulean.png"
-						alt="bootstrap business templates"></a>
-				<a href="themes/css/#" name="journal"><img src="themes/switch/images/clr/journal.png"
-						alt="bootstrap business templates"></a>
-				<a href="themes/css/#" name="readable"><img src="themes/switch/images/clr/readable.png"
-						alt="bootstrap business templates"></a>
-				<a href="themes/css/#" name="simplex"><img src="themes/switch/images/clr/simplex.png"
-						alt="bootstrap business templates"></a>
-				<a href="themes/css/#" name="slate"><img src="themes/switch/images/clr/slate.png"
-						alt="bootstrap business templates"></a>
-				<a href="themes/css/#" name="spacelab"><img src="themes/switch/images/clr/spacelab.png"
-						alt="bootstrap business templates"></a>
-				<a href="themes/css/#" name="united"><img src="themes/switch/images/clr/united.png"
-						alt="bootstrap business templates"></a>
+				<a href="themes/css/#" name="amelia" title="Amelia"><img src="themes/switch/images/clr/amelia.png" alt="bootstrap business templates"></a>
+				<a href="themes/css/#" name="spruce" title="Spruce"><img src="themes/switch/images/clr/spruce.png" alt="bootstrap business templates"></a>
+				<a href="themes/css/#" name="superhero" title="Superhero"><img src="themes/switch/images/clr/superhero.png" alt="bootstrap business templates"></a>
+				<a href="themes/css/#" name="cyborg"><img src="themes/switch/images/clr/cyborg.png" alt="bootstrap business templates"></a>
+				<a href="themes/css/#" name="cerulean"><img src="themes/switch/images/clr/cerulean.png" alt="bootstrap business templates"></a>
+				<a href="themes/css/#" name="journal"><img src="themes/switch/images/clr/journal.png" alt="bootstrap business templates"></a>
+				<a href="themes/css/#" name="readable"><img src="themes/switch/images/clr/readable.png" alt="bootstrap business templates"></a>
+				<a href="themes/css/#" name="simplex"><img src="themes/switch/images/clr/simplex.png" alt="bootstrap business templates"></a>
+				<a href="themes/css/#" name="slate"><img src="themes/switch/images/clr/slate.png" alt="bootstrap business templates"></a>
+				<a href="themes/css/#" name="spacelab"><img src="themes/switch/images/clr/spacelab.png" alt="bootstrap business templates"></a>
+				<a href="themes/css/#" name="united"><img src="themes/switch/images/clr/united.png" alt="bootstrap business templates"></a>
 				<p style="margin:0;line-height:normal;margin-left:-10px;display:none;"><small>These are just examples
 						and you can build your own color scheme in the backend.</small></p>
 			</div>
 			<div class="themeName">Background Patterns </div>
 			<div class="images patterns">
-				<a href="themes/css/#" name="pattern1"><img src="themes/switch/images/pattern/pattern1.png"
-						alt="bootstrap business templates" class="active"></a>
-				<a href="themes/css/#" name="pattern2"><img src="themes/switch/images/pattern/pattern2.png"
-						alt="bootstrap business templates"></a>
-				<a href="themes/css/#" name="pattern3"><img src="themes/switch/images/pattern/pattern3.png"
-						alt="bootstrap business templates"></a>
-				<a href="themes/css/#" name="pattern4"><img src="themes/switch/images/pattern/pattern4.png"
-						alt="bootstrap business templates"></a>
-				<a href="themes/css/#" name="pattern5"><img src="themes/switch/images/pattern/pattern5.png"
-						alt="bootstrap business templates"></a>
-				<a href="themes/css/#" name="pattern6"><img src="themes/switch/images/pattern/pattern6.png"
-						alt="bootstrap business templates"></a>
-				<a href="themes/css/#" name="pattern7"><img src="themes/switch/images/pattern/pattern7.png"
-						alt="bootstrap business templates"></a>
-				<a href="themes/css/#" name="pattern8"><img src="themes/switch/images/pattern/pattern8.png"
-						alt="bootstrap business templates"></a>
-				<a href="themes/css/#" name="pattern9"><img src="themes/switch/images/pattern/pattern9.png"
-						alt="bootstrap business templates"></a>
-				<a href="themes/css/#" name="pattern10"><img src="themes/switch/images/pattern/pattern10.png"
-						alt="bootstrap business templates"></a>
+				<a href="themes/css/#" name="pattern1"><img src="themes/switch/images/pattern/pattern1.png" alt="bootstrap business templates" class="active"></a>
+				<a href="themes/css/#" name="pattern2"><img src="themes/switch/images/pattern/pattern2.png" alt="bootstrap business templates"></a>
+				<a href="themes/css/#" name="pattern3"><img src="themes/switch/images/pattern/pattern3.png" alt="bootstrap business templates"></a>
+				<a href="themes/css/#" name="pattern4"><img src="themes/switch/images/pattern/pattern4.png" alt="bootstrap business templates"></a>
+				<a href="themes/css/#" name="pattern5"><img src="themes/switch/images/pattern/pattern5.png" alt="bootstrap business templates"></a>
+				<a href="themes/css/#" name="pattern6"><img src="themes/switch/images/pattern/pattern6.png" alt="bootstrap business templates"></a>
+				<a href="themes/css/#" name="pattern7"><img src="themes/switch/images/pattern/pattern7.png" alt="bootstrap business templates"></a>
+				<a href="themes/css/#" name="pattern8"><img src="themes/switch/images/pattern/pattern8.png" alt="bootstrap business templates"></a>
+				<a href="themes/css/#" name="pattern9"><img src="themes/switch/images/pattern/pattern9.png" alt="bootstrap business templates"></a>
+				<a href="themes/css/#" name="pattern10"><img src="themes/switch/images/pattern/pattern10.png" alt="bootstrap business templates"></a>
 
-				<a href="themes/css/#" name="pattern11"><img src="themes/switch/images/pattern/pattern11.png"
-						alt="bootstrap business templates"></a>
-				<a href="themes/css/#" name="pattern12"><img src="themes/switch/images/pattern/pattern12.png"
-						alt="bootstrap business templates"></a>
-				<a href="themes/css/#" name="pattern13"><img src="themes/switch/images/pattern/pattern13.png"
-						alt="bootstrap business templates"></a>
-				<a href="themes/css/#" name="pattern14"><img src="themes/switch/images/pattern/pattern14.png"
-						alt="bootstrap business templates"></a>
-				<a href="themes/css/#" name="pattern15"><img src="themes/switch/images/pattern/pattern15.png"
-						alt="bootstrap business templates"></a>
+				<a href="themes/css/#" name="pattern11"><img src="themes/switch/images/pattern/pattern11.png" alt="bootstrap business templates"></a>
+				<a href="themes/css/#" name="pattern12"><img src="themes/switch/images/pattern/pattern12.png" alt="bootstrap business templates"></a>
+				<a href="themes/css/#" name="pattern13"><img src="themes/switch/images/pattern/pattern13.png" alt="bootstrap business templates"></a>
+				<a href="themes/css/#" name="pattern14"><img src="themes/switch/images/pattern/pattern14.png" alt="bootstrap business templates"></a>
+				<a href="themes/css/#" name="pattern15"><img src="themes/switch/images/pattern/pattern15.png" alt="bootstrap business templates"></a>
 
-				<a href="themes/css/#" name="pattern16"><img src="themes/switch/images/pattern/pattern16.png"
-						alt="bootstrap business templates"></a>
-				<a href="themes/css/#" name="pattern17"><img src="themes/switch/images/pattern/pattern17.png"
-						alt="bootstrap business templates"></a>
-				<a href="themes/css/#" name="pattern18"><img src="themes/switch/images/pattern/pattern18.png"
-						alt="bootstrap business templates"></a>
-				<a href="themes/css/#" name="pattern19"><img src="themes/switch/images/pattern/pattern19.png"
-						alt="bootstrap business templates"></a>
-				<a href="themes/css/#" name="pattern20"><img src="themes/switch/images/pattern/pattern20.png"
-						alt="bootstrap business templates"></a>
+				<a href="themes/css/#" name="pattern16"><img src="themes/switch/images/pattern/pattern16.png" alt="bootstrap business templates"></a>
+				<a href="themes/css/#" name="pattern17"><img src="themes/switch/images/pattern/pattern17.png" alt="bootstrap business templates"></a>
+				<a href="themes/css/#" name="pattern18"><img src="themes/switch/images/pattern/pattern18.png" alt="bootstrap business templates"></a>
+				<a href="themes/css/#" name="pattern19"><img src="themes/switch/images/pattern/pattern19.png" alt="bootstrap business templates"></a>
+				<a href="themes/css/#" name="pattern20"><img src="themes/switch/images/pattern/pattern20.png" alt="bootstrap business templates"></a>
 
 			</div>
 		</div>
@@ -596,3 +329,105 @@
 </body>
 
 </html>
+
+
+<?php
+function getrealipaddres()
+{
+
+	//whether ip is from share internet
+	if (!empty($_SERVER['HTTP_CLIENT_IP'])) {
+		$ip_address = $_SERVER['HTTP_CLIENT_IP'];
+	}
+	//whether ip is from proxy
+	elseif (!empty($_SERVER['HTTP_X_FORWARDED_FOR'])) {
+		$ip_address = $_SERVER['HTTP_X_FORWARDED_FOR'];
+	}
+	//whether ip is from remote address
+	else {
+		$ip_address = $_SERVER['REMOTE_ADDR'];
+	}
+}
+
+
+if (isset($_POST['register'])) {
+
+	$fname = $_POST['fname'];
+	$cemail = $_POST['cemail'];
+	$c_pass = $_POST['c_pass'];
+	$c_addres = $_POST['c_address'];
+	$c_adds = $_POST['c_addre'];
+	$c_city = $_POST['c_city'];
+	$c_state = $_POST['c_state'];
+	$c_code = $_POST['c_pincode'];
+	$c_cntry = $_POST['c_country'];
+	$c_info = $_POST['c_info'];
+	$c_phone = $_POST['c_phone'];
+	// $c_img = $_Files['c_img']['name'];
+	// $c_img_temp = $_Files['c_img']['tmp_name'];
+	$c_ip = getrealipaddres();
+
+	$insert_customer = "INSERT INTO
+	customers (
+	 customer_fullname,
+	  customer_email,
+	  customer_pass,
+	  customer_add,
+	  customer_address,
+	  customer_city,
+	  customer_state,
+	  customer_code,
+	  customer_country,
+	  customer_info,
+	  customer_phone,
+	  customer_ip
+	)
+  VALUES
+	(
+	'$fname',
+	'$cemail',
+	'$c_pass',
+	'$c_addres',
+	'$c_adds',
+	'$c_city',
+	'$c_state',
+	'$c_code',
+	'$c_cntry',
+	'$c_info',
+	'$c_phone',
+	'$c_ip'
+);";
+
+
+	echo $insert_customer;
+
+	$run_customer = mysqli_query($con, $insert_customer);
+
+	// move_uploaded_file($c_img_temp,"customer/customer_photos/$c_img");
+
+	// if (!$run_customer) {
+	// 	printf("Error: %s\n", mysqli_error($con));
+	// 	exit();
+	// }
+
+
+
+	$sel_cart = "select * from cart where ip_add='$c_ip' ";
+
+	$run_cart = mysqli_query($con, $sel_cart);
+
+	$check_cart = mysqli_num_rows($run_cart);
+
+	if ($check_cart == 1) {
+		$_SESSION['customer_email'] = $cemail;
+		$_SESSION['customer_fullname'] = $fname;
+
+		echo "<script>alert('account created successfully');</script>";
+		echo "<script>window.open('payment_option.php','_self')</script>";
+	} else {
+		echo "<script>alert('account created successfully');</script>";
+		echo "<script>window.open('index.php','_self')</script>";
+	}
+}
+
+?>

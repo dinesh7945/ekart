@@ -1,6 +1,8 @@
 <?php include "header.php"; ?>
 <?php include "includes/db.php"; ?>
 <?php include "functions.php";
+
+@session_start();
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -41,16 +43,34 @@
     <div id="header">
         <div class="container">
             <div id="welcomeLine" class="row">
-                <div class="span6">Welcome!<strong> User</strong></div>
+                <?php
+                if (!isset($_SESSION['customer_email'])) {
+
+                    echo "<div class='span6'>Welcome!<strong> User</strong></div>";
+                } else {
+
+                    // display username
+                    // echo "<div class='span6'>Welcome! <strong>" . $_SESSION['customer_email'] . "</strong></div>";
+                    echo "<div class='span6'>Welcome! <strong>" . $_SESSION['customer_fullname'] . "</strong></div>";
+                }
+
+                ?>
+
+                <!-- echo "<div class='span6'>Welcome! <strong>".$_SESSION['customer_email'] ."</strong></div>"; -->
+
+                <!-- <div class="span6">Welcome!<strong> User</strong></div>
+                <div class="span6">Welcome!<strong> User</strong></div> -->
                 <div class="span6">
                     <div class="pull-right">
                         <!-- <a href="product_summary.html"><span class="">Fr</span></a>
                         <a href="product_summary.html"><span class="">Es</span></a>
                         <span class="btn btn-mini">En</span> -->
                         <!-- <a href="product_summary.html"><span>&pound;</span></a> -->
-                        <span class="btn btn-mini">total Price : Rs.<?php total_price() ?></span>
+                        <span class="btn btn-mini">total Price : Rs.<?php total_price() ?>
+                        </span>
                         <!-- <a href="product_summary.html"><span class="">$</span></a> -->
                         <a href="product_summary.html"><span class="btn btn-mini btn-primary"><i class="icon-shopping-cart icon-white"></i> <?php items(); ?> Itemes in your cart </span> </a>
+                        <a href="logout.php">Logout</a>
                     </div>
                 </div>
             </div>

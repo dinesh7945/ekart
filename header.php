@@ -1,6 +1,8 @@
-<?php include "includes/db.php"; ?>
+<?php 
+@session_start();
+include "includes/db.php"; ?>
 
-    
+
 <!-- Navbar ================================================== -->
 <div id="logoArea" class="navbar">
     <a id="smallScreen" data-target="#topMenu" data-toggle="collapse" class="btn btn-navbar">
@@ -12,7 +14,7 @@
         <a class="brand" href="index.php"><img src="themes/images/logo.png" alt="Bootsshop" /></a>
         <!-- <form class="form-inline navbar-search" method="post" action="products.html" > -->
         <form class="form-inline navbar-search" method="Get" action="result.php" enctype="multipart/form-data">
-            <input id="srchFld" name="user_query" class="srchTxt" type="text"  style="    padding: 15px 0;"/>
+            <input id="srchFld" name="user_query" class="srchTxt" type="text" style="    padding: 15px 0;" />
             <!-- <input id="srchFld" class="srchTxt" type="text" /> -->
 
 
@@ -22,17 +24,17 @@
 
                 $run = mysqli_query($con, $get_cat);
 
-                while($row_cat = mysqli_fetch_array($run)){
+                while ($row_cat = mysqli_fetch_array($run)) {
 
                     $cat_id = $row_cat['cat_id'];
                     $cat_title = $row_cat['cat_title'];
 
-                  echo  "<option>$cat_title</option>";
+                    echo  "<option>$cat_title</option>";
                 };
 
 
                 ?>
-                
+
             </select>
             <button type="submit" value="search" id="submitButton" class="btn btn-primary">Go</button>
         </form>
@@ -40,9 +42,24 @@
             <!-- <li class=""><a href="special_offer.html">Specials Offer</a></li>
             <li class=""><a href="normal.html">Delivery</a></li> -->
             <li class=""><a href="contact.html">Contact</a></li>
+            <li class=""><a href="register.php">Register</a></li>
             <li class=""><a href="product_summary.php">Cart</a></li>
             <li class="">
-                <a href="#login" role="button" data-toggle="modal" style="padding-right:0"><span class="btn btn-large btn-success">Login</span></a>
+                <!-- <a href="#login" role="button" data-toggle="modal" style="padding-right:0"><span class="btn btn-large btn-success">Login</span></a> -->
+                <!-- <a href="cust_login.php" role="button" style="padding-right:0"><span class="btn btn-large btn-success">Login</span></a> -->
+
+
+                <?php if (!isset($_SESSION['customer_email'])) {
+
+                    echo "<a href='checkout.php' role='button' style='padding-right:0'><span class='btn btn-large btn-success'>Login</span></a>";
+                }
+                else{
+                    echo "<a href='logout.php' role='button' style='padding-right:0'><span class='btn btn-large btn-success'>Logout</span></a>";
+                }
+
+
+
+                ?>
                 <div id="login" class="modal hide fade in" tabindex="-1" role="dialog" aria-labelledby="login" aria-hidden="false">
                     <div class="modal-header">
                         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>

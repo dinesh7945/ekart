@@ -4,7 +4,11 @@
 @session_start();
 include "header.php";
 include "includes/db.php";
-// include "functions.php";
+include "functions.php";
+
+
+
+// getting ip address
 ?>
 
 <!DOCTYPE html>
@@ -145,6 +149,10 @@ include "includes/db.php";
 							<div class="well">
 								<h5>ALREADY REGISTERED ?</h5>
 								<?php
+
+
+								// NC
+								// session_start();
 								@session_start();
 								include "includes/db.php";
 
@@ -178,10 +186,12 @@ include "includes/db.php";
 								<!-- if c->login -->
 								<?php
 
-								if (isset($_POST['c_login'])) {
+								// if (isset($_POST['c_login'])) {
+								if (isset($_POST['c_email'])) {
 
 									$customer_email = $_POST['c_email'];
 									$customer_pass = $_POST['c_pass'];
+
 
 
 									// query tht match wiht inserted data in customer
@@ -190,17 +200,49 @@ include "includes/db.php";
 
 									$run_customer = mysqli_query($con, $sel_customer);
 
+									// new code start here
+									$check_customer = mysqli_num_rows($run_customer);
 
-									// when email nd password match then it will redirect to payment page
-									if (mysqli_num_rows($run_customer) > 0) {
+									$get_ip = getrealipaddres();
+
+									$sel_cart = "SELECT * FROM cart where ip_add = '$get_ip'";
+
+
+									$run_cart = mysqli_query($con, $sel_cart);
+
+									$check_cart = mysqli_num_rows($run_cart);
+
+									if ($check_customer == 0) {
+										echo "<script>alert('email or password is wrong, try again!')</script>";
+										exit();
+									}
+									if ($check_customer == 1 and $check_cart == 0) {
 
 										$_SESSION['customer_email'] = $customer_email;
 
-										echo "<script>window.open('payment_option.php','_self')</script>";
-									} else {
 
-										echo "<script>alert('email or password is wrong, try again!')</script>";
+										echo "<script>window.open('account.php','_self')</script>";
+									} else {
+										$_SESSION['customer_email'] = $customer_email;
+
+										echo "<script>alert('You Successfully logged in!')</script>";
+										echo "<script>window.open('index.php','_self')</script>";
+										// echo "<script>window.open('payment_option.php','_self')</script>";
 									}
+									// ends here
+
+
+									// when email nd password match then it will redirect to payment page
+
+									// 	if (mysqli_num_rows($run_customer) > 0) {
+
+									// 		$_SESSION['customer_email'] = $customer_email;
+
+									// 		echo "<script>window.open('payment_option.php','_self')</script>";
+									// 	} else {
+
+									// 		echo "<script>alert('email or password is wrong, try again!')</script>";
+									// 	}
 								}
 
 								?>

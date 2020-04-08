@@ -398,7 +398,7 @@ function total_price()
     // cart tble--->ip address--->detect and 
 
     $run_price = mysqli_query($db, $sel_price);
-
+    
     while ($record = mysqli_fetch_array($run_price)) {
         // while ($record = mysqli_fetch_assoc($run_price)) {
         // mysqli_result::fetch_assoc -- mysqli_fetch_assoc — 
