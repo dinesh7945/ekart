@@ -7,7 +7,7 @@ include "functions.php";
 // geting cutomer id
 if (isset($_GET['c_id'])) {
 
-    $customer_id = $_GET['cid'];
+    $customer_id = $_GET['c_id'];
 }
 // getting prd price and no. of items
 $ip_add = getrealipaddres();
@@ -28,11 +28,7 @@ $status = 'pending';
 // random invoice
 $invoice_no = mt_rand();
 
-// $qty 
-// code qty start here
-
-
-
+$count_pro = mysqli_num_rows($run_price);
 
 while ($record = mysqli_fetch_array($run_price)) {
     // while ($record = mysqli_fetch_assoc($run_price)) {
@@ -61,4 +57,65 @@ while ($record = mysqli_fetch_array($run_price)) {
         // total values-->0
     }
 }
-    // echo $total;
+// echo $total;
+
+
+
+// getting qty from cart
+
+$get_cart = "select * from cart where ip_add = '$ip_add'";
+
+$run_cart = mysqli_query($con, $get_cart);
+
+
+$get_qty = mysqli_fetch_array($run_cart);
+
+$qty = $get_qty['qty'];
+
+
+
+if ($qty == 0) {
+
+    $qty = 1;
+    $sub_total = $total;
+} else {
+    $qty = $qty;
+
+    $sub_total = $total * $qty;
+}
+
+$insert_order = "INSERT INTO customer_orders (order_id,customer_id,due_amount,invoice_no,
+total_products,order_date,order_status) VALUES 
+('$customer_id','','$sub_total','$invoice_no','$count_pro','NOW()','$status')";
+
+
+
+$run_order = mysqli_query($con, $insert_order);
+
+
+if (!$run_order) {
+		printf("Error: %s\n", mysqli_error($con));
+		exit();
+	}
+if ($run_order) {
+
+    echo "<script>alert('Order Successfull thanks!')</script>";
+    echo "<script>window.open('index.php','_self')</script>";
+
+ 
+
+    $empty_cart = "DELETE from cart where ip_add = $ip_add";
+
+    $run_query = mysqli_query($con, $empty_cart);
+
+    if (!$run_query) {
+        printf("Error: %s\n", mysqli_error($con));
+        exit();
+    }
+
+    $insert_to_pending_orders = "INSERT INTO pending_orders (customer_id,invoice_no,product_id,qty,order_status) VALUES ('$customer_id','$invoice_no','$prod_id','$status')";
+
+    $run_pending_query = mysqli_query($con, $insert_to_pending_orders);
+} else {
+    echo "error";
+}

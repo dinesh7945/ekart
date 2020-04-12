@@ -1,14 +1,20 @@
 <?php
 
+##############################<----Database connections----->###############################################
+
 $db = mysqli_connect("localhost", "root", "", "ekartt");
 
-// caroselpro function--->carousel products
+##############################<----FETCHIING PRODUCTS RANDOMLY LIMIT 0,3 IN CAROSEL----->###############################################
+// carosel pro function--->carousel products
 function carPro()
 {
     global $db;
     $get_products = "select * from products order by rand() LIMIT 0,3";
+    // products--->fetching in random function used in show limit 4     
     $run_products = mysqli_query($db, $get_products);
+    // execution for sql query--->ie used mysqli_query
     while ($row_products = mysqli_fetch_array($run_products)) {
+        // in loopp product_details are fetch 
         $prod_id = $row_products['product_id'];
         $prod_title = $row_products['product_title'];
         $prod_cat = $row_products['cat_id'];
@@ -18,16 +24,28 @@ function carPro()
         $prod_img = $row_products['product_img'];
         $prod_img2 = $row_products['product_img1'];
         $prod_img3 = $row_products['product_img2'];
+        // substring function limited string
+        $prod_title = substr($prod_title, 0, 30);
+
+        // declare the variables--->product_details.php?     declare--->variable and assgin them--->pro_id = $prod_id;
+        // same as $prod_img fetching
         echo "<li class='span3'><div class='thumbnail'>
-<a href='product_details.html'><img style='height: 40%;object-fit: contain;' src='admin-area/product-images/$prod_img' alt='' /></a>
-<div class='caption'>
-<h5>$prod_title</h5>
-<h4 style='text-align:center'><a class='btn' href='product_details.html'> <i class='icon-zoom-in'></i></a> <a class='btn' href='#'>Add to <i class='icon-shopping-cart'></i></a> <a class='btn btn-primary' href='#'>Rs.$prod_price</a></h4>
+        <a href='product_details.php?pro_id=$prod_id'>
+        <img style='height: 40%;object-fit: contain;' src='admin-area/product-images/$prod_img' alt='' /></a>
+        <div class='caption' style='padding:0'>
+        <h5>$prod_title</h5>
+        <h4 style='text-align:center'>
+        <a class='btn' href='product_details.php?pro_id=$prod_id'>
+        <i class='icon-zoom-in'></i></a> 
+        <a class='btn' href='index.php?add_cart=$prod_id'>Add to <i class='icon-shopping-cart'></i></a> 
+        <a class='btn btn-primary' href='product_details.php?pro_id=$prod_id'>Rs.$prod_price</a></h4>
 </div>
 </div>
 ";
     }
 }
+##############################<----FETCHIING PRODUCTS RANDOMLY ON INDEX PAGE----->###############################################
+
 
 // getpro()----->fetching products randomly
 function getPro()
@@ -35,6 +53,7 @@ function getPro()
 {
     global $db;
     $get_products = "select * from products order by rand()";
+    // selecting products table and fetching randomly--->
     $run_products = mysqli_query($db, $get_products);
     while ($row_products = mysqli_fetch_array($run_products)) {
         $prod_id = $row_products['product_id'];
@@ -46,39 +65,58 @@ function getPro()
         $prod_img = $row_products['product_img'];
         $prod_img2 = $row_products['product_img1'];
         $prod_img3 = $row_products['product_img2'];
+
+
+        $prod_title = substr($prod_title, 0, 30);
         // a tag-->link to product.php?pro_id = $prod_id
         // so while hover or click that product id wil fetch on that page
-
         //same with add to cart wen click add to cart then product id fetch.
-
         // add_cart 
-        echo "<li class='span3'><div class='thumbnail'>
-                                        <a href='product_details.php?pro_id=$prod_id'><img style='height: 40%;object-fit: contain;' src='admin-area/product-images/$prod_img' alt='' /></a>
-                                        <div class='caption'>
-                                            <h5>$prod_title</h5>
-                                            
-                                            <h4 style='text-align:center'><a class='btn' href='product_details.html'> <i class='icon-zoom-in'></i></a> 
 
-                                            <a class='btn' href='index.php?add_cart=$prod_id'>Add to Cart</i></a> <a class='btn btn-primary' href='#'>Rs.$prod_price</a></h4>
-                                        </div>
-                                    </div>
-                                        ";
+        echo "<li class='span3'>
+              <div class='thumbnail'>
+              <a href='product_details.php?pro_id=$prod_id'>
+              <img style='height: 40%;object-fit: contain;' src='admin-area/product-images/$prod_img' alt='' /></a>
+              <div class='caption' style='padding:0'>
+              <h5>$prod_title</h5>
+              <h4 style='text-align:center'><a class='btn' href='product_details.php?pro_id=$prod_id'> 
+              <i class='icon-zoom-in'></i></a> 
+              <a class='btn' href='index.php?add_cart=$prod_id'>Add to Cart</i></a>
+              <a class='btn btn-primary' href='product_details.php?pro_id=$prod_id'>Rs.$prod_price</a></h4>
+              </div>
+              </div>
+              ";
+        //   after clicking add to cart it will reload index.php and send variable add_cart=$prod_id
     }
 }
+
+
+##############################<----FETCHIING BRAND IN LOOP (TITLE) SIDEBAR----->###############################################
+
 // function getbrand()----->getting brand in side bar
 function getbrand()
 {
     global $db;
     $get_brands = "select * from brands ";
+    // selecting brand table
     $run_brands = mysqli_query($db, $get_brands);
+    // sql query
     while ($row_brands = mysqli_fetch_array($run_brands)) {
+
         $brand_id = $row_brands['brand_id'];
         $brand_title = $row_brands['brand_title'];
         // $prod_img = $row_brands['product_img1'];
-        echo "<li><a href='products.php?brand=$brand_id'><i class='icon-chevron-right'></i>$brand_title </a></li>";
+
+        //  after clicking a tag---> cat declare variable---> with $brand_id
+        echo "<li><a href='products.php?cat=$brand_id'>
+        <i class='icon-chevron-right'></i>$brand_title </a></li>";
+
+
+        // so now getting brand product by id
     }
 }
 
+##############################<----FETCHIING CATEGORY (title) IN LOOP SIDEBAR----->###############################################
 
 // function getcategory()----->getting category in side bar
 function get_cat()
@@ -92,19 +130,32 @@ function get_cat()
         $cat_id = $row_cat['cat_id'];
         //declare  new var and feteching column data--->row_cat and row Id particluar
         $cat_title = $row_cat['cat_title'];
-        echo "<li><a class='active' href='products.php?cat=$cat_id'><i class='icon-chevron-right'></i>$cat_title </a></li>";
-        // declare variables $cat_title
+        echo "<li><a class='active' href='products.php?cat=$cat_id'>
+        <i class='icon-chevron-right'></i>$cat_title </a></li>";
+        // after clicking--->a tag-->product.php? declare variable cat = $cat_id
+
+
+        // so now getting category product by id
+
     };
 }
+
+
+##############################<----FETCHING  PRODUCTS BY CATEGORY ID----->###############################################
 
 // product.php--->getting products by category id
 function get_prodlist()
 {
     global $db;
     // if (isset($_GET['cat'])) {
+    // cat--->declare variable in a_>tag ----->?cat=$cat_id'
     $category_id = $_GET['cat'];
+    // $_GETTING cat-id product and assing in variables.about
+
     $get_cat_product = "select * from products where cat_id = $category_id";
+    // sql query where products-->cat_id = $category_id
     $run_cat_products = mysqli_query($db, $get_cat_product);
+
     while ($row_cat_products = mysqli_fetch_array($run_cat_products)) {
         $prod_id = $row_cat_products['product_id'];
         $prod_title = $row_cat_products['product_title'];
@@ -115,20 +166,29 @@ function get_prodlist()
         $prod_img = $row_cat_products['product_img'];
         $prod_img2 = $row_cat_products['product_img1'];
         $prod_img3 = $row_cat_products['product_img2'];
-        echo "<li class='span3'><div class='thumbnail'>
-                                        <a href='product_details.php?pro_id=$prod_id'><img style='height: 200px;object-fit: contain;' src='admin-area/product-images/$prod_img' alt='' /></a>
-                                        
-                                        <div class='caption'>
-                                            <h5>$prod_title</h5>
-                                            <h4 style='text-align:center'><a class='btn' href='product_details.html'> <i class='icon-zoom-in'></i></a> <a class='btn' href='#'>Add to <i class='icon-shopping-cart'></i></a> <a class='btn btn-primary' href='#'>$prod_price</a></h4>
-                                        </div>
-                                    </div>
-                                    </li>
-                                        ";
+
+
+        echo "<li class='span3'>
+               <div class='thumbnail'>
+               <a href='product_details.php?pro_id=$prod_id'>
+               <img style='height: 200px;object-fit: contain;' src='admin-area/product-images/$prod_img' alt='' /></a>
+               <div class='caption' style='padding:0'>
+               <h5>$prod_title</h5>
+               <h4 style='text-align:center'><a class='btn' href='product_details.html'> 
+               <i class='icon-zoom-in'></i></a> 
+               <a class='btn' href='index.php?add_cart=$prod_id'>Add to <i class='icon-shopping-cart'></i></a>
+                <a class='btn btn-primary' href='product_details.php?pro_id=$prod_id'>$prod_price</a></h4>
+               </div>
+               </div>
+               </li>
+               
+               ";
+        // href='product_details.php?pro_id=$prod_id'
     }
 }
 
-// href='product_details.php?pro_id=$prod_id'
+
+##############################<----FETCHING  PRODUCTS details.php----->###############################################
 
 
 // product_details fetch
@@ -137,13 +197,13 @@ function pro_detail()
     // global $db;
 
     if (isset($_GET['pro_id']));
-
+    // after clicking pro_id--->a tag passing the id with it
     $product_id = $_GET['pro_id'];
     global $db;
     // if (isset($_GET['cat'])) {
 
     $get_product = "select * from products where product_id = $product_id";
-
+    // select products where product_id tbl colmn name - $product_id declare variable 
     $run_products = mysqli_query($db, $get_product);
     while ($row_products = mysqli_fetch_array($run_products)) {
         $prod_id = $row_products['product_id'];
@@ -160,25 +220,18 @@ function pro_detail()
 
 
     echo "<div class='row'>
-                        <div id='gallery' class='span3'>
-                            <a href='admin-area/product-images/$prod_img' title=''>
-                                <img src='admin-area/product-images/$prod_img' style='width:100%' alt='s' />
-                                
-                            </a>
-                            <div id='differentview' class='moreOptopm carousel slide'>
-                                <div class='carousel-inner>
-                                    <div class='item active'>
-                                   
-                                        <a href='admin-area/product-images/$prod_img'> <img style='    width: 78px;
-                                        height: 78px;object-fit: contain;'src='admin-area/product-images/$prod_img' alt='' /></a>
-
-                                        <a href='admin-area/product-images/$prod_img2'> <img style='    width: 78px;
-                                        height: 78px;               object-fit: contain;' src='admin-area/product-images/$prod_img2' alt='' /></a>
-
-                                        <a href='admin-area/product-images/$prod_img3'> <img style='    width: 78px;
-                                        height: 78px;object-fit: contain;' src='admin-area/product-images/$prod_img3' alt='' /></a>
-                                        
-                                    </div>
+          <div id='gallery' class='span3'>
+          <a href='admin-area/product-images/$prod_img' title=''>
+          <img src='admin-area/product-images/$prod_img' style='width:100%' alt='s' /></a>
+          <div id='differentview' class='moreOptopm carousel slide'>
+          <div class='carousel-inner>
+          <div class='item active'>
+          <a href='admin-area/product-images/$prod_img'>
+         <img style='width: 78px;height: 78px;object-fit: contain;'src='admin-area/product-images/$prod_img' alt='' /></a>
+         <a href='admin-area/product-images/$prod_img2'> <img style='width: 78px;height: 78px;object-fit: contain;' src='admin-area/product-images/$prod_img2' alt='' /></a>
+         <a href='admin-area/product-images/$prod_img3'> <img style='    width: 78px;
+         height: 78px;object-fit: contain;' src='admin-area/product-images/$prod_img3' alt='' /></a>                               
+</div>
                                     <div class='item'>
                                     <a href='admin-area/product-images/$prod_img'> <img style='    width: 78px;
                                     height: 78px;object-fit: contain;' src='admin-area/product-images/$prod_img' alt='' /></a>
@@ -204,7 +257,7 @@ function pro_detail()
                                 <div class='control-group'>
                                     <label class='control-label'><span>Rs.$prod_price</span></label>
                                     <div class='controls'>
-                                        <input type='number' class='span1' placeholder='Qty.' />
+                                        <input  style='padding: 15px 8px;' type='number' class='span1' placeholder='Qty.' />
                                         <button type='submit' class='btn btn-large btn-primary pull-right'> Add to cart <i class=' icon-shopping-cart'></i></button>
                                     </div>
                                 </div>
@@ -213,17 +266,7 @@ function pro_detail()
                             <hr class='soft' />
                             <h4>$prod_qty items in stock</h4>
                             <form class='form-horizontal qtyFrm pull-right'>
-                                <div class=control-group'>
-                                    <label class='control-label'><span>Color</span></label>
-                                    <div class='controls'>
-                                        <select class='span2'>
-                                            <option>Black</option>
-                                            <option>Red</option>
-                                            <option>Blue</option>
-                                            <option>Brown</option>
-                                        </select>
-                                    </div>
-                                </div>
+                                
                             </form>
                             <hr class='soft clr' />
                             <p>
@@ -232,12 +275,13 @@ function pro_detail()
 
                         </div>
                         </div>
-                        
+     
 
                     </div>";
 }
 
 
+##############################<----FETCHING  product_details in that related products in php ----->##################
 // related products fetch
 function rel_getPro()
 
@@ -283,6 +327,8 @@ function rel_getPro()
     }
 }
 
+
+##############################<----Fetching IP address ----->###############################################
 // getting ip address
 function getrealipaddres()
 {
@@ -302,6 +348,7 @@ function getrealipaddres()
 }
 
 
+##############################<----ADD TO CART---->###############################################
 
 // adding  to cart
 function cart()
@@ -342,7 +389,7 @@ function cart()
 }
 
 
-
+##############################<----FETCHING  NO. OF ITEMS IN CART----->###############################################
 // Getting Numbers of items in cart
 
 function items()
@@ -382,6 +429,7 @@ function items()
     //  <?php items(); 
     //  Itemes in your cart
 }
+##############################<----FETCHING  TOTAL CART Price----->###############################################
 
 
 // getting total price
@@ -398,7 +446,7 @@ function total_price()
     // cart tble--->ip address--->detect and 
 
     $run_price = mysqli_query($db, $sel_price);
-    
+
     while ($record = mysqli_fetch_array($run_price)) {
         // while ($record = mysqli_fetch_assoc($run_price)) {
         // mysqli_result::fetch_assoc -- mysqli_fetch_assoc — 
