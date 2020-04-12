@@ -26,7 +26,7 @@ $run_customer = mysqli_query($con, $get_customer);
 $customer = mysqli_fetch_array($run_customer);
 
 $customer_id = $customer['customer_id'];
-
+// this ID will go to order.php
 
 
 
@@ -101,8 +101,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                             <li class="resp-tab-item" aria-controls="tab_item-1" role="tab"><span><label class="pic3"></label>Net Banking</span></li>
                             <!-- <li class="resp-tab-item" aria-controls="tab_item-2" role="tab"><span><label class="pic4"></label>PayPal</span></li> -->
                             <li class="resp-tab-item" aria-controls="tab_item-3" role="tab"><span><label class="pic2"></label>Debit Card</span></li>
-                            <!-- COD = order.php?c_id = echo $customer_id  
-                        getting data in order.php               -->
+
+                            <!-- COD = order.php?c_id = echo $customer_id  getting data in order.php               -->
                             <a href="order.php?c_id=<?php echo $customer_id; ?>">
                                 <li class="resp-tab-item"><span><label class="pic2"></label>Cash On Delievery
                                     </span></li>
@@ -324,9 +324,12 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <?php include "includes/db.php";
 include "functions.php";
 
+
+// ip address
  
 $ip = getrealipaddres();
 
+//detect every ip whoever order 
 $get_customer = "SELECT * from customers where customer_ip = '$ip'";
 
 $run_customer = mysqli_query($con,$get_customer);
@@ -334,8 +337,6 @@ $run_customer = mysqli_query($con,$get_customer);
 $customer = mysqli_fetch_array($run_customer);
 
 $customer_id = $customer['customer_id'];
-
-
 
 
 ?>
