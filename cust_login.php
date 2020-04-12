@@ -192,7 +192,7 @@ include "functions.php";
 									$customer_email = $_POST['c_email'];
 									$customer_pass = $_POST['c_pass'];
 
-
+									
 
 									// query tht match wiht inserted data in customer
 									$sel_customer = "SELECT * FROM customers where customer_email='$customer_email' AND customer_pass='$customer_pass'";
@@ -200,13 +200,12 @@ include "functions.php";
 
 									$run_customer = mysqli_query($con, $sel_customer);
 
-									// new code start here
+
 									$check_customer = mysqli_num_rows($run_customer);
 
 									$get_ip = getrealipaddres();
 
 									$sel_cart = "SELECT * FROM cart where ip_add = '$get_ip'";
-
 
 									$run_cart = mysqli_query($con, $sel_cart);
 
@@ -219,11 +218,10 @@ include "functions.php";
 									if ($check_customer == 1 and $check_cart == 0) {
 
 										$_SESSION['customer_email'] = $customer_email;
-
-
 										echo "<script>window.open('account.php','_self')</script>";
 									} else {
 										$_SESSION['customer_email'] = $customer_email;
+										// $_SESSION['customer_fullname'] = $customer_fullname;
 
 										echo "<script>alert('You Successfully logged in!')</script>";
 										echo "<script>window.open('index.php','_self')</script>";
@@ -234,15 +232,16 @@ include "functions.php";
 
 									// when email nd password match then it will redirect to payment page
 
-									// 	if (mysqli_num_rows($run_customer) > 0) {
+										// if (mysqli_num_rows($run_customer) > 0) {
 
-									// 		$_SESSION['customer_email'] = $customer_email;
+										// 	$_SESSION['customer_email'] = $customer_email;
 
-									// 		echo "<script>window.open('payment_option.php','_self')</script>";
-									// 	} else {
+										// 	echo "<script>window.open('payment_option.php','_self')</script>";
+										// }
+										//  else {
 
-									// 		echo "<script>alert('email or password is wrong, try again!')</script>";
-									// 	}
+										// 	echo "<script>alert('email or password is wrong, try again!')</script>";
+										// }
 								}
 
 								?>

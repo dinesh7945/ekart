@@ -48,10 +48,19 @@
 
                     echo "<div class='span6'>Welcome!<strong> User</strong></div>";
                 } else {
-
-                    // display username
-                    // echo "<div class='span6'>Welcome! <strong>" . $_SESSION['customer_email'] . "</strong></div>";
-                    echo "<div class='span6'>Welcome! <strong>" . $_SESSION['customer_fullname'] . "</strong></div>";
+                    $get_customer = "select * from customers";
+                    // customer--->fetching in fullname  
+                    $run_customer = mysqli_query($db, $get_customer);
+                    // execution for sql query--->ie used mysqli_query
+                    while ($row_customer = mysqli_fetch_array($run_customer)) {
+                        // in loopp product_details are fetch 
+                        $cust_id = $row_customer['customer_id'];
+                        $cust_fname = $row_customer['customer_fullname'];
+                                    // echo "<div class='span6'>Welcome! <strong>" . $_SESSION['customer_email'] . "</strong></div>";
+                                    // echo "<div class='span6'>Welcome! <strong>" . $_SESSION['customer_fullname'] . "</strong></div>";
+                                }
+                                echo "<div class='span6'>Welcome! <strong>" . $cust_fname . "</strong></div>";
+                    
                 }
 
                 ?>
@@ -70,7 +79,7 @@
                         </span>
                         <!-- <a href="product_summary.html"><span class="">$</span></a> -->
                         <a href="product_summary.html"><span class="btn btn-mini btn-primary"><i class="icon-shopping-cart icon-white"></i> <?php items(); ?> Itemes in your cart </span> </a>
-                        <a href="logout.php">Logout</a>
+                        <!-- <a href="logout.php">Logout</a> -->
                     </div>
                 </div>
             </div>
