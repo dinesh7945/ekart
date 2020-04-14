@@ -76,7 +76,7 @@ function getPro()
         echo "<li class='span3'>
               <div class='thumbnail'>
               <a href='product_details.php?pro_id=$prod_id'>
-              <img style='height: 40%;object-fit: contain;' src='admin-area/product-images/$prod_img' alt='' /></a>
+              <img style='height:250px;object-fit: contain;' src='admin-area/product-images/$prod_img' alt='' /></a>
               <div class='caption' style='padding:0'>
               <h5>$prod_title</h5>
               <h4 style='text-align:center'><a class='btn' href='product_details.php?pro_id=$prod_id'> 
@@ -479,12 +479,105 @@ function total_price()
 }
 
 
+##############################<----GETTING THE DEFAULT FOR CUSTOMERS----->###############################################
 
-
-
-
-// cart checkout price etc...
-
-function cartprice()
+function getdefault()
 {
+ 
+    global $db;
+    // stored session email if customer login--->
+
+    // GETTING CUSTOMER ID--->STARTS HERE
+    $c = $_SESSION['customer_email'];
+    // query where customer_email--->saved in $c;
+    $get_c = "SELECT * FROM customers WHERE customer_email= '$c'";
+    // run query--->
+    $run_c = mysqli_query($db, $get_c);
+
+    $row_c = mysqli_fetch_array($run_c);
+    // array
+    $customer_id = $row_c['customer_id'];
+    // ENDS HERE CUSTOMER ID
+
+    // if it is not active 
+    if (!isset($_GET['my_orders'])) {
+        if (!isset($_GET['edit_account'])) {
+            if (!isset($_GET['chng_pswd'])) {
+                if (!isset($_GET['del_account'])) {
+
+                    $get_products = "select * from products";
+                    $run_products = mysqli_query($db, $get_products);
+                    $row_products = mysqli_fetch_array($run_products);
+
+                    $prod_id = $row_products['product_id'];
+                    $prod_title = $row_products['product_title'];
+                    $prod_cat = $row_products['cat_id'];
+                    $prod_brand = $row_products['brand_id'];
+                    $prod_desc = $row_products['product_desc'];
+                    $prod_price = $row_products['product_price'];
+                    $prod_img = $row_products['product_img'];
+                    $prod_img2 = $row_products['product_img1'];
+                    $prod_img3 = $row_products['product_img2'];
+
+                    // show pending orders
+                    $get_orders = "SELECT * FROM customer_orders WHERE customer_id = '$customer_id' AND order_status='pending' ";
+
+                    $run_orders = mysqli_query($db, $get_orders);
+                    // The mysqli_num_rows() function is an inbuilt function in PHP which is used to 
+                    // return the number of rows present in the result set. It is generally used to check if data is present in the database or not. To use this function,
+                    //  it is mandatory to first set up the connection with the MySQL database.
+                    $count_orders = mysqli_num_rows($run_orders);
+
+                    if ($count_orders > 0) {
+
+                        // echo "<div style='padding:10px'>
+                        // <h1 style='color:red'>IMPORTANT</h1>
+                        // <h3>You Have $count_orders Pending Orders</h3>
+                        // </div>";
+
+                        echo " <h3 style='text-align:center;'>Pending Orders $count_orders</h3>";
+                        // echo "please see orders clicking details <a href='account.php?my_orders.php'>Link</a> Or <a href='pay_offline.php'>Pay offline</a>
+
+                        echo "<table width='750' style='color:white;background-color:blue;text-align:center;margin: auto;'>
+                        <tr>
+                            <td>order No</td>
+                            <td>Due amount</td>
+                            <td>Invoice No</td>
+                            
+                            <td>Order Date</td>
+                            <td>Paid/unpaid</td>
+                            <td>Status</td>
+                        </tr>
+                    ";
+                    } else {
+                        echo " <h3 style='text-align:center;'>No Pending orders</h3>";
+                        echo "<h6 style='text-align:center;'>You can see orders history <a style='padding:5px;background-color:green;color:white;    border-radius: 25px;text-decoration:none;'href='account.php?my_orders.php'>history order</a></h6>";
+                    }
+                }
+            }
+        }
+    }
 }
+
+// <div class='span2'>
+//                             <img src='admin-area/product-images/$prod_img' alt=''>
+//                         </div>
+//                     <div class='span4'>
+//                         <h3>New | Available</h3>				
+//                         <hr class='soft'>
+//                         <h5>$prod_title </h5>
+//                         <p>
+//                         $prod_desc
+//                         </p>
+//                         <a class='btn btn-small pull-right' href='product_details.php?pro_id=$prod_id'>View Details</a>
+//                         <br class='clr'>
+//                     </div>
+//         <div class='span3 alignR'>
+//             <form class='form-horizontal qtyFrm'>
+//             <h3> Rs.$prod_price</h3>
+//             <br>
+//             <div class='btn-group'>
+//             <a href='product_details.html' class='btn btn-large btn-primary'> Add to <i class=' icon-shopping-cart'></i></a>
+//             </div>
+//                 </form>
+//         </div>

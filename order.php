@@ -85,7 +85,7 @@ if ($qty == 0) {
 $insert_order = "INSERT INTO customer_orders 
 (order_id,customer_id,due_amount,invoice_no,total_products,order_date,order_status)
  VALUES 
-('','$customer_id','$sub_total','$invoice_no','$count_pro','NOW()','$status')";
+('','$customer_id','$sub_total','$invoice_no','$count_pro',NOW(),'$status')";
 
 $run_order = mysqli_query($con, $insert_order);
 
