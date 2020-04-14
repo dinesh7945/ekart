@@ -6,7 +6,7 @@ include "includes/db.php";
 
 
 
-//  getdefault(); 
+getdefault();
 
 
 
@@ -28,44 +28,44 @@ $customer_id = $row_c['customer_id'];
 
 
 
-<!-- 
-<table width="750" align="center" bgcolor="green" style="color:white;background-color:blue;text-align:center;">
-    <tr>
-        <td>order No</td>
-        <td>Due amount</td>
-        <td>Invoice No</td>
-        <td>total products</td>
-        <td>Order Date</td>
-        <td>Paid/unpaid</td>
-        <td>Status</td>
-    </tr> -->
-<?php
+<div style="display: flex;margin-top:20px;">
+    <table width="650" align="center"  style="color:white;background-color:blue;text-align:center;">
+        <tr>
+            <td>order No</td>
+            <td>Due amount</td>
+            <td>Invoice No</td>
+            <td>total products</td>
+            <td>Order Date</td>
+            <td>Paid/unpaid</td>
+            <td>Status</td>
+        </tr>
+        <?php
 
-$get_order = "SELECT * FROM customer_orders WHERE customer_id='$customer_id'";
+        $get_order = "SELECT * FROM customer_orders WHERE customer_id='$customer_id'";
 
-$run_order = mysqli_query($con, $get_order);
-// order id serail no so
-$i = 0;
+        $run_order = mysqli_query($con, $get_order);
+        // order id serail no so
+        $i = 0;
 
-while ($row_orders = mysqli_fetch_array($run_order)) {
+        while ($row_orders = mysqli_fetch_array($run_order)) {
 
-    $order_id = $row_orders['order_id'];
-    $due_amount = $row_orders['due_amount'];
-    $invoice_no = $row_orders['invoice_no'];
-    $order_id = $row_orders['order_id'];
-    $product = $row_orders['total_products'];
-    $date = $row_orders['order_date'];
-    $status = $row_orders['order_status'];
+            $order_id = $row_orders['order_id'];
+            $due_amount = $row_orders['due_amount'];
+            $invoice_no = $row_orders['invoice_no'];
+            $order_id = $row_orders['order_id'];
+            $product = $row_orders['total_products'];
+            $date = $row_orders['order_date'];
+            $status = $row_orders['order_status'];
 
-    if ($status == 'pending') {
-        $status = 'unpaid';
-    } else {
+            if ($status == 'pending') {
+                $status = 'unpaid';
+            } else {
 
-        $status = 'paid';
-    }
+                $status = 'paid';
+            }
 
-    $i++;
-    echo "<tr align=center;>
+            $i++;
+            echo "<tr align=center;>
         <td>$i</td>
         <td>$due_amount</td>
         <td>$invoice_no</td>
@@ -74,13 +74,13 @@ while ($row_orders = mysqli_fetch_array($run_order)) {
         <td>$status</td>
         <td><a href='confirm.php' style='color:white;'>confirm if paid</a></td>
         </tr>";
-}
+        }
 
-?>
+        ?>
 
 
-</table>
-
+    </table>
+</div>
 <!-- <div style="    display: flex;
     justify-content: space-between;background-color:#dcd4d4;    margin: 0 0 13px;">
     <div>

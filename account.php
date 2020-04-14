@@ -62,16 +62,15 @@
                         <div id="sidebar" class="span3">
                             <div class="well well-small"><a id="myCart" href="product_summary.html"><img src="themes/images/ico-cart.png" alt="cart"><?php items(); ?> Items in your cart <span class="badge badge-warning pull-right">Rs.<?php total_price() ?></span></a></div>
                             <ul id="sideManu" class="nav nav-tabs nav-stacked">
-                                <li class="subMenu open">   
+                                <li class="subMenu open">
                                     <a>Manage account</a>
                                     <ul>
-                                        <li class='active '><a class="nes" href="account.php">My orders</a></li>
+                                        <li class='active '><a class="nes" href="account.php?my_orders">My orders</a></li>
                                         <!-- <li class='active '><a class="nes" href="account.php?my_orders.php">My orders</a></li> -->
                                         <!-- <li class='active '><a class="nes" href="account.php">My orders</a></li> -->
                                         <!-- <li class='active '><a class="nes" href="account.php?my_orders">My orders</a></li> -->
-
                                         <li class='active '><a class="nes" href="account.php?edit_account">Edit Account</a></li>
-
+                                        <!-- get variables -->
                                         <li class='active '><a class="nes" href="account.php?chng_pswd">Change Password</a></li>
 
                                         <li class='active'><a class="nes" href="account.php?del_account">Delete Account</a></li>
@@ -118,16 +117,19 @@
 
                         <!--  -->
                         <div>
-                            <?php 
-                             getdefault(); 
-                             ?>
+                            <?php
+                            // getdefault();
+
+                            ?>
 
 
                             <?php
-                            if (!isset($_GET['my_orders'])) {
+                            if (isset($_GET['my_orders'])) {
                                 include('my_orders.php');
                             }
-                            
+                            if (isset($_GET['edit_account'])) {
+                                include('edit_account.php');
+                            }
 
 
 

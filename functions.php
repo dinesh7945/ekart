@@ -483,7 +483,7 @@ function total_price()
 
 function getdefault()
 {
- 
+
     global $db;
     // stored session email if customer login--->
 
@@ -505,19 +505,19 @@ function getdefault()
             if (!isset($_GET['chng_pswd'])) {
                 if (!isset($_GET['del_account'])) {
 
-                    $get_products = "select * from products";
-                    $run_products = mysqli_query($db, $get_products);
-                    $row_products = mysqli_fetch_array($run_products);
+                    // $get_products = "select * from products";
+                    // $run_products = mysqli_query($db, $get_products);
+                    // $row_products = mysqli_fetch_array($run_products);
 
-                    $prod_id = $row_products['product_id'];
-                    $prod_title = $row_products['product_title'];
-                    $prod_cat = $row_products['cat_id'];
-                    $prod_brand = $row_products['brand_id'];
-                    $prod_desc = $row_products['product_desc'];
-                    $prod_price = $row_products['product_price'];
-                    $prod_img = $row_products['product_img'];
-                    $prod_img2 = $row_products['product_img1'];
-                    $prod_img3 = $row_products['product_img2'];
+                    // $prod_id = $row_products['product_id'];
+                    // $prod_title = $row_products['product_title'];
+                    // $prod_cat = $row_products['cat_id'];
+                    // $prod_brand = $row_products['brand_id'];
+                    // $prod_desc = $row_products['product_desc'];
+                    // $prod_price = $row_products['product_price'];
+                    // $prod_img = $row_products['product_img'];
+                    // $prod_img2 = $row_products['product_img1'];
+                    // $prod_img3 = $row_products['product_img2'];
 
                     // show pending orders
                     $get_orders = "SELECT * FROM customer_orders WHERE customer_id = '$customer_id' AND order_status='pending' ";
@@ -551,19 +551,19 @@ function getdefault()
                     ";
                     } else {
                         echo " <h3 style='text-align:center;'>No Pending orders</h3>";
-                        echo "<h6 style='text-align:center;'>You can see orders history <a style='padding:5px;background-color:green;color:white;    border-radius: 25px;text-decoration:none;'href='account.php?my_orders.php'>history order</a></h6>";
+                        echo "<h6 style='text-align:center;'>You can see orders history <a style='padding:5px;background-color:green;color:white;    border-radius: 25px;text-decoration:none;'href='account.php?my_orders'>history order</a></h6>";
                     }
                 }
             }
         }
     }
 }
-
-// <div class='span2'>
-//                             <img src='admin-area/product-images/$prod_img' alt=''>
-//                         </div>
-//                     <div class='span4'>
-//                         <h3>New | Available</h3>				
+?>
+<!-- <div class='span2'>
+                             <img src='admin-area/product-images/$prod_img' alt=''>
+                         </div>
+                     <div class='span4'>
+                         <h3>New | Available</h3>				
 //                         <hr class='soft'>
 //                         <h5>$prod_title </h5>
 //                         <p>
@@ -580,4 +580,4 @@ function getdefault()
 //             <a href='product_details.html' class='btn btn-large btn-primary'> Add to <i class=' icon-shopping-cart'></i></a>
 //             </div>
 //                 </form>
-//         </div>
+//         </div> -->
