@@ -10,6 +10,17 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 
     <title>Ekart Admin</title>
+    <style>
+        .table {
+            width: 0 !important;
+            margin: auto;
+        }
+
+        th,
+        td {
+            text-align: center;
+        }
+    </style>
 </head>
 
 <body>
@@ -30,58 +41,44 @@
                 <th scope="col">delete</th>
             </tr>
         </thead>
-        <tbody>
-            <tr>
-                <th scope="row">1</th>
-                <td>Mark</td>
-                <td>Otto</td>
-                <td>@mdo</td>
-            </tr>
-            <tr>
-                <th scope="row">2</th>
-                <td>Jacob</td>
-                <td>Thornton</td>
-                <td>@fat</td>
-            </tr>
-            <tr>
-                <th scope="row">3</th>
-                <td>Larry</td>
-                <td>the Bird</td>
-                <td>@twitter</td>
-            </tr>
-        </tbody>
+        <?php
+
+        include "includes/db.php";
+
+        $i = 0  ;
+
+        $get_pro = "select * from products";
+
+        $run_pr = mysqli_query($con, $get_pro);
+
+        while ($row_pro = mysqli_fetch_array($run_pr)) {
+
+            $p_id = $row_pro['product_id'];
+            $p_title = $row_pro['product_title'];
+            $p_img = $row_pro['product_img1'];
+            $p_price = $row_pro['product_price'];
+
+
+            $i++;
+
+
+        ?>
+            <tbody>
+                <tr>
+                    <th scope="row"><?php echo $i; ?></th>
+                    <td><?php echo $p_title; ?></td>
+                    <td><img src="product-images/<?php echo $p_img ?>" width="60" height="60"></td>
+                    <td><?php echo $p_price; ?></td>
+                    <td></td>
+                    <td></td>
+                    <td>Edit</td>
+                    <td>Delete</td>
+                </tr>
+            <?php } ?>
+            </tbody>
+
     </table>
 
-    <table class="table">
-        <thead class="thead-light">
-            <tr>
-                <th scope="col">#</th>
-                <th scope="col">First</th>
-                <th scope="col">Last</th>
-                <th scope="col">Handle</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <th scope="row">1</th>
-                <td>Mark</td>
-                <td>Otto</td>
-                <td>@mdo</td>
-            </tr>
-            <tr>
-                <th scope="row">2</th>
-                <td>Jacob</td>
-                <td>Thornton</td>
-                <td>@fat</td>
-            </tr>
-            <tr>
-                <th scope="row">3</th>
-                <td>Larry</td>
-                <td>the Bird</td>
-                <td>@twitter</td>
-            </tr>
-        </tbody>
-    </table>
 
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->

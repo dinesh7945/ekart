@@ -163,17 +163,7 @@
             </div>
         </div>
 
-        <?php
 
-        if (isset($_GET['view_products'])) {
-
-            include "view_product.php";
-        }
-
-        if (isset($_GET['insert_prd'])) {
-            include "insert_prd.php";
-        }
-        ?>
         <div style="background-color: white">
             <div class="grid_10">
                 <div class="box round first">
@@ -182,7 +172,17 @@
                     
 
                         <!-- Form starts -->
-                        
+                        <?php
+
+if (isset($_GET['view_products'])) {
+
+    include "view_product.php";
+}
+
+if (isset($_GET['insert_prd'])) {
+    include "insert_prd.php";
+}
+?>
 
                     </div>
                 </div>
