@@ -69,11 +69,12 @@
                                         <!-- <li class='active '><a class="nes" href="account.php?my_orders.php">My orders</a></li> -->
                                         <!-- <li class='active '><a class="nes" href="account.php">My orders</a></li> -->
                                         <!-- <li class='active '><a class="nes" href="account.php?my_orders">My orders</a></li> -->
-                                        <li class='active '><a class="nes" href="account.php?edit_account">Edit Account</a></li>
+                                        <li class='active '><a class="nes" href="account.php?edit_account">Edit Profile</a></li>
+                                        
                                         <!-- get variables -->
-                                        <li class='active '><a class="nes" href="account.php?chng_pswd">Change Password</a></li>
+                                         <li class='active '><a class="nes" href="account.php?chng_pswd">   Change Address</a></li>
 
-                                        <li class='active'><a class="nes" href="account.php?del_account">Delete Account</a></li>
+                                        <li class='active'><a class="nes" href="account.php?del_account">Saved Card Details</a></li> 
                                     </ul>
                                 </li>
                                 <li class="subMenu "><a> Categories</a>
@@ -130,8 +131,7 @@
                             if (isset($_GET['edit_account'])) {
                                 include('edit_account.php');
                             }
-
-
+                            
 
                             ?>
                         </div>
