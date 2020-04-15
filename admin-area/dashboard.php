@@ -27,7 +27,7 @@
     <script language="javascript" type="text/javascript" src="js/jqPlot/plugins/jqplot.pointLabels.min.js"></script>
     <!-- END: load jqplot -->
     <script src="js/setup.js" type="text/javascript"></script>
-    <script>
+    <!-- <script>
         // HIDE error message
         $(document).ready(function() {
             $('#show-error').hide();
@@ -52,7 +52,9 @@
                 return false;
             }
         }
-    </script>
+
+       
+    </script> -->
     </script>
     <style>
         table {
@@ -78,7 +80,7 @@
         ul.menu ul li a {
             padding-left: 10px !important;
             font-size: 12px !important;
-            
+
         }
     </style>
 </head>
@@ -141,17 +143,17 @@
                     <ul class="section menu">
                         <li><a class="menuitem">Manage Content</a>
                             <ul class="submenu">
-                                <li active><a href="dashboard.php">Insert New product</a> </li>
-                                <li><a>View all products</a> </li>
-                                <li><a>Edit Category</a> </li>
-                                <li><a>Edit Brand</a> </li>
+                                <li id="show-prd"><a href="dashboard.php?insert_prd">Insert New product</a> </li>
+                                <li id="ac"><a href="dashboard.php?view_products">View all products</a> </li>
+                                <li><a href="dashboard.php?edit_category">Edit Category</a> </li>
+                                <li><a href="dashboard.php?edit_brand">Edit Brand</a> </li>
                             </ul>
                         </li>
                         <li><a class="menuitem">Customer Content</a>
                             <ul class="submenu">
-                                <li><a>View Customer</a> </li>
-                                <li><a>View Orders</a> </li>
-                                <li><a>View Payment</a> </li>
+                                <li><a href="dashboard.php?view_custom">View Customer</a> </li>
+                                <li><a href="dashboard.php?view_order">View Orders</a> </li>
+                                <li><a href="dashboard.php?view_pay">View Payment</a> </li>
                             </ul>
                         </li>
 
@@ -160,118 +162,27 @@
                 </div>
             </div>
         </div>
-        <div class="" style="background-color: white">
 
+        <?php
+
+        if (isset($_GET['view_products'])) {
+
+            include "view_product.php";
+        }
+
+        if (isset($_GET['insert_prd'])) {
+            include "insert_prd.php";
+        }
+        ?>
+        <div style="background-color: white">
             <div class="grid_10">
                 <div class="box round first">
-                    <h2> Add Product</h2>
+                    
                     <div class="block">
-                        <div class="alert alert-danger" role="alert" id="show-error">
-                            please fill all the fields
-                        </div>
-
+                    
 
                         <!-- Form starts -->
-                        <form name="form" action="dashboard.php" method="post" onsubmit="return validform()" enctype="multipart/form-data">
-
-                            <table>
-                                <tr>
-                                    <td>Product Name</td>
-                                    <td><input type="text" name="pname"></td>
-                                </tr>
-
-                                <tr>
-                                    <td>Product Desc</td>
-                                    <td><textarea name="productdis" cols="20" rows="5"></textarea> </td>
-                                </tr>
-
-                                <tr>
-                                    <td>Product price</td>
-                                    <td><input type="text" name="pprice"></td>
-                                </tr>
-                                <tr>
-                                    <td>Product quantity</td>
-                                    <td><input type="text" name="pqty"></td>
-                                </tr>
-                                <tr>
-                                    <td>Product Image</td>
-                                    <td><input type="file" name="pimg"></td>
-                                </tr>
-                                <tr>
-                                    <td>Product Image 2</td>
-                                    <td><input type="file" name="pimg2"></td>
-                                </tr>
-                                <tr>
-                                    <td>Product Image 3</td>
-                                    <td><input type="file" name="pimg3"></td>
-                                </tr>
-                                <tr>
-                                    <td>Product brand</td>
-                                    <td>
-                                        <select name="pbrand">
-
-                                            <option>-----select-----</option>
-                                            <?php
-                                            $get_brand = "SELECT brand_id,brand_title FROM brands";
-
-                                            $run_brand = mysqli_query($con, $get_brand);
-
-                                            while ($row_brand = mysqli_fetch_assoc($run_brand)) {
-
-                                                $bid = $row_brand['brand_id'];
-                                                $btitle = $row_brand['brand_title'];
-
-                                                $get_brand_id = $bid['pbrand'];
-                                                $get_brand_title = $btitle['pbrand'];
-                                                // $cat_title = $ca;
-                                                //echo "<option value='$cat_name'>{$row_cat['shop']}</option>";
-
-                                                echo "<option value='$bid'>$btitle</option>";
-                                            };
-
-                                            ?>
-
-                                        </select>
-
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>Product Category</td>
-                                    <td>
-                                        <select name="pcategory">
-
-                                            <option>-----select-----</option>
-                                            <?php $get_cat = "select cat_id,cat_title from categories";
-
-                                            $run = mysqli_query($con, $get_cat);
-
-                                            while ($row_cat = mysqli_fetch_assoc($run)) {
-
-                                                $cid = $row_cat['cat_id'];
-                                                $ctitle = $row_cat['cat_title'];
-
-                                                $cat_id = $cid['pcategory'];
-                                                $cat_title = $row_cat['pcategory'];
-
-
-                                                echo "<option value='$cid'>$ctitle</option>";
-                                            };
-
-
-                                            ?>
-
-                                        </select>
-
-                                    </td>
-
-                                </tr>
-                                <tr>
-                                    <td colspan='2' align="center">
-                                        <input type="submit" name="submit" values="upload">
-                                    </td>
-                                </tr>
-                            </table>
-                        </form>
+                        
 
                     </div>
                 </div>
@@ -279,7 +190,7 @@
         </div>
         <div id="site_info">
             <p>
-              Dinesh Dharmik
+                Dinesh Dharmik
             </p>
         </div>
 
@@ -287,109 +198,3 @@
 </body>
 
 </html>
-<?php
-
-if (isset($_POST['submit'])) {
-
-    // form data--->add to db
-    $product_title = $_POST['pname'];
-    $prd_description = $_POST['productdis'];
-    // $product_dec = $_POST['pc'];
-    $product_price = $_POST['pprice'];
-    $product_qty = $_POST['pqty'];
-    // img name
-    $product_img = $_FILES['pimg']['name'];
-    $product_img2 = $_FILES['pimg2']['name'];
-    $product_img3 = $_FILES['pimg3']['name'];
-    // ends here
-    $product_brand = $_POST['pbrand'];
-    $product_catgory = $_POST['pcategory'];
-    $status = "on";
-    // Image temp-name
-    $temp_name1 = $_FILES['pimg']['tmp_name'];
-    $temp_name2 = $_FILES['pimg2']['tmp_name'];
-    $temp_name3 = $_FILES['pimg3']['tmp_name'];
-
-    // new code for img
-
-    // declare
-    $name1 = $_FILES['pimg']['name'];
-    $name2 = $_FILES['pimg2']['name'];
-    $name3 = $_FILES['pimg3']['name'];
-
-    // target-directory fetch img
-    $target_dir = "product-images/";
-    $target_file = $target_dir . basename($_FILES["pimg"]["name"]);
-    $target_file = $target_dir . basename($_FILES["pimg2"]["name"]);
-    $target_file = $target_dir . basename($_FILES["pimg3"]["name"]);
-
-    // Select file type
-    $imageFileType = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
-
-    // Valid file extensions
-    $extensions_arr = array("jpg", "jpeg", "png", "gif");
-
-    // Check extension
-    if (in_array($imageFileType, $extensions_arr)) {
-        // Upload file
-        move_uploaded_file($_FILES['pimg']['tmp_name'], $target_dir . $name1);
-        move_uploaded_file($_FILES['pimg2']['tmp_name'], $target_dir . $name2);
-        move_uploaded_file($_FILES['pimg3']['tmp_name'], $target_dir . $name3);
-    }
-    // ends here
-    // // upload img to folders
-    // move_uploaded_file($temp_name1, 'product-images/$product_img');
-    // move_uploaded_file($temp_name2, 'product-images/$product_img2');
-    // move_uploaded_file($temp_name3, 'product-images/$product_img3');
-
-    $insert_product = "INSERT INTO
-    products (
-    cat_id,
-    brand_id,
-    date,
-    product_title,
-    product_img,
-    product_img1,
-    product_img2,
-    product_price,
-    product_desc,
-    product_qty
-    )
-VALUES
-    (
-    '$product_catgory',
-    '$product_brand',
-    Now(),
-    '$product_title',
-    '$product_img',
-    '$product_img2',
-    '$product_img3',
-    '$product_price',
-    '$prd_description',
-    '$product_qty'
-    );";
-
-    // echo "$insert_product";
-    $run_prod = mysqli_query($con, $insert_product);
-    echo "$prd_description";
-
-    if ($run_prod) {
-
-        echo "<script type='text/javascript'>
-    alert('product added Sucessfully');
-    </script>
-    ";
-
-        // return false;
-        exit();
-    } else {
-        echo "failed";
-    }
-    // if (false === $run_prod) {
-    //     printf("error: %s\n", mysqli_error($con));
-    // } else {
-    //     echo 'done.';
-    //     echo "dis" . $bid;;
-    // }
-}
-?>
