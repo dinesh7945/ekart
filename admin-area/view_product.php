@@ -29,7 +29,7 @@
 
     <h4 style="text-align: center">View All Products</h4>
     <table class="table">
-        <thead class="thead-dark">
+        <thead class="thead-dark" style="text-transform:capitalize;">
             <tr>
                 <th scope="col">Product Id</th>
                 <th scope="col">Title</th>
@@ -45,7 +45,7 @@
 
         include "includes/db.php";
 
-        $i = 0  ;
+        $i = 0;
 
         $get_pro = "select * from products";
 
@@ -69,10 +69,49 @@
                     <td><?php echo $p_title; ?></td>
                     <td><img src="product-images/<?php echo $p_img ?>" width="60" height="60"></td>
                     <td><?php echo $p_price; ?></td>
-                    <td></td>
-                    <td></td>
-                    <td>Edit</td>
-                    <td>Delete</td>
+                    <td>
+                        <?php
+                        $get_sold = "SELECT * FROM pending_orders where product_id = '$p_id'";
+
+                        $run_sold = mysqli_query($con, $get_sold);
+
+                        $count = mysqli_num_rows($run_sold);
+
+                        echo $count;
+
+                        ?>
+
+
+                    </td>
+                    <td>
+                        <?php
+                        $get_status = "SELECT * FROM pending_orders where product_id = '$p_id'";
+
+                        $run_status = mysqli_query($con, $get_status);
+
+                        $status = mysqli_fetch_array($run_status);
+
+                        // $ps = $status['order_status'];
+
+                        if ($status) {
+                            $ps = $status['order_status'];
+                            echo $ps;
+                        } else {
+                            echo "Not sold";
+                        }
+
+                        // if (!$row) {
+                        //     printf("Error: %s\n", mysqli_error($con));
+                        //     // exit();
+                        // }
+                        // $status = $row['invoice'];
+                        // echo '$status';
+
+                        ?>
+
+                    </td>
+                    <td><a>Edit</a></td>
+                    <td><a>Delete</a></td>
                 </tr>
             <?php } ?>
             </tbody>
