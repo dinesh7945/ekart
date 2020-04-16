@@ -50,6 +50,8 @@
             $run_pr = mysqli_query($con, $get_pro);
 
             // In loop fetch array.
+
+            // Here fetching all products with specific product_id
             while ($row_pro = mysqli_fetch_array($run_pr)) {
 
                 $p_id = $row_pro['product_id'];
@@ -114,7 +116,8 @@
 
                         </td>
                         <td><a href="dashboard.php?edit_prd=<?php echo "$p_id"; ?>">Edit</a></td>
-                        <td><a href="dashboard.php?view_products">Delete</a></td>
+                        <!-- Now here redirection of del_prd  -->
+                        <td><a href="del_prd.php?delete_pro=<?php echo "$p_id"; ?>">Delete</a></td>
                     </tr>
                 <?php }
 
@@ -133,5 +136,3 @@
 </body>
 
 </html>
-
-?>
