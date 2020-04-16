@@ -31,7 +31,7 @@
         <table class="table">
             <thead class="thead-dark" style="text-transform:capitalize;">
                 <tr>
-                    <th scope="col">Product Id</th>
+                    <th scope="col">Product No</th>
                     <th scope="col">Title</th>
                     <th scope="col">Image</th>
                     <th scope="col">Price</th>

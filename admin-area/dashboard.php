@@ -149,9 +149,9 @@
                             -->
                                 <li id="show-prd"><a href="dashboard.php?insert_prd">Insert New product</a> </li>
                                 <li id="ac"><a href="dashboard.php?view_products">View all products</a> </li>
-                                <li><a href="dashboard.php?edit_prd">Update or Edit products</a> </li>
-                                <li><a href="dashboard.php?edit_category">Edit Category</a> </li>
-                                <li><a href="dashboard.php?edit_brand">Edit Brand</a> </li>
+                                <!-- <li><a href="dashboard.php?edit_prd">Update or Edit products</a> </li> -->
+                                <li><a href="dashboard.php?edit_category">View all Category</a> </li>
+                                <li><a href="dashboard.php?edit_brand">Edit Brand <Brand></Brand></a> </li>
                             </ul>
                         </li>
                         <li><a class="menuitem">Customer Content</a>
@@ -187,9 +187,9 @@
                         if (isset($_GET['insert_prd'])) {
                             include "insert_prd.php";
                         }
-                        if (isset($_GET['edit_prd'])) {
+                        if (isset($_GET['edit_category'])) {
 
-                            include "edit_prd.php";
+                            include "edit_cats.php";
                         }
 
 
