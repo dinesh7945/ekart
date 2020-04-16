@@ -1,13 +1,21 @@
 <?php
-session_start();
 include "includes/db.php";
-
-
 ?>
-
 
 <!DOCTYPE html>
 <html>
+
+<?php
+session_start();
+
+if (isset($_SESSION['admin_email'])) {
+    // $_SESSION['admin_email'] += 1;
+} else {
+    $_SESSION['admin_email'] = 1;
+}
+// $msg = "You have visited this page " .  $_SESSION['admin_email'];
+// $msg .= "in this session.";
+?>
 
 <head>
     <meta charset="UTF-8">
@@ -55,18 +63,17 @@ if (isset($_POST['login'])) {
 
     $check_admin = mysqli_num_rows($run_admin);
 
+
     if ($check_admin) {
-
-
 
         $ad_email = $_SESSION['admin_email'];
 
-
+        echo "<script>alert('Sucessfully login')</script>";
         echo "<script>window.open('dashboard.php?login','_self')</script>";
 
     } else {
-
         echo "<script>alert('Admin email or password in wrong,try again')</script>";
+        session_destroy();
     }
 }
 

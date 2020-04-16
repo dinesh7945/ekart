@@ -24,101 +24,104 @@
 </head>
 
 <body>
+    <?php if (isset($_GET['view_products'])) { ?>
 
 
-
-    <h4 style="text-align: center">View All Products</h4>
-    <table class="table">
-        <thead class="thead-dark" style="text-transform:capitalize;">
-            <tr>
-                <th scope="col">Product Id</th>
-                <th scope="col">Title</th>
-                <th scope="col">Image</th>
-                <th scope="col">Price</th>
-                <th scope="col">Total Sold</th>
-                <th scope="col">Status</th>
-                <th scope="col">edit</th>
-                <th scope="col">delete</th>
-            </tr>
-        </thead>
-        <?php
-
-        include "includes/db.php";
-
-        $i = 0;
-
-        $get_pro = "select * from products";
-
-        $run_pr = mysqli_query($con, $get_pro);
-
-        while ($row_pro = mysqli_fetch_array($run_pr)) {
-
-            $p_id = $row_pro['product_id'];
-            $p_title = $row_pro['product_title'];
-            $p_img = $row_pro['product_img1'];
-            $p_price = $row_pro['product_price'];
-
-
-            $i++;
-
-
-        ?>
-            <tbody>
+        <h4 style="text-align: center">View All Products</h4>
+        <table class="table">
+            <thead class="thead-dark" style="text-transform:capitalize;">
                 <tr>
-                    <th scope="row"><?php echo $i; ?></th>
-                    <td><?php echo $p_title; ?></td>
-                    <td><img src="product-images/<?php echo $p_img ?>" width="60" height="60"></td>
-                    <td><?php echo $p_price; ?></td>
-                    <td>
-                        <?php
-                        $get_sold = "SELECT * FROM pending_orders where product_id = '$p_id'";
-
-                        $run_sold = mysqli_query($con, $get_sold);
-
-                        $count = mysqli_num_rows($run_sold);
-
-                        echo $count;
-
-                        ?>
-
-
-                    </td>
-                    <td>
-                        <?php
-                        $get_status = "SELECT * FROM pending_orders where product_id = '$p_id'";
-
-                        $run_status = mysqli_query($con, $get_status);
-
-                        $status = mysqli_fetch_array($run_status);
-
-                        // $ps = $status['order_status'];
-
-                        if ($status) {
-                            $ps = $status['order_status'];
-                            echo $ps;
-                        } else {
-                            echo "Not sold";
-                        }
-
-                        // if (!$row) {
-                        //     printf("Error: %s\n", mysqli_error($con));
-                        //     // exit();
-                        // }
-                        // $status = $row['invoice'];
-                        // echo '$status';
-
-                        ?>
-
-                    </td>
-                    <td><a>Edit</a></td>
-                    <td><a>Delete</a></td>
+                    <th scope="col">Product Id</th>
+                    <th scope="col">Title</th>
+                    <th scope="col">Image</th>
+                    <th scope="col">Price</th>
+                    <th scope="col">Total Sold</th>
+                    <th scope="col">Status</th>
+                    <th scope="col">edit</th>
+                    <th scope="col">delete</th>
                 </tr>
-            <?php } ?>
-            </tbody>
+            </thead>
+            <?php
 
-    </table>
+            include "includes/db.php";
+
+            $i = 0;
+
+            $get_pro = "select * from products";
+
+            $run_pr = mysqli_query($con, $get_pro);
+
+            while ($row_pro = mysqli_fetch_array($run_pr)) {
+
+                $p_id = $row_pro['product_id'];
+                $p_title = $row_pro['product_title'];
+                $p_img = $row_pro['product_img'];
+                $p_price = $row_pro['product_price'];
 
 
+                $i++;
+
+
+            ?>
+                <tbody>
+                    <tr>
+                        <th scope="row"><?php echo $i; ?></th>
+                        <td><?php echo $p_title; ?></td>
+                        <td><img src="product-images/<?php echo $p_img ?>" width="60" height="60"></td>
+                        <td><?php echo $p_price; ?></td>
+                        <td>
+                            <?php
+                            $get_sold = "SELECT * FROM pending_orders where product_id = '$p_id'";
+
+                            $run_sold = mysqli_query($con, $get_sold);
+
+                            $count = mysqli_num_rows($run_sold);
+
+                            echo $count;
+
+                            ?>
+
+
+                        </td>
+                        <td>
+                            <?php
+                            $get_status = "SELECT * FROM pending_orders where product_id = '$p_id'";
+
+                            $run_status = mysqli_query($con, $get_status);
+
+                            $status = mysqli_fetch_array($run_status);
+
+                            // $ps = $status['order_status'];
+
+                            if ($status) {
+                                $ps = $status['order_status'];
+                                echo $ps;
+                            } else {
+                                echo "Not sold";
+                            }
+
+                            // if (!$row) {
+                            //     printf("Error: %s\n", mysqli_error($con));
+                            //     // exit();
+                            // }
+                            // $status = $row['invoice'];
+                            // echo '$status';
+
+                            ?>
+
+                        </td>
+                        <td><a href="dashboard.php?edit_prd=<?php echo "$p_id"; ?>">Edit</a></td>
+                        <td><a href="dashboard.php?view_products">Delete</a></td>
+                    </tr>
+                <?php }
+
+                ?>
+
+                </tbody>
+
+        </table>
+
+    <?php } ?>
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
@@ -127,3 +130,5 @@
 </body>
 
 </html>
+
+?>

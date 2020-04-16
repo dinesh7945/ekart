@@ -145,6 +145,7 @@
                             <ul class="submenu">
                                 <li id="show-prd"><a href="dashboard.php?insert_prd">Insert New product</a> </li>
                                 <li id="ac"><a href="dashboard.php?view_products">View all products</a> </li>
+                                <li><a href="dashboard.php?edit_prd">Update or Edit products</a> </li>
                                 <li><a href="dashboard.php?edit_category">Edit Category</a> </li>
                                 <li><a href="dashboard.php?edit_brand">Edit Brand</a> </li>
                             </ul>
@@ -167,22 +168,28 @@
         <div style="background-color: white">
             <div class="grid_10">
                 <div class="box round first">
-                    
+
                     <div class="block">
-                    
+
 
                         <!-- Form starts -->
                         <?php
 
-if (isset($_GET['view_products'])) {
+                        if (isset($_GET['view_products'])) {
 
-    include "view_product.php";
-}
+                            include "view_product.php";
+                        }
 
-if (isset($_GET['insert_prd'])) {
-    include "insert_prd.php";
-}
-?>
+                        if (isset($_GET['insert_prd'])) {
+                            include "insert_prd.php";
+                        }
+                        if (isset($_GET['edit_prd'])) {
+
+                            include "edit_prd.php";
+                        }
+
+
+                        ?>
 
                     </div>
                 </div>
