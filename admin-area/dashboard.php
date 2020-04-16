@@ -143,6 +143,10 @@
                     <ul class="section menu">
                         <li><a class="menuitem">Manage Content</a>
                             <ul class="submenu">
+
+                                <!-- passing variables insert_prd 
+                            so now if we isset get insert_prd then set excutes
+                            -->
                                 <li id="show-prd"><a href="dashboard.php?insert_prd">Insert New product</a> </li>
                                 <li id="ac"><a href="dashboard.php?view_products">View all products</a> </li>
                                 <li><a href="dashboard.php?edit_prd">Update or Edit products</a> </li>

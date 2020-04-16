@@ -24,8 +24,8 @@
 </head>
 
 <body>
+    <!-- If view products pass in url by ?view_products -->
     <?php if (isset($_GET['view_products'])) { ?>
-
 
         <h4 style="text-align: center">View All Products</h4>
         <table class="table">
@@ -42,15 +42,14 @@
                 </tr>
             </thead>
             <?php
-
             include "includes/db.php";
 
+            // intitlaztion from 0 the serial no
             $i = 0;
-
             $get_pro = "select * from products";
-
             $run_pr = mysqli_query($con, $get_pro);
 
+            // In loop fetch array.
             while ($row_pro = mysqli_fetch_array($run_pr)) {
 
                 $p_id = $row_pro['product_id'];
@@ -69,6 +68,8 @@
                         <td><?php echo $p_title; ?></td>
                         <td><img src="product-images/<?php echo $p_img ?>" width="60" height="60"></td>
                         <td><?php echo $p_price; ?></td>
+
+                        <!-- showing pending order details in count sold  -->
                         <td>
                             <?php
                             $get_sold = "SELECT * FROM pending_orders where product_id = '$p_id'";
@@ -84,6 +85,7 @@
 
                         </td>
                         <td>
+                            <!-- showing pending order values in details in database pending -->
                             <?php
                             $get_status = "SELECT * FROM pending_orders where product_id = '$p_id'";
 
@@ -93,6 +95,7 @@
 
                             // $ps = $status['order_status'];
 
+                            // if there is no pending then no sold;
                             if ($status) {
                                 $ps = $status['order_status'];
                                 echo $ps;

@@ -2,13 +2,13 @@
 
 
 
-// Getting specific product from table
+##############################<----Getting Specific product from table----->###############################################
+
+// here Get edit_prd. so now --->execute
 if (isset($_GET['edit_prd'])) {
 
-
-
+    // Storing edit_prd in  variable 
     $edit_id = $_GET['edit_prd'];
-    // $ses_id = $_SESSION['edit_id'];
 
     $get_edit = "SELECT * FROM products WHERE  product_id='$edit_id'";
 
@@ -33,7 +33,8 @@ if (isset($_GET['edit_prd'])) {
     // echo "$update_id";
 }
 
-// getting categories in title
+##############################<----Getting category by title----->###############################################
+
 // $get_cat =  "SELECT * FROM categories WHERE cat_id ='$cat_id'";
 $get_cat =  "SELECT cat_id ,cat_title FROM categories";
 
@@ -47,7 +48,8 @@ $cat_row = mysqli_fetch_array($run_cat);
 
 $cat_edit_title = $cat_row['cat_title'];
 
-// getting Brand in title
+##############################<----Getting brand by title----->###############################################
+
 
 $get_brand =  "SELECT brand_id,brand_title FROM brands";
 
@@ -156,27 +158,27 @@ $brand_edit_title = $brand_row['brand_title'];
 
 
                     <!-- Form starts -->
-
+                    <!-- edit_prd.php?passing value and update id 
+                    which is get from Get
+                And using in PPOST to specific id changed
+                -->
                     <form action="edit_prd.php?edit_prd=<?php echo "$update_id"; ?>" method="POST" enctype="multipart/form-data">
 
+                    <!-- Getting the value property of specific which is showing  -->
                         <table>
                             <tr>
                                 <td>Product Name</td>
                                 <td><input type="text" name="pname"></td>
                                 <td><?php echo "$p_title";  ?></td>
                             </tr>
-
                             <tr>
                                 <td>Product Desc</td>
                                 <td><textarea name="productdis" cols="20" rows="5"></textarea> </td>
-
                             </tr>
-
                             <tr>
                                 <td>Product price</td>
                                 <td><input type="text" name="pprice"></td>
                                 <td><?php echo "Rs.$p_price";  ?></td>
-
                             </tr>
                             <tr>
                                 <td>Product quantity</td>
@@ -283,10 +285,8 @@ $brand_edit_title = $brand_row['brand_title'];
 
 <?php
 
+// if update_product click
 if (isset($_POST['update_product'])) {
-
-
-    // new upper
 
     // form data--->add to db
     // $update_id = $_POST['product_id'];
@@ -340,6 +340,8 @@ if (isset($_POST['update_product'])) {
     // move_uploaded_file($temp_name2, 'product-images/$product_img2');
     // move_uploaded_file($temp_name3, 'product-images/$product_img3');
 
+
+    // Change specific product
     $update_product = "UPDATE products SET cat_id = '$cat_id', brand_id = '$product_brand',
      cat_id = '$product_catgory',
     date = NOW(),
