@@ -200,6 +200,10 @@
 
                             include "view_cust.php";
                         }
+                        if (isset($_GET['view_order'])) {
+
+                            include "cust_orders.php";
+                        }
 
 
                         ?>
