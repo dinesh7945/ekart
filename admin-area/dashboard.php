@@ -1,4 +1,7 @@
-<?php include "includes/db.php"; ?>
+<?php include "includes/db.php";
+
+Session_start();
+?>
 
 
 <!DOCTYPE html>
@@ -96,9 +99,23 @@
                     </div>
                     <div class="floatleft marginleft10">
                         <ul class="inline-ul floatleft">
-                            <li>Hello Admin</li>
 
-                            <li><a href="#">Logout</a></li>
+
+                            <?php
+                            // $em = $_SESSION['admin_email'];
+
+                            // echo "$em";
+                            $get_orders = "SELECT * from admins ";
+
+                            $run_orders = mysqli_query($con, $get_orders);
+
+                            $row_or = mysqli_fetch_array($run_orders);
+                            $fname = $row_or['admin_name'];
+
+                            ?>
+                            <li>Hello <?php echo "$fname"; ?></li>
+
+                            <li><a href="logout.php">Logout</a></li>
                         </ul>
                         <br />
 

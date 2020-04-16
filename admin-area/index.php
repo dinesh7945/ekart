@@ -8,7 +8,11 @@ include "includes/db.php";
 <?php
 session_start();
 
-if (isset($_SESSION['admin_email'])) {
+
+
+
+
+if (!isset($_SESSION['admin_email'])) {
     // $_SESSION['admin_email'] += 1;
 } else {
     $_SESSION['admin_email'] = 1;
@@ -70,7 +74,6 @@ if (isset($_POST['login'])) {
 
         echo "<script>alert('Sucessfully login')</script>";
         echo "<script>window.open('dashboard.php?login','_self')</script>";
-
     } else {
         echo "<script>alert('Admin email or password in wrong,try again')</script>";
         session_destroy();
