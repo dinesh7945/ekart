@@ -156,7 +156,7 @@
                         </li>
                         <li><a class="menuitem">Customer Content</a>
                             <ul class="submenu">
-                                <li><a href="dashboard.php?view_custom">View Customer</a> </li>
+                                <li><a href="dashboard.php?view_cust">View Customer</a> </li>
                                 <li><a href="dashboard.php?view_order">View Orders</a> </li>
                                 <li><a href="dashboard.php?view_pay">View Payment</a> </li>
                             </ul>
@@ -190,6 +190,15 @@
                         if (isset($_GET['edit_category'])) {
 
                             include "edit_cats.php";
+                        }
+
+                        if (isset($_GET['edit_brand'])) {
+
+                            include "edit_brand.php";
+                        }
+                        if (isset($_GET['view_cust'])) {
+
+                            include "view_cust.php";
                         }
 
 
