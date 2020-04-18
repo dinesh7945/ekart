@@ -1,4 +1,4 @@
-<?php 
+<?php
 @session_start();
 include "includes/db.php"; ?>
 
@@ -49,36 +49,37 @@ include "includes/db.php"; ?>
     <div class="navbar-inner">
         <a class="brand" href="index.php"><img src="themes/images/logo.png" alt="Bootsshop" /></a>
         <!-- <form class="form-inline navbar-search" method="post" action="products.html" > -->
-        <form class="form-inline navbar-search" method="Get" action="result.php" enctype="multipart/form-data">
-            <input id="srchFld" name="user_query" class="srchTxt" type="text" style="    padding: 15px 0;" />
-            <!-- <input id="srchFld" class="srchTxt" type="text" /> -->
+        <!-- <form class="form-inline navbar-search" method="Get" action="result.php" enctype="multipart/form-data">
+            <input id="srchFld" name="user_query" class="srchTxt" type="text" style="    padding: 15px 0;" /> -->
+        <!-- <input id="srchFld" class="srchTxt" type="text" /> -->
 
 
 
-            <select class="srchTxt">
-                <?php $get_cat = "select * from categories";
+        <!-- <select class="srchTxt"> -->
+        <?php
+        // $get_cat = "select * from categories";
 
-                $run = mysqli_query($con, $get_cat);
+        // $run = mysqli_query($con, $get_cat);
 
-                while ($row_cat = mysqli_fetch_array($run)) {
+        // while ($row_cat = mysqli_fetch_array($run)) {
 
-                    $cat_id = $row_cat['cat_id'];
-                    $cat_title = $row_cat['cat_title'];
+        //     $cat_id = $row_cat['cat_id'];
+        //     $cat_title = $row_cat['cat_title'];
 
-                    echo  "<option>$cat_title</option>";
-                };
+        //     echo  "<option>$cat_title</option>";
+        // };
 
 
-                ?>
+        ?>
 
-            </select>
-            <button type="submit" value="search" id="submitButton" class="btn btn-primary">Go</button>
-        </form>
+        <!-- </select> -->
+        <!-- <button type="submit" value="search" id="submitButton" class="btn btn-primary">Go</button> -->
+        <!-- </form> -->
         <ul id="topMenu" class="nav pull-right">
             <!-- <li class=""><a href="special_offer.html">Specials Offer</a></li>
             <li class=""><a href="normal.html">Delivery</a></li> -->
             <li class=""><a href="account.php">Account</a></li>
-            <li class=""><a href="contact.html">Contact</a></li>
+            <li class=""><a href="contact.php">Contact</a></li>
             <li class=""><a href="register.php">Register</a></li>
             <li class=""><a href="product_summary.php">Cart</a></li>
             <li class="">
@@ -89,8 +90,7 @@ include "includes/db.php"; ?>
                 <?php if (!isset($_SESSION['customer_email'])) {
 
                     echo "<a href='checkout.php' role='button' style='padding-right:0'><span class='btn btn-large btn-success'>Login</span></a>";
-                }
-                else{
+                } else {
                     echo "<a href='logout.php' role='button' style='padding-right:0'><span class='btn btn-large btn-success'>Logout</span></a>";
                 }
 

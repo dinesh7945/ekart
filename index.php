@@ -1,4 +1,4 @@
-<?php include "header.php"; ?>
+
 <?php include "includes/db.php"; ?>
 <?php include "functions.php";
 
@@ -78,18 +78,19 @@
                         <span class="btn btn-mini">total Price : Rs.<?php total_price() ?>
                         </span>
                         <!-- <a href="product_summary.html"><span class="">$</span></a> -->
-                        <a href="product_summary.html"><span class="btn btn-mini btn-primary"><i class="icon-shopping-cart icon-white"></i> <?php items(); ?> Itemes in your cart </span> </a>
+                        <a href="product_summary.php"><span class="btn btn-mini btn-primary"><i class="icon-shopping-cart icon-white"></i> <?php items(); ?> Itemes in your cart </span> </a>
                         <!-- <a href="logout.php">Logout</a> -->
                     </div>
                 </div>
             </div>
+            <?php include "header.php"; ?>
 
             <div id="carouselBlk">
                 <div id="myCarousel" class="carousel slide">
                     <div class="carousel-inner">
                         <div class="item active">
                             <div class="container">
-                                <a href="register.html"><img style="width:100%" src="themes/images/carousel/1.png" alt="special offers" /></a>
+                            <a href="register.html"><img src="themes/images/carousel/6.png" alt="" /></a>
                                 <div class="carousel-caption">
                                     <h4>Second Thumbnail label</h4>
                                     <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>

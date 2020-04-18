@@ -9,6 +9,14 @@ include "functions.php";
 if (isset($_GET['c_id'])) {
 
     $customer_id = $_GET['c_id'];
+
+    $c_email = "SELECT * FROM customers WHERE customer_id = '$customer_id'";
+
+    $run_email = mysqli_query($con, $c_email);
+
+    $customer_email = $run_email['customer_email'];
+
+    $customer_fname = $run_email['customer_fullname'];
 }
 ##############################<----Getting Product price and No.----->###############################################
 
@@ -124,7 +132,23 @@ $empty_cart = "DELETE from cart where ip_add = '$ip_add'";
 
 $run_query = mysqli_query($con, $empty_cart);
 
-echo "<script>window.open('index.php','_self')</script>";
- 
 
-?>
+// $from = 'admin@ekart.com';
+
+// $subject = '[Ekart] Order Details';
+// $message = "<html>
+// <h4>Hello $customer_fname</h4>
+// <p>Thank you for your order. We’ll send a confirmation when your order ships. 
+// Your estimated delivery date is indicated below. If you would like to view the status of
+//  your order or make any changes to it, please visit Your Orders on Amazon.in.</p>
+ 
+ 
+//  </html>
+//  ";
+// // mail 4 parameter with MAIL
+// mail($c_email, $subject, $message, $from);
+
+// echo "<script>alert('password is sent to your email, Please check your Inbox')</script>";
+// echo "<script>window.open('checkout.php','_self')</script>";
+
+echo "<script>window.open('index.php','_self')</script>";

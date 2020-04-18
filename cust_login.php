@@ -174,7 +174,7 @@ include "functions.php";
 									</div>
 									<div class="control-group">
 										<div class="controls">
-											<button type="submit" name="c_login" class="btn">Sign in</button> <a href="forgetpass.html">Forget password?</a>
+											<button type="submit" name="c_login" class="btn">Sign in</button> <a href="forgetpass.php">Forget password?</a>
 										</div>
 									</div>
 

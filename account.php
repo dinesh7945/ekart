@@ -1,4 +1,4 @@
-<?php include "header.php" ?>
+
 <?php include "includes/db.php"; ?>
 <?php include "functions.php";
 ?>
@@ -55,6 +55,8 @@
                     </div>
                 </div>
             </div>
+            <?php include "header.php"; ?>
+
             <div id="mainBody">
                 <div class="container">
                     <div class="row">
