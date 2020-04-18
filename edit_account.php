@@ -3,7 +3,11 @@
 
 include('includes/db.php');
 
+if (!isset($_SESSION['customer_email'])) {
 
+    // echo "<script>alert('login first');</script>";
+    echo "<script>window.open('cust_login.php','_self')</script>";
+}
 if (isset($_GET['edit_account'])) {
 
 
@@ -11,17 +15,17 @@ if (isset($_GET['edit_account'])) {
 
     $get_customer = "SELECT * from customers where customer_email='$customer_email'";
 
-    
+
     $r_customer = mysqli_query($con, $get_customer);
-    
+
     $row_c = mysqli_fetch_array($r_customer);
 
     // 	if (!$row_c) {
-	// 	printf("Error: %s\n", mysqli_error($con));
-	// 	// exit();
-	// }
+    // 	printf("Error: %s\n", mysqli_error($con));
+    // 	// exit();
+    // }
 
-    
+
     $id = $row_c['customer_id'];
     $fname = $row_c['customer_fullname'];
     $email = $row_c['customer_email'];
@@ -192,10 +196,10 @@ if (isset($_GET['edit_account'])) {
 
         $run_c = mysqli_query($con, $update_c);
 
-        	if (!$run_c) {
-		printf("Error: %s\n", mysqli_error($con));
-		// exit();
-	}
+        if (!$run_c) {
+            printf("Error: %s\n", mysqli_error($con));
+            // exit();
+        }
 
         if ($run_c) {
 

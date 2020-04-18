@@ -169,7 +169,7 @@
                                                     </li>
                                                 </ul>
                                             </div>
-                                            <!-- <div class="item">
+                                            <div class="item">
                                                 <ul class="thumbnails">
                                                     <li class="span3">
                                                         <div class="thumbnail">
@@ -210,7 +210,7 @@
                                                         </div>
                                                     </li>
                                                 </ul>
-                                            </div> -->
+                                            </div>  
                                             <!-- <div class="item">
                                                 <ul class="thumbnails">
                                                     <li class="span3">

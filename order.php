@@ -14,9 +14,13 @@ if (isset($_GET['c_id'])) {
 
     $run_email = mysqli_query($con, $c_email);
 
-    $customer_email = $run_email['customer_email'];
+    // echo "$run_email";
+    
+    $r_em = mysqli_fetch_array($run_email);
 
-    $customer_fname = $run_email['customer_fullname'];
+    $customer_email = $r_em['customer_email'];
+
+    $customer_fname = $r_em['customer_fullname'];
 }
 ##############################<----Getting Product price and No.----->###############################################
 

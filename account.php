@@ -1,4 +1,3 @@
-
 <?php include "includes/db.php"; ?>
 <?php include "functions.php";
 ?>
@@ -72,11 +71,11 @@
                                         <!-- <li class='active '><a class="nes" href="account.php">My orders</a></li> -->
                                         <!-- <li class='active '><a class="nes" href="account.php?my_orders">My orders</a></li> -->
                                         <li class='active '><a class="nes" href="account.php?edit_account">Edit Profile</a></li>
-                                        
-                                        <!-- get variables -->
-                                         <li class='active '><a class="nes" href="account.php?chng_pswd">   Change Address</a></li>
 
-                                        <li class='active'><a class="nes" href="account.php?del_account">Saved Card Details</a></li> 
+                                        <!-- get variables -->
+                                        <li class='active '><a class="nes" href="account.php?chng_pswd"> Change Address</a></li>
+
+                                        <li class='active'><a class="nes" href="account.php?del_account">Saved Card Details</a></li>
                                     </ul>
                                 </li>
                                 <li class="subMenu "><a> Categories</a>
@@ -105,7 +104,15 @@
                                 </div>
                         </div>
                         <?php
-                        $customer_session = $_SESSION['customer_email'];
+
+                        // $customer_session = $_SESSION['customer_email'];
+                        if (!isset($_SESSION['customer_email'])) {
+
+                            echo "<li class='active '><a class='nes' href='account.php?my_orders'>My orders</a></li>'";
+                            echo "<li class='active '><a class='nes' href='account.php?edit_account'>Edit Profile</a></li>";
+                            echo "<li class='active '><a class='nes' href='account.php?chng_pswd'> Change Address</a></li>";
+                            echo "<li class='active'><a class='nes' href='account.php?del_account'>Saved Card Details</a></li>";
+                        }
 
                         // $get_customer_pic = "SELECT * From customers where user_email='user_session'";
                         // $run_customer = mysqli_query($con,$get_customer_pic);
@@ -133,7 +140,7 @@
                             if (isset($_GET['edit_account'])) {
                                 include('edit_account.php');
                             }
-                            
+
 
                             ?>
                         </div>

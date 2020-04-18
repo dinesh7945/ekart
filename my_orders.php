@@ -11,6 +11,12 @@ getdefault();
 
 
 // GETTING CUSTOMER ID--->START HERE
+if (!isset($_SESSION['customer_email'])) {
+
+    // echo "<script>alert('login first');</script>";
+    echo "<script>window.open('cust_login.php','_self')</script>";
+
+}
 
 $c = $_SESSION['customer_email'];
 // query where customer_email--->saved in $c;
@@ -29,7 +35,7 @@ $customer_id = $row_c['customer_id'];
 
 
 <div style="display: flex;margin-top:20px;">
-    <table width="650" align="center"  style="color:white;background-color:blue;text-align:center;">
+    <table width="650" align="center" style="color:white;background-color:blue;text-align:center;">
         <tr>
             <td>order No</td>
             <td>Due amount</td>
