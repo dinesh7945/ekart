@@ -81,7 +81,9 @@ function getPro()
               <h5>$prod_title</h5>
               <h4 style='text-align:center'><a class='btn' href='product_details.php?pro_id=$prod_id'> 
               <i class='icon-zoom-in'></i></a> 
+
               <a class='btn' href='index.php?add_cart=$prod_id'>Add to Cart</i></a>
+
               <a class='btn btn-primary' href='product_details.php?pro_id=$prod_id'>Rs.$prod_price</a></h4>
               </div>
               </div>
@@ -200,6 +202,7 @@ function pro_detail()
     // after clicking pro_id--->a tag passing the id with it
     $product_id = $_GET['pro_id'];
     global $db;
+
     // if (isset($_GET['cat'])) {
 
     $get_product = "select * from products where product_id = $product_id";
@@ -228,15 +231,17 @@ function pro_detail()
           <div class='item active'>
           <a href='admin-area/product-images/$prod_img'>
          <img style='width: 78px;height: 78px;object-fit: contain;'src='admin-area/product-images/$prod_img' alt='' /></a>
+
          <a href='admin-area/product-images/$prod_img2'> <img style='width: 78px;height: 78px;object-fit: contain;' src='admin-area/product-images/$prod_img2' alt='' /></a>
-         <a href='admin-area/product-images/$prod_img3'> <img style='    width: 78px;
-         height: 78px;object-fit: contain;' src='admin-area/product-images/$prod_img3' alt='' /></a>                               
+
+         <a href='admin-area/product-images/$prod_img3'> <img style='width: 78px;height: 78px;object-fit: contain;' src='admin-area/product-images/$prod_img3' alt='' /></a>                               
+
 </div>
                                     <div class='item'>
                                     <a href='admin-area/product-images/$prod_img'> <img style='    width: 78px;
                                     height: 78px;object-fit: contain;' src='admin-area/product-images/$prod_img' alt='' /></a>
 
-                                        <a href='admin-area/product-images/$prod_img2'> <img style='    width: 78px;
+                                        <a href='admin-area/product-images/$prod_img2'> <img style='width: 78px;
                                         height: 78px;object-fit: contain;' src='admin-area/product-images/$prod_img2' alt='' /></a>
 
                                         <a href='admin-area/product-images/$prod_img3'> <img style='    width: 78px;
@@ -258,7 +263,10 @@ function pro_detail()
                                     <label class='control-label'><span>Rs.$prod_price</span></label>
                                     <div class='controls'>
                                         <input  style='padding: 15px 8px;' type='number' class='span1' placeholder='Qty.' />
-                                        <button type='submit' class='btn btn-large btn-primary pull-right'> Add to cart <i class=' icon-shopping-cart'></i></button>
+
+                                        <a class='btn btn-large btn-primary' href='index.php?add_cart=$prod_id'>Add to Cart<i class=' icon-shopping-cart'></i></a>
+                                        
+                                        
                                     </div>
                                 </div>
                             </form>
@@ -281,7 +289,7 @@ function pro_detail()
 }
 
 
-##############################<----FETCHING  product_details in that related products in php ----->##################
+##############################<add_cart=$prod_id'----FETCHING  product_details in that related products in php ----->##################
 // related products fetch
 function rel_getPro()
 

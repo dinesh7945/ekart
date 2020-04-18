@@ -77,6 +77,8 @@ include "functions.php" ?>
                     <?php
 
                     pro_detail();
+                    cart();
+                    
 
                     ?>
                     <!-- PRODUCTS related -->

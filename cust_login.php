@@ -218,7 +218,7 @@ include "functions.php";
 									if ($check_customer == 1 and $check_cart == 0) {
 
 										$_SESSION['customer_email'] = $customer_email;
-										echo "<script>window.open('account.php','_self')</script>";
+										echo "<script>window.open('index.php','_self')</script>";
 									} else {
 										$_SESSION['customer_email'] = $customer_email;
 										// $_SESSION['customer_fullname'] = $customer_fullname;

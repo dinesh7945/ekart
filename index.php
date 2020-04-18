@@ -169,7 +169,7 @@
                                                     </li>
                                                 </ul>
                                             </div>
-                                            <div class="item">
+                                            <!-- <div class="item">
                                                 <ul class="thumbnails">
                                                     <li class="span3">
                                                         <div class="thumbnail">
@@ -210,8 +210,8 @@
                                                         </div>
                                                     </li>
                                                 </ul>
-                                            </div>
-                                            <div class="item">
+                                            </div> -->
+                                            <!-- <div class="item">
                                                 <ul class="thumbnails">
                                                     <li class="span3">
                                                         <div class="thumbnail">
@@ -290,7 +290,7 @@
                                                         </div>
                                                     </li>
                                                 </ul>
-                                            </div>
+                                            </div> -->
                                         </div>
                                         <a class="left carousel-control" href="#featured" data-slide="prev">‹</a>
                                         <a class="right carousel-control" href="#featured" data-slide="next">›</a>
