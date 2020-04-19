@@ -46,7 +46,7 @@
         <div class="container">
             <div class="row">
                 <!-- Sidebar ================================================== -->
-                <?php include "sidebar.php";?>
+                <?php include "sidebar.php"; ?>
                 <!-- Sidebar end=============================================== -->
 
                 <div class="span9">
@@ -144,7 +144,9 @@
                                             <td> <img width="60" src='admin-area/product-images/<?php echo "$product_img"; ?> ' alt="" /></td>
                                             <td><?php echo $product_title; ?></td>
                                             <td style="text-align: center;">
-                                                <div class="input-append"><input name="qty" class="span1" style="max-width:34px" placeholder="1" value="" id="appendedInputButtons" size="16" type="text">
+                                                <div class="input-append"><input name="qty" class="span1"
+                                                
+                                                style="max-width:34px" placeholder="1" value="" id="appendedInputButtons" size="16" type="number">
                                                     <!-- <button class="btn" type="button"><i class="icon-minus"></i></button>
                                                     <button class="btn" type="button"><i class="icon-plus"></i></button> -->
                                                     <!-- <button class="btn btn-danger" name="remove[]" value="" type="button"><i class="icon-remove icon-white"></i></button> -->

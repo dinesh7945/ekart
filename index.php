@@ -1,4 +1,3 @@
-
 <?php include "includes/db.php"; ?>
 <?php include "functions.php";
 
@@ -13,25 +12,25 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
     <meta name="author" content=""> -->
-    <!--Less styles -->
-    <!-- Other Less css file //different less files has different color scheam
+<!--Less styles -->
+<!-- Other Less css file //different less files has different color scheam
 	<link rel="stylesheet/less" type="text/css" href="themes/less/simplex.less">
 	<link rel="stylesheet/less" type="text/css" href="themes/less/classified.less">
 	<link rel="stylesheet/less" type="text/css" href="themes/less/amelia.less">  MOVE DOWN TO activate
 	-->
-    <!--<link rel="stylesheet/less" type="text/css" href="themes/less/bootshop.less">
+<!--<link rel="stylesheet/less" type="text/css" href="themes/less/bootshop.less">
 	<script src="themes/js/less.js" type="text/javascript"></script> -->
 
-    <!-- Bootstrap style -->
-    <!-- <link id="callCss" rel="stylesheet" href="themes/bootshop/bootstrap.min.css" media="screen" />
+<!-- Bootstrap style -->
+<!-- <link id="callCss" rel="stylesheet" href="themes/bootshop/bootstrap.min.css" media="screen" />
     <link href="themes/css/base.css" rel="stylesheet" media="screen" /> -->
-    <!-- Bootstrap style responsive -->
-    <!-- <link href="themes/css/bootstrap-responsive.min.css" rel="stylesheet" /> -->
-    <!-- <link href="themes/css/font-awesome.css" rel="stylesheet" type="text/css"> -->
-    <!-- Google-code-prettify -->
-    <!-- <link href="themes/js/google-code-prettify/prettify.css" rel="stylesheet" /> -->
-    <!-- fav and touch icons -->
-    <!-- <link rel="shortcut icon" href="themes/images/ico/favicon.ico">
+<!-- Bootstrap style responsive -->
+<!-- <link href="themes/css/bootstrap-responsive.min.css" rel="stylesheet" /> -->
+<!-- <link href="themes/css/font-awesome.css" rel="stylesheet" type="text/css"> -->
+<!-- Google-code-prettify -->
+<!-- <link href="themes/js/google-code-prettify/prettify.css" rel="stylesheet" /> -->
+<!-- fav and touch icons -->
+<!-- <link rel="shortcut icon" href="themes/images/ico/favicon.ico">
     <link rel="apple-touch-icon-precomposed" sizes="144x144" href="themes/images/ico/apple-touch-icon-144-precomposed.png">
     <link rel="apple-touch-icon-precomposed" sizes="114x114" href="themes/images/ico/apple-touch-icon-114-precomposed.png">
     <link rel="apple-touch-icon-precomposed" sizes="72x72" href="themes/images/ico/apple-touch-icon-72-precomposed.png">
@@ -51,17 +50,19 @@
                     $get_customer = "select * from customers";
                     // customer--->fetching in fullname  
                     $run_customer = mysqli_query($db, $get_customer);
+
                     // execution for sql query--->ie used mysqli_query
                     while ($row_customer = mysqli_fetch_array($run_customer)) {
                         // in loopp product_details are fetch 
                         $cust_id = $row_customer['customer_id'];
                         $cust_fname = $row_customer['customer_fullname'];
-                                    // echo "<div class='span6'>Welcome! <strong>" . $_SESSION['customer_email'] . "</strong></div>";
-                                    // echo "<div class='span6'>Welcome! <strong>" . $_SESSION['customer_fullname'] . "</strong></div>";
-                                }
-                                echo "<div class='span6'>Welcome! <strong>" . $cust_fname . "</strong></div>";
-                    
-                }
+                        // echo "<div class='span6'>Welcome! <strong>" . $_SESSION['customer_email'] . "</strong></div>";
+                        // echo "<div class='span6'>Welcome! <strong>" . $_SESSION['customer_fullname'] . "</strong></div>";
+                        // $ip_add = $row_customer['customer_ip'];
+                    }
+
+                    echo "<div class='span6'>Welcome! <strong>" . $cust_fname . "</strong></div>";
+                };
 
                 ?>
 
@@ -90,7 +91,7 @@
                     <div class="carousel-inner">
                         <div class="item active">
                             <div class="container">
-                            <a href="register.html"><img src="themes/images/carousel/6.png" alt="" /></a>
+                                <a href="register.php"><img src="themes/images/carousel/6.png" alt="" /></a>
                                 <div class="carousel-caption">
                                     <h4>Second Thumbnail label</h4>
                                     <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
@@ -210,7 +211,7 @@
                                                         </div>
                                                     </li>
                                                 </ul>
-                                            </div>  
+                                            </div>
                                             <!-- <div class="item">
                                                 <ul class="thumbnails">
                                                     <li class="span3">
@@ -302,7 +303,10 @@
                             <ul class="thumbnails">
                                 <!-- <li class="span3"> -->
                                 <?php getPro() ?>
-                                <?php cart();
+
+
+                                <?php
+                                cart1();
                                 ?>
                                 <!-- <h3> -->
                                 <!-- // $prod_title

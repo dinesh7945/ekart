@@ -264,6 +264,13 @@ function pro_detail()
                                     <div class='controls'>
                                         <input  style='padding: 15px 8px;' type='number' class='span1' placeholder='Qty.' />
 
+
+                                        <select name='qty' style='width: 50px;'>
+                                                <option value='1'>1</option>
+                                                <option value='2'>2</option>;
+                                                <option value='3'>3</option>;
+                                            </select>
+
                                         <a class='btn btn-large btn-primary' href='index.php?add_cart=$prod_id'>Add to Cart<i class=' icon-shopping-cart'></i></a>
                                         
                                         
@@ -368,12 +375,13 @@ function cart()
         global $db;
 
         $p_id = $_GET['add_cart'];
+        // $p_qty = $_
 
         $ip_add = getrealipaddres();
+
         // ip address function declare with variables
 
         $check_pro = "SELECT * FROM cart WHERE p_id = '$p_id' AND ip_add = '$ip_add'";
-
 
         $run_check = mysqli_query($db, $check_pro);
 
@@ -384,9 +392,73 @@ function cart()
             echo "";
         } else {
             // $q = "INSERT INTO cart(p_id,ip_add) values ('$p_id','$ip_add')";
-            $q = "INSERT INTO cart(p_id,ip_add) values ('$p_id','$ip_add')";
+            $q = "INSERT INTO cart(p_id,ip_add) values ('$p_id','$ip_add',)";
+
+            echo "$q";
             // inserting cart by query
             $run_q = mysqli_query($db, $q);
+
+
+
+            echo "<script>alert('inserted');</script>";
+
+            // echo "<script>window.open('index.php','_self')</script>";
+            // Replace the current window with a new window:
+            // The open() method opens a new browser window, or a new tab, depending on your browser settings and the parameter values.
+
+        }
+    }
+}
+##############################<----Index ADD TO CART 2---->###############################################
+function cart1()
+{
+    if (isset($_GET['add_cart'])) {
+        // add_cart --->add to cart index.php when someone click add to cart--->$_COOKIE
+        //href='index.php?add_cart=$prod_id'
+        // with product id 
+        global $db;
+
+        $p_id = $_GET['add_cart'];
+        // $p_qty = $_
+
+        // $ip_add = getrealipaddres();
+        $get_customer = "select * from customers";
+        // customer--->fetching in fullname  
+        $run_customer = mysqli_query($db, $get_customer);
+
+        // execution for sql query--->ie used mysqli_query
+        while ($row_customer = mysqli_fetch_array($run_customer)) {
+            // in loopp product_details are fetch 
+            $cust_id = $row_customer['customer_id'];
+            $cust_fname = $row_customer['customer_fullname'];
+            // echo "<div class='span6'>Welcome! <strong>" . $_SESSION['customer_email'] . "</strong></div>";
+            // echo "<div class='span6'>Welcome! <strong>" . $_SESSION['customer_fullname'] . "</strong></div>";
+            $ip_add = $row_customer['customer_ip'];
+        }
+
+
+        // ip address function declare with variables
+        $check_pro = "SELECT * FROM cart WHERE p_id = '$p_id' AND ip_add = '$ip_add'";
+
+        $qty = 1;
+
+        $run_check = mysqli_query($db, $check_pro);
+
+        if (mysqli_num_rows($run_check) > 0) {
+            // The mysqli_num_rows() function is an inbuilt function in PHP which is
+            //  used to return the number of rows present in the result set. 
+            // It is generally used to check if data is present in the database or not.
+            //  To use this function, it is mandatory to first set up the connection with 
+            // the MySQL database.
+            echo "";
+        } else {
+            // $q = "INSERT INTO cart(p_id,ip_add) values ('$p_id','$ip_add')";
+            $q = "INSERT INTO cart(p_id,ip_add,qty) values ('$p_id','$ip_add',$qty)";
+
+            echo "$q";
+            // inserting cart by query
+            $run_q = mysqli_query($db, $q);
+            // echo "<script>alert('inserted');</script>";
 
             echo "<script>window.open('index.php','_self')</script>";
             // Replace the current window with a new window:
