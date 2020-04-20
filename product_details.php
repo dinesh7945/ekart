@@ -75,166 +75,174 @@ include "functions.php" ?>
                     <!-- PRODUCTS details -->
                     <?php
 
-                    pro_detail();
-                    // global $db;
+                    // pro_detail();
+                    global $db;
 
-                    // if (isset($_GET['pro_id']));
-                    // // after clicking pro_id--->a tag passing the id with it
-                    // $product_id = $_GET['pro_id'];
+                    if (isset($_GET['pro_id']));
+                    // after clicking pro_id--->a tag passing the id with it
+                    $product_id = $_GET['pro_id'];
 
-                    // global $db;
+                    global $db;
 
-                    // // if (isset($_GET['cat'])) {
+                    // if (isset($_GET['cat'])) {
 
-                    // $get_product = "select * from products where product_id = $product_id";
-                    // // select products where product_id tbl colmn name - $product_id declare variable 
-                    // $run_products = mysqli_query($db, $get_product);
-                    // while ($row_products = mysqli_fetch_array($run_products)) {
-                    //     $prod_id = $row_products['product_id'];
-                    //     $prod_title = $row_products['product_title'];
-                    //     $prod_cat = $row_products['cat_id'];
-                    //     $prod_brand = $row_products['brand_id'];
-                    //     $prod_desc = $row_products['product_desc'];
-                    //     $prod_price = $row_products['product_price'];
-                    //     $prod_img = $row_products['product_img'];
-                    //     $prod_img2 = $row_products['product_img1'];
-                    //     $prod_img3 = $row_products['product_img2'];
-                    //     $prod_qty = $row_products['product_qty'];
-                    // }
-
-
-                    // echo "<div class='row'>
-                    //           <div id='gallery' class='span3'>
-                    //           <a href='admin-area/product-images/$prod_img' title=''>
-                    //           <img src='admin-area/product-images/$prod_img' style='width:100%' alt='s' /></a>
-                    //           <div id='differentview' class='moreOptopm carousel slide'>
-                    //           <div class='carousel-inner>
-                    //           <div class='item active'>
-                    //           <a href='admin-area/product-images/$prod_img'>
-                    //          <img style='width: 78px;height: 78px;object-fit: contain;'src='admin-area/product-images/$prod_img' alt='' /></a>
-
-                    //          <a href='admin-area/product-images/$prod_img2'> <img style='width: 78px;height: 78px;object-fit: contain;' src='admin-area/product-images/$prod_img2' alt='' /></a>
-
-                    //          <a href='admin-area/product-images/$prod_img3'> <img style='width: 78px;height: 78px;object-fit: contain;' src='admin-area/product-images/$prod_img3' alt='' /></a>                               
-
-                    // </div>
-                    //                                     <div class='item'>
-                    //                                     <a href='admin-area/product-images/$prod_img'> <img style='    width: 78px;
-                    //                                     height: 78px;object-fit: contain;' src='admin-area/product-images/$prod_img' alt='' /></a>
-
-                    //                                         <a href='admin-area/product-images/$prod_img2'> <img style='width: 78px;
-                    //                                         height: 78px;object-fit: contain;' src='admin-area/product-images/$prod_img2' alt='' /></a>
-
-                    //                                         <a href='admin-area/product-images/$prod_img3'> <img style='    width: 78px;
-                    //                                         height: 78px;object-fit: contain;' src='admin-area/product-images/$prod_img3' alt='' /></a>
-
-                    //                                     </div>
-                    //                                 </div>
-                    //                                 <!--  
-                    //               <a class='left carousel-control' href='#myCarousel' data-slide='prev'>‹</a>
-                    //               <a class='right carousel-control' href='#myCarousel' data-slide='next'>›</a> 
-                    //               -->
-                    //                             </div>
-                    //                             <div class='span6'>
-                    //                             <h3>$prod_title </h3>
-
-                    //                             <hr class='soft' />
-                    //                             <form class='form-horizontal qtyFrm'>
-                    //                                 <div class='control-group'>
-                    //                                     <label class='control-label'><span>Rs.$prod_price</span></label>
-                    //                                     <div class='controls'>
+                    $get_product = "select * from products where product_id = $product_id";
+                    // select products where product_id tbl colmn name - $product_id declare variable 
+                    $run_products = mysqli_query($db, $get_product);
+                    while ($row_products = mysqli_fetch_array($run_products)) {
+                        $prod_id = $row_products['product_id'];
+                        $prod_title = $row_products['product_title'];
+                        $prod_cat = $row_products['cat_id'];
+                        $prod_brand = $row_products['brand_id'];
+                        $prod_desc = $row_products['product_desc'];
+                        $prod_price = $row_products['product_price'];
+                        $prod_img = $row_products['product_img'];
+                        $prod_img2 = $row_products['product_img1'];
+                        $prod_img3 = $row_products['product_img2'];
+                        $prod_qty = $row_products['product_qty'];
+                    }
 
 
+                    echo "<div class='row'>
+                              <div id='gallery' class='span3'>
+                              <a href='admin-area/product-images/$prod_img' title=''>
+                              <img src='admin-area/product-images/$prod_img' style='width:100%' alt='s' /></a>
+                              <div id='differentview' class='moreOptopm carousel slide'>
+                              <div class='carousel-inner>
+                              <div class='item active'>
+                              <a href='admin-area/product-images/$prod_img'>
+                             <img style='width: 78px;height: 78px;object-fit: contain;'src='admin-area/product-images/$prod_img' alt='' /></a>
+
+                             <a href='admin-area/product-images/$prod_img2'> <img style='width: 78px;height: 78px;object-fit: contain;' src='admin-area/product-images/$prod_img2' alt='' /></a>
+
+                             <a href='admin-area/product-images/$prod_img3'> <img style='width: 78px;height: 78px;object-fit: contain;' src='admin-area/product-images/$prod_img3' alt='' /></a>                               
+
+                    </div>
+                                                        <div class='item'>
+                                                        <a href='admin-area/product-images/$prod_img'> <img style='    width: 78px;
+                                                        height: 78px;object-fit: contain;' src='admin-area/product-images/$prod_img' alt='' /></a>
+
+                                                            <a href='admin-area/product-images/$prod_img2'> <img style='width: 78px;
+                                                            height: 78px;object-fit: contain;' src='admin-area/product-images/$prod_img2' alt='' /></a>
+
+                                                            <a href='admin-area/product-images/$prod_img3'> <img style='    width: 78px;
+                                                            height: 78px;object-fit: contain;' src='admin-area/product-images/$prod_img3' alt='' /></a>
+
+                                                        </div>
+                                                    </div>
+                                                    <!--  
+                                  <a class='left carousel-control' href='#myCarousel' data-slide='prev'>‹</a>
+                                  <a class='right carousel-control' href='#myCarousel' data-slide='next'>›</a> 
+                                  -->
+                                                </div>
+                                                <div class='span6'>
+                                                <h3>$prod_title </h3>
+
+                                                <hr class='soft' />
+                                                <form class='form-horizontal qtyFrm' action='product_details.php?addd_cart=$prod_id' method='POST'>
+                                                    <div class='control-group'>
+                                                        <label class='control-label'><span>Rs.$prod_price</span></label>
+                                                        <div class='controls'>
+
+                                                        <select name='select_qty' type='submit'>
+                                                        <option value='1'>1</option>
+                                                        <option value='2'>2</option>
+                                                        <option value='3'>3</option>
+                                                        </select>
+                                                        <a href='product_details.php?addd_cart=$prod_id'>asd</a>
+                                                        <button  name='submit' type='submit' class='btn btn-large btn-primary'>
+                                                        Add to Cart
+                                                        <i class=' icon-shopping-cart'></i></button>   
+                                                         
+                                                        </div>
+                                                    </div>
+                                                </form>
+
+                                                <hr class='soft' />
+                                                <h4>$prod_qty items in stock</h4>
+                                                <form class='form-horizontal qtyFrm pull-right'>
+
+                                                </form>
+                                                <hr class='soft clr' />
+                                                <p>
+                                                    $prod_desc
+                                                </p>
+
+                                            </div>
+                                            </div>
 
 
-                    //                                         <a  class='btn btn-large btn-primary' href='product_details.php?addd_cart=$prod_id'>Add to Cart<i class=' icon-shopping-cart'></i></a>               
-                    //                                     </div>
-                    //                                 </div>
-                    //                             </form>
-
-                    //                             <hr class='soft' />
-                    //                             <h4>$prod_qty items in stock</h4>
-                    //                             <form class='form-horizontal qtyFrm pull-right'>
-
-                    //                             </form>
-                    //                             <hr class='soft clr' />
-                    //                             <p>
-                    //                                 $prod_desc
-                    //                             </p>
-
-                    //                         </div>
-                    //                         </div>
+                                        </div>";
 
 
-                    //                     </div>";
+                    // cart1();
+                    if (isset($_POST['submit'])) {
+                        $qty = $_POST['select_qty'];  // Storing Selected Value In Variable
+                        // echo "You have selected :" . $qty;  // Displaying Selected Value
+
+                        // isset($_GET['addd_cart']);
+                        if (isset($_GET['addd_cart'])) {
+                            // add_cart --->add to cart index.php when someone click add to cart--->$_COOKIE
+                            //href='index.php?add_cart=$prod_id'
+                            // with product id 
+                            global $db;
+                            $p_id = $_GET['addd_cart'];
+                            $qty = $_POST['select_qty'];
+
+                            echo "<script> window.location.href =' document.getElementsByTagName('option')[x].value;</script>'";
+
+                            // $qty = $_POST['qty'];
+                            // echo "$qty";
+
+                            // $ip_add = getrealipaddres();
+                            $get_customer = "select * from customers";
+                            // customer--->fetching in fullname  
+                            $run_customer = mysqli_query($db, $get_customer);
+                            // execution for sql query--->ie used mysqli_query
+                            while ($row_customer = mysqli_fetch_array($run_customer)) {
+                                // in loopp product_details are fetch 
+                                $cust_id = $row_customer['customer_id'];
+                                $cust_fname = $row_customer['customer_fullname'];
+                                // echo "<div class='span6'>Welcome! <strong>" . $_SESSION['customer_email'] . "</strong></div>";
+                                // echo "<div class='span6'>Welcome! <strong>" . $_SESSION['customer_fullname'] . "</strong></div>";
+                                $ip_add = $row_customer['customer_ip'];
+                            }
 
 
-                    cart1();
-                    // if (isset($_GET['addd_cart'])) {
-                    //     // add_cart --->add to cart index.php when someone click add to cart--->$_COOKIE
-                    //     //href='index.php?add_cart=$prod_id'
-                    //     // with product id 
-                    //     global $db;
-                    //     $p_id = $_GET['addd_cart'];
-                    //     echo "<script> window.location.href =' document.getElementsByTagName('option')[x].value;</script>'";
+                            // ip address function declare with variables
+                            $check_pro = "SELECT * FROM cart WHERE p_id = '$p_id' AND ip_add = '$ip_add'";
 
-                    //     // $qty = $_POST['qty'];
-                    //     // echo "$qty";
+                            // $qty = 1;
+                            $run_check = mysqli_query($db, $check_pro);
 
-                    //     // $ip_add = getrealipaddres();
-                    //     $get_customer = "select * from customers";
-                    //     // customer--->fetching in fullname  
-                    //     $run_customer = mysqli_query($db, $get_customer);
-                    //     // execution for sql query--->ie used mysqli_query
-                    //     while ($row_customer = mysqli_fetch_array($run_customer)) {
-                    //         // in loopp product_details are fetch 
-                    //         $cust_id = $row_customer['customer_id'];
-                    //         $cust_fname = $row_customer['customer_fullname'];
-                    //         // echo "<div class='span6'>Welcome! <strong>" . $_SESSION['customer_email'] . "</strong></div>";
-                    //         // echo "<div class='span6'>Welcome! <strong>" . $_SESSION['customer_fullname'] . "</strong></div>";
-                    //         $ip_add = $row_customer['customer_ip'];
-                    //     }
+                            if (mysqli_num_rows($run_check) > 0) {
+                                // The mysqli_num_rows() function is an inbuilt function in PHP which is
+                                //  used to return the number of rows present in the result set. 
+                                // It is generally used to check if data is present in the database or not.
+                                //  To use this function, it is mandatory to first set up the connection with 
+                                // the MySQL database.
+                                echo "";
+                            } else {
 
+                                // $qty = $_GET['qty_update'];
+                                // $q = "INSERT INTO cart(p_id,ip_add) values ('$p_id','$ip_add')";
 
-                    //     // ip address function declare with variables
-                    //     $check_pro = "SELECT * FROM cart WHERE p_id = '$p_id' AND ip_add = '$ip_add'";
+                                // $qty = 1;
 
-                    //     // $qty = 1;
-                    //     $run_check = mysqli_query($db, $check_pro);
+                                $q = "INSERT INTO cart(p_id,ip_add,qty) values ('$p_id','$ip_add','$qty')";
 
-                    //     if (mysqli_num_rows($run_check) > 0) {
-                    //         // The mysqli_num_rows() function is an inbuilt function in PHP which is
-                    //         //  used to return the number of rows present in the result set. 
-                    //         // It is generally used to check if data is present in the database or not.
-                    //         //  To use this function, it is mandatory to first set up the connection with 
-                    //         // the MySQL database.
-                    //         echo "";
-                    //     } else {
+                                // echo "$q";
+                                // inserting cart by query
+                                $run_q = mysqli_query($db, $q);
+                                echo "<script>alert('inserted');</script>";
 
-                    //         // $qty = $_GET['qty_update'];
-                    //         // $q = "INSERT INTO cart(p_id,ip_add) values ('$p_id','$ip_add')";
+                                echo "<script>window.open('index.php','_self')</script>";
+                                // Replace the current window with a new window:
+                                // The open() method opens a new browser window, or a new tab, depending on your browser settings and the parameter values.
 
-                    //         $qty = 1;
-
-
-
-
-
-                    //         $q = "INSERT INTO cart(p_id,ip_add,qty) values ('$p_id','$ip_add','$qty')";
-
-                    //         echo "$q";
-                    //         // inserting cart by query
-                    //         $run_q = mysqli_query($db, $q);
-                    //         echo "<script>alert('inserted');</script>";
-
-                    //         // echo "<script>window.open('index.php','_self')</script>";
-                    //         // Replace the current window with a new window:
-                    //         // The open() method opens a new browser window, or a new tab, depending on your browser settings and the parameter values.
-
-                    //     }
-                    // }
-
-
+                            }
+                        }
+                    }
                     // }
                     ?>
                     <!-- PRODUCTS related -->
