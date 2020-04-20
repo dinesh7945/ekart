@@ -144,9 +144,7 @@
                                             <td> <img width="60" src='admin-area/product-images/<?php echo "$product_img"; ?> ' alt="" /></td>
                                             <td><?php echo $product_title; ?></td>
                                             <td style="text-align: center;">
-                                                <div class="input-append"><input name="qty" class="span1"
-                                                
-                                                style="max-width:34px" placeholder="1" value="" id="appendedInputButtons" size="16" type="number">
+                                                <div class="input-append"><input name="qty" class="span1" style="max-width:34px" placeholder="1" value="" id="appendedInputButtons" size="16" type="number">
                                                     <!-- <button class="btn" type="button"><i class="icon-minus"></i></button>
                                                     <button class="btn" type="button"><i class="icon-plus"></i></button> -->
                                                     <!-- <button class="btn btn-danger" name="remove[]" value="" type="button"><i class="icon-remove icon-white"></i></button> -->
@@ -174,7 +172,25 @@
                                             <td>Rs.<?php echo $values ?></td>
                                             <td style="text-align: center;">00</td>
                                             <td style="text-align: center;">
-                                                <input type="checkbox" name="removed[]" value="<?php echo $pro_id; ?>">
+                                                <?php
+                                                $get_pid = "SELECT * FROM cart where p_id = '$pro_id'";
+
+
+                                                $run_id = mysqli_query($con, $get_pid);
+
+                                                while ($row_orders = mysqli_fetch_array($run_id)) {
+                                                    $pro_id = $row_orders['p_id'];
+                                                }
+                                                // echo "$pro_id";
+                                                ?>
+                                                <!-- <a href="product_summary.php?pro_id= <?php
+                                                                                            // echo $pro_id; 
+                                                                                            ?>" name="removed" value="echo $pro_id;">Remove</a> -->
+                                                <button style="background-color:#b94a48;font-family:cursive;color:whitesmoke;border:none;padding:4px;" type="submit" name="removed" value="<?php echo $pro_id; ?>">Remove</button>
+                                                <!--
+                                                     <input type="checkbox" name="removed[]" value="<?php
+                                                                                                    // echo $pro_id;
+                                                                                                    ?>"> -->
                                                 <!-- delete multiple thts y removed []  single den removed-->
                                             </td>
                                             <td>Rs.<?php echo $total  ?></td>
@@ -183,7 +199,7 @@
                                 } ?>
 
                                 <tr>
-                                    <td colspan="6" style="text-align:right;"><input style="background-color:green;font-family:cursive;color:whitesmoke;border:none;padding:4px;" type="submit" name="update" value="Update cart"> </td>
+                                    <!-- <td colspan="6" style="text-align:right;"><input style="background-color:green;font-family:cursive;color:whitesmoke;border:none;padding:4px;" type="submit" name="update" value="Update cart"> </td> -->
                                     <td></td>
                                 </tr>
                                 <tr>
@@ -209,26 +225,27 @@
                     </form>
                     <!-- Function update cart()  removed button start here-->
                     <?php
-                    function updatecart()
+                    function remov_pid()
+
                     {
                         global $con;
-                        if (isset($_POST['update'])) {
 
-                            foreach ($_POST['removed'] as $removeid) {
+                        if (isset($_POST['removed'])) {
 
-                                $delete_products = "delete from cart where p_id = $removeid";
 
-                                $run_delete = mysqli_query($con, $delete_products);
+                            $pro_id = $_POST['removed'];
+                            // echo "$pro_id";
+                            $delete_products = "DELETE from cart where p_id = '$pro_id'";
 
-                                if ($run_delete) {
-                                    echo "<script> window.open('product_summary.php','_self')</script>";
-                                }
+                            $run_delete = mysqli_query($con, $delete_products);
+
+                            if ($run_delete) {
+                                echo "<script> window.open('product_summary.php','_self')</script>";
                             }
                         }
                     }
 
-
-                    echo @$up_cart = updatecart();
+                    echo @$up_cart = remov_pid();
                     // inactive functions save in varaibles
 
 
