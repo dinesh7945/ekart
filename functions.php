@@ -262,15 +262,8 @@ function pro_detail()
                                 <div class='control-group'>
                                     <label class='control-label'><span>Rs.$prod_price</span></label>
                                     <div class='controls'>
-                                        <input  style='padding: 15px 8px;' type='number' class='span1' placeholder='Qty.' />
-
-
-                                        <select name='qty' style='width: 50px;'>
-                                                <option value='1'>1</option>
-                                                <option value='2'>2</option>;
-                                                <option value='3'>3</option>;
-                                            </select>
-
+                                        
+                                    
                                         <a class='btn btn-large btn-primary' href='index.php?add_cart=$prod_id'>Add to Cart<i class=' icon-shopping-cart'></i></a>
                                         
                                         
@@ -294,6 +287,7 @@ function pro_detail()
 
                     </div>";
 }
+
 
 
 ##############################<add_cart=$prod_id'----FETCHING  product_details in that related products in php ----->##################
