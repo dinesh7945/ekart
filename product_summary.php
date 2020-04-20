@@ -135,179 +135,181 @@
 
                                         $values = array_sum($product_price);
 
+
                                         $total += $values;
                                         // echo "Rs" . $total;
-
+                                        // $total[] = array();
                                 ?>
                                         <!-- product details  -->
                                         <tr>
                                             <td> <img width="60" src='admin-area/product-images/<?php echo "$product_img"; ?> ' alt="" /></td>
                                             <td><?php echo $product_title; ?></td>
                                             <td style="text-align: center;">
-                                                <div class="input-append"><input name="qty" class="span1" style="max-width:34px" placeholder="1" value="" id="appendedInputButtons" size="16" type="number">
-                                                    <!-- <button class="btn" type="button"><i class="icon-minus"></i></button>
-                                                    <button class="btn" type="button"><i class="icon-plus"></i></button> -->
-                                                    <!-- <button class="btn btn-danger" name="remove[]" value="" type="button"><i class="icon-remove icon-white"></i></button> -->
-                                                </div>
-
-                                                <!-- updating qty -->
-                                                <?php
-
-                                                if (isset($_POST['update'])) {
-
-                                                    $qty = $_POST['qty'];
-
-                                                    $insert_qty = "UPDATE cart SET qty='$qty' where ip_add = '$ip_add' ";
-
-                                                    $run_query = mysqli_query($con, $insert_qty);
-
-                                                    // $total = $total * $qty;
-                                                    $total = ((int) $total * (int) $qty);
-                                                }
-
-                                                ?>
-
-
-                                            </td>
-                                            <td>Rs.<?php echo $values ?></td>
-                                            <td style="text-align: center;">00</td>
-                                            <td style="text-align: center;">
                                                 <?php
                                                 $get_pid = "SELECT * FROM cart where p_id = '$pro_id'";
-
 
                                                 $run_id = mysqli_query($con, $get_pid);
 
                                                 while ($row_orders = mysqli_fetch_array($run_id)) {
                                                     $pro_id = $row_orders['p_id'];
+                                                    $pro_qty = $row_orders['qty'];
                                                 }
-                                                // echo "$pro_id";
+                                                $total = ((int) $values * (int) $pro_qty);
                                                 ?>
-                                                <!-- <a href="product_summary.php?pro_id= <?php
-                                                                                            // echo $pro_id; 
-                                                                                            ?>" name="removed" value="echo $pro_id;">Remove</a> -->
-                                                <button style="background-color:#b94a48;font-family:cursive;color:whitesmoke;border:none;padding:4px;" type="submit" name="removed" value="<?php echo $pro_id; ?>">Remove</button>
-                                                <!--
+                                                <!-- <div class="input-append"><input name="qty" class="span1" style="max-width:34px" placeholder="1" value="" id="appendedInputButtons" size="16" type="number"> -->
+                                                <p><?php echo $pro_qty ?></p>
+                                                <!-- <button class="btn" type="button"><i class="icon-minus"></i></button>
+                                                    <button class="btn" type="button"><i class="icon-plus"></i></button> -->
+                                                <!-- <button class="btn btn-danger" name="remove[]" value="" type="button"><i class="icon-remove icon-white"></i></button> -->
+                </div>
+                <!-- updating qty -->
+
+
+
+                </td>
+                <td>Rs.<?php echo $values  ?></td>
+                <td style="text-align: center;">00</td>
+                <td style="text-align: center;">
+                    <?php
+                                        $get_pid = "SELECT * FROM cart where p_id = '$pro_id'";
+
+
+                                        $run_id = mysqli_query($con, $get_pid);
+
+                                        while ($row_orders = mysqli_fetch_array($run_id)) {
+                                            $pro_id = $row_orders['p_id'];
+                                            $pro_qty = $row_orders['qty'];
+                                        }
+                                        // echo "$pro_id";
+                    ?>
+                    <!-- <a href="product_summary.php?pro_id= <?php
+                                                                // echo $pro_id; 
+                                                                ?>" name="removed" value="echo $pro_id;">Remove</a> -->
+                    <button style="background-color:#b94a48;font-family:cursive;color:whitesmoke;border:none;padding:4px;" type="submit" name="removed" value="<?php echo $pro_id; ?>">Remove</button>
+                    <!--
                                                      <input type="checkbox" name="removed[]" value="<?php
                                                                                                     // echo $pro_id;
                                                                                                     ?>"> -->
-                                                <!-- delete multiple thts y removed []  single den removed-->
-                                            </td>
-                                            <td>Rs.<?php echo $total  ?></td>
-                                        </tr>
-                                <?php    }
+                    <!-- delete multiple thts y removed []  single den removed-->
+                </td>
+                <td>Rs.<?php echo $total;  ?></td>
+                </tr>
+        <?php    }
                                 } ?>
 
-                                <tr>
-                                    <!-- <td colspan="6" style="text-align:right;"><input style="background-color:green;font-family:cursive;color:whitesmoke;border:none;padding:4px;" type="submit" name="update" value="Update cart"> </td> -->
-                                    <td></td>
-                                </tr>
-                                <tr>
-                                    <td colspan="6" style="text-align:right">Total Price: </td>
-                                    <td> <?php echo "Rs " . $total ?></td>
-                                </tr>
-                                <tr>
-                                    <td colspan="6" style="text-align:right">Total Discount: </td>
-                                    <td> 00</td>
-                                </tr>
-                                <tr>
-                                    <td colspan="6" style="text-align:right">Total Tax: </td>
-                                    <td> 00</td>
-                                </tr>
-                                <tr>
-                                    <td colspan="6" style="text-align:right"><strong>TOTAL </strong></td>
-                                    <td class="label label-important" style="display:block"> <strong><?php echo "Rs " . $total ?></strong></td>
-                                </tr>
-                            </tbody>
+        <tr>
+            <td colspan="6" style="text-align:right">Total Price: </td>
+            <!-- <td><?php
+                $a = array($values);
+                echo array_sum($a);
+                // "Rs"    . $values += array_sum($values);
+
+                ?></td> -->
+
+            <td> <?php echo "Rs " . $total ?></td>
+        </tr>
+        <tr>
+            <td colspan="6" style="text-align:right">Total Discount: </td>
+            <td> 00</td>
+        </tr>
+        <tr>
+            <td colspan="6" style="text-align:right">Total Tax: </td>
+            <td> 00</td>
+        </tr>
+        <tr>
+            <td colspan="6" style="text-align:right"><strong>TOTAL </strong></td>
+            <td class="label label-important" style="display:block"> <strong><?php echo "Rs " . $total ?></strong></td>
+        </tr>
+        </tbody>
 
 
-                        </table>
+        </table>
+        </form>
+        <!-- Function update cart()  removed button start here-->
+        <?php
+        function remov_pid()
+
+        {
+            global $con;
+
+            if (isset($_POST['removed'])) {
+
+
+                $pro_id = $_POST['removed'];
+                // echo "$pro_id";
+                $delete_products = "DELETE from cart where p_id = '$pro_id'";
+
+                $run_delete = mysqli_query($con, $delete_products);
+
+                if ($run_delete) {
+                    echo "<script> window.open('product_summary.php','_self')</script>";
+                }
+            }
+        }
+
+        echo @$up_cart = remov_pid();
+        // inactive functions save in varaibles
+
+
+        if (isset($_POST['continue'])) {
+            echo "<script>window.open('index.php','_self')</script>";
+        }
+        ?>
+        <!-- ends here update cart function  -->
+        <table class="table table-bordered">
+            <tbody>
+                <tr>
+                    <td>
+                        <form class="form-horizontal">
+                            <div class="control-group">
+                                <label class="control-label"><strong> VOUCHERS CODE: </strong> </label>
+                                <div class="controls">
+                                    <input type="text" class="input-medium" placeholder="CODE">
+                                    <button type="submit" class="btn"> ADD </button>
+                                </div>
+                            </div>
+                        </form>
+                    </td>
+                </tr>
+
+            </tbody>
+        </table>
+
+        <table class="table table-bordered">
+            <tr>
+                <th>ESTIMATE YOUR SHIPPING </th>
+            </tr>
+            <tr>
+                <td>
+                    <form class="form-horizontal">
+                        <div class="control-group">
+                            <label class="control-label" for="inputCountry">Country </label>
+                            <div class="controls">
+                                <input type="text" id="inputCountry" placeholder="Country">
+                            </div>
+                        </div>
+                        <div class="control-group">
+                            <label class="control-label" for="inputPost">Post Code/ Zipcode </label>
+                            <div class="controls">
+                                <input type="text" id="inputPost" placeholder="Postcode">
+                            </div>
+                        </div>
+                        <div class="control-group">
+                            <div class="controls">
+                                <button type="submit" class="btn">ESTIMATE </button>
+                            </div>
+                        </div>
                     </form>
-                    <!-- Function update cart()  removed button start here-->
-                    <?php
-                    function remov_pid()
-
-                    {
-                        global $con;
-
-                        if (isset($_POST['removed'])) {
-
-
-                            $pro_id = $_POST['removed'];
-                            // echo "$pro_id";
-                            $delete_products = "DELETE from cart where p_id = '$pro_id'";
-
-                            $run_delete = mysqli_query($con, $delete_products);
-
-                            if ($run_delete) {
-                                echo "<script> window.open('product_summary.php','_self')</script>";
-                            }
-                        }
-                    }
-
-                    echo @$up_cart = remov_pid();
-                    // inactive functions save in varaibles
-
-
-                    if (isset($_POST['continue'])) {
-                        echo "<script>window.open('index.php','_self')</script>";
-                    }
-                    ?>
-                    <!-- ends here update cart function  -->
-                    <table class="table table-bordered">
-                        <tbody>
-                            <tr>
-                                <td>
-                                    <form class="form-horizontal">
-                                        <div class="control-group">
-                                            <label class="control-label"><strong> VOUCHERS CODE: </strong> </label>
-                                            <div class="controls">
-                                                <input type="text" class="input-medium" placeholder="CODE">
-                                                <button type="submit" class="btn"> ADD </button>
-                                            </div>
-                                        </div>
-                                    </form>
-                                </td>
-                            </tr>
-
-                        </tbody>
-                    </table>
-
-                    <table class="table table-bordered">
-                        <tr>
-                            <th>ESTIMATE YOUR SHIPPING </th>
-                        </tr>
-                        <tr>
-                            <td>
-                                <form class="form-horizontal">
-                                    <div class="control-group">
-                                        <label class="control-label" for="inputCountry">Country </label>
-                                        <div class="controls">
-                                            <input type="text" id="inputCountry" placeholder="Country">
-                                        </div>
-                                    </div>
-                                    <div class="control-group">
-                                        <label class="control-label" for="inputPost">Post Code/ Zipcode </label>
-                                        <div class="controls">
-                                            <input type="text" id="inputPost" placeholder="Postcode">
-                                        </div>
-                                    </div>
-                                    <div class="control-group">
-                                        <div class="controls">
-                                            <button type="submit" class="btn">ESTIMATE </button>
-                                        </div>
-                                    </div>
-                                </form>
-                            </td>
-                        </tr>
-                    </table>
-                    <a href="index.php" class="btn btn-large"><i class="icon-arrow-left"></i><input type="submit" style="border:none;font-size: 16px;
+                </td>
+            </tr>
+        </table>
+        <a href="index.php" class="btn btn-large"><i class="icon-arrow-left"></i><input type="submit" style="border:none;font-size: 16px;
     font-weight: bold;" name="continue" value="Continue Shopping"> </a>
-                    <a href="checkout.php" class="btn btn-large pull-right">Next <i class="icon-arrow-right"></i></a>
+        <a href="checkout.php" class="btn btn-large pull-right">Next <i class="icon-arrow-right"></i></a>
 
-                </div>
             </div>
         </div>
+    </div>
     </div>
     <!-- MainBody End ============================= -->
     <!-- Footer ================================================================== -->

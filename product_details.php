@@ -60,9 +60,6 @@ include "functions.php" ?>
                 <?php include "sidebar.php"; ?>
 
                 <div id="sidebar" class="span3">
-
-
-
                 </div>
                 <!-- Sidebar end=============================================== -->
                 <div class="span9">
@@ -144,12 +141,12 @@ include "functions.php" ?>
                                                         <label class='control-label'><span>Rs.$prod_price</span></label>
                                                         <div class='controls'>
 
-                                                        <select name='select_qty' type='submit'>
+                                                        <select style='width: 50px;' name='select_qty' type='submit'>
                                                         <option value='1'>1</option>
                                                         <option value='2'>2</option>
                                                         <option value='3'>3</option>
                                                         </select>
-                                                        <a href='product_details.php?addd_cart=$prod_id'>asd</a>
+                                                        
                                                         <button  name='submit' type='submit' class='btn btn-large btn-primary'>
                                                         Add to Cart
                                                         <i class=' icon-shopping-cart'></i></button>   
@@ -230,13 +227,12 @@ include "functions.php" ?>
                                 // $qty = 1;
 
                                 $q = "INSERT INTO cart(p_id,ip_add,qty) values ('$p_id','$ip_add','$qty')";
-
                                 // echo "$q";
                                 // inserting cart by query
                                 $run_q = mysqli_query($db, $q);
-                                echo "<script>alert('inserted');</script>";
+                                // echo "<script>alert('Product inserted into cart');</script>";
 
-                                echo "<script>window.open('index.php','_self')</script>";
+                                echo "<script>window.open('product_summary.php','_self')</script>";
                                 // Replace the current window with a new window:
                                 // The open() method opens a new browser window, or a new tab, depending on your browser settings and the parameter values.
 
