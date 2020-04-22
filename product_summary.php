@@ -112,6 +112,7 @@
                                 global $con;
 
                                 $total = 0;
+                                $total_price = 0;
 
                                 // fetching from cart where 
                                 $sel_price = "SELECT * FROM cart WHERE ip_add ='$ip_add'";
@@ -131,14 +132,14 @@
 
                                         $product_price = array($p_price['product_price']);
                                         $product_title = $p_price['product_title'];
-                                        $product_img = $p_price['product_img1'];
+                                        $product_img = $p_price['product_img'];
 
+                                        $pp = $p_price['product_price'];
                                         $values = array_sum($product_price);
 
 
                                         $total += $values;
-                                        // echo "Rs" . $total;
-                                        // $total[] = array();
+                                      
                                 ?>
                                         <!-- product details  -->
                                         <tr>
@@ -155,6 +156,10 @@
                                                     $pro_qty = $row_orders['qty'];
                                                 }
                                                 $total = ((int) $values * (int) $pro_qty);
+                                                // for final price 
+                                                $total_price += $pp * $pro_qty;
+
+
                                                 ?>
                                                 <!-- <div class="input-append"><input name="qty" class="span1" style="max-width:34px" placeholder="1" value="" id="appendedInputButtons" size="16" type="number"> -->
                                                 <p><?php echo $pro_qty ?></p>
@@ -163,11 +168,10 @@
                                                 <!-- <button class="btn btn-danger" name="remove[]" value="" type="button"><i class="icon-remove icon-white"></i></button> -->
                 </div>
                 <!-- updating qty -->
-
-
-
                 </td>
-                <td>Rs.<?php echo $values  ?></td>
+                <!-- price -->
+                <td>Rs.<?php echo number_format($values);  ?></td>
+                <!-- discount -->
                 <td style="text-align: center;">00</td>
                 <td style="text-align: center;">
                     <?php
@@ -192,21 +196,23 @@
                                                                                                     ?>"> -->
                     <!-- delete multiple thts y removed []  single den removed-->
                 </td>
-                <td>Rs.<?php echo $total;  ?></td>
+                <!-- total price -->
+                <td>Rs.<?php echo number_format($total);  ?></td>
                 </tr>
         <?php    }
                                 } ?>
 
         <tr>
+            <!-- final price -->
             <td colspan="6" style="text-align:right">Total Price: </td>
-            <!-- <td><?php
-                $a = array($values);
-                echo array_sum($a);
-                // "Rs"    . $values += array_sum($values);
 
-                ?></td> -->
+            <!--  final price -->
+            <td> <?php echo "Rs " .
 
-            <td> <?php echo "Rs " . $total ?></td>
+
+                        number_format($total_price);
+                    ?></td>
+
         </tr>
         <tr>
             <td colspan="6" style="text-align:right">Total Discount: </td>
@@ -218,7 +224,8 @@
         </tr>
         <tr>
             <td colspan="6" style="text-align:right"><strong>TOTAL </strong></td>
-            <td class="label label-important" style="display:block"> <strong><?php echo "Rs " . $total ?></strong></td>
+            <td class="label label-important" style="display:block"> <strong><?php echo "Rs " .                         number_format($total_price);
+                                                                                ?></strong></td>
         </tr>
         </tbody>
 
