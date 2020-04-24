@@ -25,7 +25,7 @@ function carPro()
         $prod_img2 = $row_products['product_img1'];
         $prod_img3 = $row_products['product_img2'];
         // substring function limited string
-        $prod_title = substr($prod_title, 0, 30);
+        $prod_title = substr($prod_title, 0, 10);
 
         // declare the variables--->product_details.php?     declare--->variable and assgin them--->pro_id = $prod_id;
         // same as $prod_img fetching
@@ -41,11 +41,13 @@ function carPro()
         <a class='btn btn-primary' href='product_details.php?pro_id=$prod_id'>Rs.$prod_price</a></h4>
 </div>
 </div>
-";
+";  
     }
 }
 ##############################<----FETCHIING PRODUCTS RANDOMLY ON INDEX PAGE----->###############################################
 
+// <a class='btn' href='index.php?add_cart=$prod_id'>Add to <i class='icon-shopping-cart'></i></a> 
+// <a class='btn btn-primary' href='product_details.php?pro_id=$prod_id'>Rs.$prod_price</a></h4>
 
 // getpro()----->fetching products randomly
 function getPro()
@@ -76,9 +78,9 @@ function getPro()
         echo "<li class='span3'>
               <div class='thumbnail'>
               <a href='product_details.php?pro_id=$prod_id'>
-              <img style='height:250px;object-fit: contain;' src='admin-area/product-images/$prod_img' alt='' /></a>
+              <img style='height:230px;object-fit: contain;' src='admin-area/product-images/$prod_img' alt='' /></a>
               <div class='caption' style='padding:0'>
-              <h5>$prod_title</h5>
+              <h5 style='font-size:12px'>$prod_title</h5>
               <h4 style='text-align:center'><a class='btn' href='product_details.php?pro_id=$prod_id'> 
               <i class='icon-zoom-in'></i></a> 
 

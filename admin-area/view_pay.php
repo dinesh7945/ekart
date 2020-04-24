@@ -28,17 +28,17 @@
 
 <body>
     <!-- If view products pass in url by ?view_products -->
-    <?php if (isset($_GET['view_order'])) { ?>
+    <?php if (isset($_GET['view_pay'])) { ?>
 
         <h4 style="text-align: center">View All Orders</h4>
         <table class="table">
             <thead class="thead-dark" style="text-transform:capitalize;">
                 <tr>
                     <th scope="col">Payment No</th>
-                    <th scope="col">Invoice No</th>
+                    <th scope="col"> Email</th>
                     <!-- <th scope="col">Due Amount</th> -->
-                    <th scope="col">Amount Paid</th>
-                    <th scope="col"> Qty</th>
+                    <th scope="col">Due Amount</th>
+                    <!-- <th scope="col"> Qty</th> -->
                     <th scope="col"> Status</th>
                     <th scope="col"> Delete</th>
 
@@ -77,7 +77,7 @@
                     <tr>
                         <th scope="row"><?php echo $i; ?></th>
                         <td><?php
-                            $get_cut =  "SELECT customer_id ,customer_email FROM customers WHERE customer_id = '$c_id'";
+                            $get_cut =  "SELECT * FROM customers WHERE customer_id = '$c_id'";
 
                             $run_cut = mysqli_query($con, $get_cut);
 
@@ -87,16 +87,27 @@
 
                             $cust_email = $row_cut['customer_email'];
 
+
                             echo "$cust_email";
 
 
                             // echo $o_id;
                             ?></td>
-                        <!-- <td><?php echo $due_amount; ?></td> -->
-                        <td><?php echo $c_id; ?></td>
+                        <td><?php
+
+                                    $getco = "SELECT * FROM customer_orders WHERE customer_id = '$c_id'";
+
+                                    $quer = mysqli_query($con, $getco);
+
+                                    $rs = mysqli_fetch_array($quer);
+
+                                    $due_amount = $rs['due_amount'];
+
+                                    echo $due_amount; ?></td>
+                        <!-- <td><?php echo $c_id; ?></td>
                         <td><?php echo $invoice; ?></td>
-                        <td><?php echo $pr_id; ?></td>
-                        <td><?php echo $o_qty; ?></td>
+                        <td><?php echo $pr_id; ?></td> -->
+                        <!-- <td><?php echo $o_qty; ?></td> -->
                         <td><?php
 
                             if ($o_status == 'pending') {
@@ -118,14 +129,16 @@
 
                     </tr>
                 <?php }
-
                 ?>
 
                 </tbody>
 
         </table>
 
-    <?php } ?>
+    <?php } else {
+        echo "No payment data";
+    }
+    ?>
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>

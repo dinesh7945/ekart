@@ -227,7 +227,10 @@ Session_start();
 
                             include "cust_orders.php";
                         }
+                        if (isset($_GET['view_pay'])) {
 
+                            include "view_pay.php";
+                        }
 
                         ?>
 
