@@ -3,7 +3,6 @@
 Session_start();
 ?>
 
-
 <!DOCTYPE html>
 
 <head>
@@ -100,16 +99,20 @@ Session_start();
                     <div class="floatleft marginleft10">
                         <ul class="inline-ul floatleft">
 
-
                             <?php
                             // $em = $_SESSION['admin_email'];
 
                             // echo "$em";
+
+
+
+                            // To fetch admin name;
                             $get_orders = "SELECT * from admins ";
 
                             $run_orders = mysqli_query($con, $get_orders);
 
                             $row_or = mysqli_fetch_array($run_orders);
+
                             $fname = $row_or['admin_name'];
 
                             ?>
@@ -160,7 +163,7 @@ Session_start();
                     <ul class="section menu">
                         <li><a class="menuitem">Manage Content</a>
                             <ul class="submenu">
-
+                                <!-- ###########______________________LINKED____________########  -->
                                 <!-- passing variables insert_prd 
                             so now if we isset get insert_prd then set excutes
                             -->
@@ -171,6 +174,7 @@ Session_start();
                                 <li><a href="dashboard.php?edit_brand">Edit Brand <Brand></Brand></a> </li>
                             </ul>
                         </li>
+                        <!-- ###########______________________LINKED____________########  -->
                         <li><a class="menuitem">Customer Content</a>
                             <ul class="submenu">
                                 <li><a href="dashboard.php?view_cust">View Customer</a> </li>
@@ -194,8 +198,10 @@ Session_start();
 
 
                         <!-- Form starts -->
-                        <?php
 
+                        <!-- One page and desgin adding  Page-->
+                        <?php
+                        // if issest get view_products--->include viewproduct.php page
                         if (isset($_GET['view_products'])) {
 
                             include "view_product.php";

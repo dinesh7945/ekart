@@ -8,7 +8,6 @@
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 
@@ -34,7 +33,8 @@
 
         <h4 style="text-align: center">Categories</h4>
         <!-- form -->
-        <form action="" method="POST">
+        <form action="" method="POST" style="text-align: center;
+    height: 51px;">
             <input type="text" name="cat_title1">
             <input type="submit" name="insert_cat" value="Add New Category" />
         </form>

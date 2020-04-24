@@ -29,13 +29,37 @@
     <script language="javascript" type="text/javascript" src="js/jqPlot/plugins/jqplot.pointLabels.min.js"></script>
     <!-- END: load jqplot -->
     <script src="js/setup.js" type="text/javascript"></script>
+
+
+
     <script>
         // HIDE error message
+        // $(document).ready(function() {
+        //     $('#show-error').hide();
+        // });
+        // // Validation form js
+        // function validform() {
+        //     var name = document.forms["form"]["pname"].value;
+        //     var desc = document.forms["form"]["productdis"].value;
+        //     var price = document.forms["form"]["pprice"].value;
+        //     var qty = document.forms["form"]["pqty"].value;
+        //     var img = document.forms["form"]["pimg"].value;
+        //     var img2 = document.forms["form"]["pimg2"].value;
+        //     var img3 = document.forms["form"]["pimg3"].value;
+        //     var brand = document.forms["form"]["pbrand"].value;
+        //     var category = document.forms["form"]["pcategory"].value;
+        //     if (name == '' || desc == '' || price == '' || qty == '' || img == '' || img2 == '' || img3 == '' || brand == '' || category == '') {
+        //         // alert('error');
+        //         $("#show-error").show();                
+        //         return false;
+        //     }
+        // }
+        // class = 'error-sign'
         $(document).ready(function() {
-            $('#show-error').hide();
+            $('.error-sign').hide();
+
         });
 
-        // Validation form js
         function validform() {
             var name = document.forms["form"]["pname"].value;
             var desc = document.forms["form"]["productdis"].value;
@@ -47,13 +71,17 @@
             var brand = document.forms["form"]["pbrand"].value;
             var category = document.forms["form"]["pcategory"].value;
 
-
             if (name == '' || desc == '' || price == '' || qty == '' || img == '' || img2 == '' || img3 == '' || brand == '' || category == '') {
-                // alert('error');
-                $("#show-error").show();
+                $(".error-sign").show();
+
                 return false;
             }
         }
+        $(document).ready(function() {
+            $("input, select, textarea").click(function() {
+                $(".error-sign").css("display", "inline").hide();
+            });
+        });
     </script>
     </script>
     <style>
@@ -82,6 +110,13 @@
             font-size: 12px !important;
 
         }
+
+        .error-sign {
+            display: inline;
+
+            color: red;
+            font-size: 13px;
+        }
     </style>
 </head>
 
@@ -91,50 +126,67 @@
             <div class="box round first">
                 <h2> Add Product</h2>
                 <div class="block">
-                    <div class="alert alert-danger" role="alert" id="show-error">
+                    <!-- <div class="alert alert-danger" role="alert" id="show-error">
                         please fill all the fields
-                    </div>
-
-
-                    <!-- Form starts -->
+                    </div> -->
+                    <!--################## Form starts ###############-->
                     <form name="form" action="insert_prd.php" method="POST" onsubmit="return validform()" enctype="multipart/form-data">
-
-                        <table>
+                        <table style="width: 75%;">
                             <tr>
                                 <td>Product Name</td>
-                                <td><input type="text" name="pname"></td>
+                                <td><input type="text" name="pname">
+                                    <p class='error-sign'>Please fill this field
+                                    </p>
+                                </td>
                             </tr>
 
                             <tr>
                                 <td>Product Desc</td>
-                                <td><textarea name="productdis" cols="20" rows="5"></textarea> </td>
+                                <td><textarea name="productdis" cols="20" rows="5"></textarea>
+                                    <p class='error-sign'>Please fill this field
+                                    </p>
+                                </td>
                             </tr>
 
                             <tr>
                                 <td>Product price</td>
-                                <td><input type="text" name="pprice"></td>
+                                <td><input type="text" name="pprice">
+                                    <p class='error-sign'>Please fill this field
+                                    </p>
+                                </td>
                             </tr>
                             <tr>
                                 <td>Product quantity</td>
-                                <td><input type="text" name="pqty"></td>
+                                <td><input type="text" name="pqty">
+                                    <p class='error-sign'>Please fill this field
+                                    </p>
+                                </td>
                             </tr>
                             <tr>
                                 <td>Product Image</td>
-                                <td><input type="file" name="pimg"></td>
+                                <td><input type="file" name="pimg">
+                                    <p class='error-sign'>Please upload image
+                                    </p>
+                                </td>
                             </tr>
                             <tr>
                                 <td>Product Image 2</td>
-                                <td><input type="file" name="pimg2"></td>
+                                <td><input type="file" name="pimg2">
+                                    <p class='error-sign'>Please upload image
+                                    </p>
+                                </td>
                             </tr>
                             <tr>
                                 <td>Product Image 3</td>
-                                <td><input type="file" name="pimg3"></td>
+                                <td><input type="file" name="pimg3">
+                                    <p class='error-sign'>Please upload image
+                                    </p>
+                                </td>
                             </tr>
                             <tr>
                                 <td>Product brand</td>
                                 <td>
                                     <select name="pbrand">
-
                                         <option>-----select-----</option>
                                         <?php
                                         $get_brand = "SELECT brand_id,brand_title FROM brands";
@@ -157,7 +209,8 @@
                                         ?>
 
                                     </select>
-
+                                    <p class='error-sign'>please select the option
+                                    </p>
                                 </td>
                             </tr>
                             <tr>
@@ -186,6 +239,8 @@
                                         ?>
 
                                     </select>
+                                    <p class='error-sign'>please select the option
+                                    </p>
 
                                 </td>
 
@@ -226,6 +281,7 @@ if (isset($_POST['submit'])) {
     $product_brand = $_POST['pbrand'];
     $product_catgory = $_POST['pcategory'];
     $status = "on";
+
     // Image temp-name
     $temp_name1 = $_FILES['pimg']['tmp_name'];
     $temp_name2 = $_FILES['pimg2']['tmp_name'];
@@ -300,7 +356,7 @@ VALUES
     alert('product added Sucessfully');
     </script>
     ";
-    echo "<script>window.open('dashboard.php?insert_prd','_self')</script>";
+        echo "<script>window.open('dashboard.php?insert_prd','_self')</script>";
 
         // return false;
         exit();

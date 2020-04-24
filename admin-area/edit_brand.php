@@ -34,7 +34,8 @@
 
         <h4 style="text-align: center">Brands</h4>
         <!-- form -->
-        <form action="" method="POST">
+        <form action="" method="POST" style="    text-align: center;
+    height: 51px;">
             <input type="text" name="brand_title1">
             <input type="submit" name="insert_brand" value="Add New Brand" />
         </form>

@@ -24,6 +24,7 @@
 </head>
 
 <body>
+    <!-- so now when we clicked view_all products -->
     <!-- If view products pass in url by ?view_products -->
     <?php if (isset($_GET['view_products'])) { ?>
 
@@ -44,7 +45,7 @@
             <?php
             include "includes/db.php";
 
-            // intitlaztion from 0 the serial no
+            // intitlaztion from i= 0 the serial no
             $i = 0;
             $get_pro = "select * from products";
             $run_pr = mysqli_query($con, $get_pro);
@@ -115,7 +116,10 @@
                             ?>
 
                         </td>
-                        <td><a href="dashboard.php?edit_prd=<?php echo "$p_id"; ?>">Edit</a></td>
+
+
+                        <!-- Edit products includes edit_prd.php -->
+                        <td><a href="edit_prd.php?edit_prd=<?php echo "$p_id"; ?>">Edit</a></td>
                         <!-- Now here redirection of del_prd  -->
                         <td><a href="del_prd.php?delete_pro=<?php echo "$p_id"; ?>">Delete</a></td>
                     </tr>

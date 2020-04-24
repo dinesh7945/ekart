@@ -7,7 +7,6 @@ if (isset($_GET['del_category'])) {
     // declare delete with php variable
     $delete_id =   $_GET['del_category'];
 
-    
 
     $delete_pro = "DELETE FROM categories WHERE cat_id = '$delete_id' ";
 

@@ -10,6 +10,7 @@ if (isset($_GET['edit_prd'])) {
     // Storing edit_prd in  variable 
     $edit_id = $_GET['edit_prd'];
 
+    // specific id 
     $get_edit = "SELECT * FROM products WHERE  product_id='$edit_id'";
 
     $run_edit = mysqli_query($con, $get_edit);
@@ -164,7 +165,7 @@ $brand_edit_title = $brand_row['brand_title'];
                 -->
                     <form action="edit_prd.php?edit_prd=<?php echo "$update_id"; ?>" method="POST" enctype="multipart/form-data">
 
-                    <!-- Getting the value property of specific which is showing  -->
+                        <!-- Getting the value property of specific which is showing  -->
                         <table>
                             <tr>
                                 <td>Product Name</td>
