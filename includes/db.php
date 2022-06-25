@@ -5,7 +5,7 @@ if($con){
     // echo "connected";
 }
 else{
-    echo "not-connecteds";
+    echo "not-connecteds testings git";
 }
 
 
